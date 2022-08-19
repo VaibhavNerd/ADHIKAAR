@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "988431186644",
+    "project_id": "ipr-filing",
+    "storage_bucket": "ipr-filing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988431186644:android:f6194b7166a1b8fce01941",
+        "android_client_info": {
+          "package_name": "com.example.instagram_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988431186644-pl2suj03crjer8r2q2ov78dootclhvio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.instagram_clone",
+            "certificate_hash": "2dce1a8a2414083928dba0c3d3c8a5e8a1eb1f63"
+          }
+        },
+        {
+          "client_id": "988431186644-4iae4lgplcsrgd63g1t4dc12b9t95sr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjs-VYEIJk26elM2dkHj1v3VxQ42j-08o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988431186644-4iae4lgplcsrgd63g1t4dc12b9t95sr2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "988431186644-t7a3juit91ud1q3iuc6edjgq6m6bh6qu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.instagramClone"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988431186644:android:9b62994229fde4ace01941",
+        "android_client_info": {
+          "package_name": "com.example.ipr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988431186644-khtoad4rdlmjvp4g1i5s1gajgjrpeu07.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ipr",
+            "certificate_hash": "2dce1a8a2414083928dba0c3d3c8a5e8a1eb1f63"
+          }
+        },
+        {
+          "client_id": "988431186644-4iae4lgplcsrgd63g1t4dc12b9t95sr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjs-VYEIJk26elM2dkHj1v3VxQ42j-08o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988431186644-4iae4lgplcsrgd63g1t4dc12b9t95sr2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "988431186644-t7a3juit91ud1q3iuc6edjgq6m6bh6qu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.instagramClone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
