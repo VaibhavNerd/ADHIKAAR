@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ipr/components/colors.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:ipr/theme/colors.dart';
@@ -16,7 +15,7 @@ class LangPage extends StatefulWidget {
 class _LangPageState extends State<LangPage> {
   final List<String> _listItem = [
     'assets/images/liberty.jpg',
-    'assets/images/taj.png',
+    'assets/images/tajtwo.jpg',
     'assets/images/mosque.jpg',
     'assets/images/unity.jpg',
     'assets/images/guru.jpg',
@@ -34,7 +33,7 @@ class _LangPageState extends State<LangPage> {
     'huin',
     'jouh',
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,29 +58,19 @@ class _LangPageState extends State<LangPage> {
               Container(
                 width: 300,
                 height: 50,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: AssetImage(
-                          'assets/images/indiabg.jpg',
-                        ),
-                        fit: BoxFit.fill)),
+                decoration: BoxDecoration(),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      gradient:
-                          LinearGradient(begin: Alignment.bottomRight, colors: [
-                        Colors.black.withOpacity(.4),
-                        Colors.black.withOpacity(.2),
-                      ])),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Choose your language",
+                        "Choose  your  language",
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 23,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -93,6 +82,7 @@ class _LangPageState extends State<LangPage> {
               ),
               Expanded(
                 child: GridView.builder(
+                    physics: BouncingScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
