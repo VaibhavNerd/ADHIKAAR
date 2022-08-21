@@ -62,6 +62,10 @@ flutter:
     - assets/images/
     - assets/images/logo.svg
     - assets/images/man.svg
+    - assets/images/weekone.jpg
+    - assets/images/weektwo.jpg
+    - assets/images/drakeone.jpg
+    - assets/images/draketwo.jpg
 
 
 
