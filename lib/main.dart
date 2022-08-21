@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ipr/pages/aadhar_auth.dart';
@@ -17,7 +20,11 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: AadharAuth(),
+// <<<<<<< HEAD
+    home: Home(),
+// =======
+//     home: AadharAuth(),
+// >>>>>>> master
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
@@ -30,6 +37,25 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+// <<<<<<< HEAD
+  @override
+  void initState() {
+    //  FirebaseAuth.instance.signOut();
+    Timer(Duration(seconds: 3), () {
+      if (FirebaseAuth.instance.currentUser == null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => AadharAuth()));
+      } else {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => RootApp()));
+      }
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+
+// =======
+// >>>>>>> master
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
