@@ -63,16 +63,17 @@ class AccountPage extends StatelessWidget {
                     height: 22,
                   ),
                   Container(
-                    height: height * 0.40,
+                    height: height * 0.23,
+                    //   color: Colors.red,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
-                        double innerHeight = constraints.maxHeight;
+                        double innerHeight = height * 0.30;
                         double innerWidth = constraints.maxWidth;
                         return Stack(
                           fit: StackFit.expand,
                           children: [
                             Positioned(
-                              bottom: 0,
+                              top: 0,
                               left: 0,
                               right: 0,
                               child: Container(
@@ -85,7 +86,7 @@ class AccountPage extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height: 80,
+                                      height: 10,
                                     ),
                                     Text(
                                       'Sankalp Srivastava',
@@ -99,7 +100,7 @@ class AccountPage extends StatelessWidget {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Column(
                                           children: [
@@ -130,7 +131,7 @@ class AccountPage extends StatelessWidget {
                                             width: 3,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(100),
+                                                  BorderRadius.circular(100),
                                               color: Colors.grey,
                                             ),
                                           ),
@@ -164,7 +165,7 @@ class AccountPage extends StatelessWidget {
                                             width: 3,
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                              BorderRadius.circular(100),
+                                                  BorderRadius.circular(100),
                                               color: Colors.grey,
                                             ),
                                           ),
@@ -195,35 +196,35 @@ class AccountPage extends StatelessWidget {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-                            Positioned(
-                              top: 110,
-                              right: 20,
-                              child: Icon(
-                                AntDesign.setting,
-                                color: Colors.grey[700],
-                                size: 30,
-                              ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              child: Center(
-                                child: Container(
-                                  child: CircleAvatar(
-                                    radius: 85,
-                                    backgroundImage: AssetImage(
-                                        'assets/images/profileme.jpeg'),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Positioned(
+                            //   top: 110,
+                            //   right: 20,
+                            //   child: Icon(
+                            //     AntDesign.setting,
+                            //     color: Colors.grey[700],
+                            //     size: 30,
+                            //   ),
+                            // ),
+                            // Positioned(
+                            //   top: 0,
+                            //   left: 0,
+                            //   right: 0,
+                            //   child: Center(
+                            //     child: Container(
+                            //       child: CircleAvatar(
+                            //         radius: 85,
+                            //         backgroundImage: AssetImage(
+                            //             'assets/images/profileme.jpeg'),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         );
                       },
