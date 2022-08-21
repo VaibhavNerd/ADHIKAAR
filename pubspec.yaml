@@ -42,8 +42,9 @@ dependencies:
   flutter_icons: ^1.1.0
   keyboard_avoider: ^0.1.2
   splashscreen:
-  carousel_slider:
+  timeago: ^3.3.0
   simple_gradient_text: ^1.2.3
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:

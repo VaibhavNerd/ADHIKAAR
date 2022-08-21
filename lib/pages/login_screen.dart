@@ -1,4 +1,5 @@
 import 'package:ipr/main.dart';
+import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/login_screen.dart';
 import 'package:ipr/pages/registration_screen.dart';
@@ -24,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // firebase
   final _auth = FirebaseAuth.instance;
-  
+
   // string for displaying the error Message
   String errorMessage;
 
@@ -140,8 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          RegistrationScreen()));
+                                      builder: (context) => AadharAuth()));
                             },
                             child: Text(
                               "SignUp",

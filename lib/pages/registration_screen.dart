@@ -7,18 +7,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ipr/pages/root_app.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key key}) : super(key: key);
-
+  RegistrationScreen(this.phone);
+  String phone;
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
-  
+
   // string for displaying the error Message
   String errorMessage;
-
 
   // our form key
   final _formKey = GlobalKey<FormState>();
@@ -26,8 +25,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final firstNameEditingController = new TextEditingController();
   final secondNameEditingController = new TextEditingController();
   final emailEditingController = new TextEditingController();
-  final passwordEditingController = new TextEditingController();
-  final confirmPasswordEditingController = new TextEditingController();
+  // final passwordEditingController = new TextEditingController();
+  // final confirmPasswordEditingController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -113,56 +112,56 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ));
 
     //password field
-    final passwordField = TextFormField(
-        autofocus: false,
-        controller: passwordEditingController,
-        obscureText: true,
-        validator: (value) {
-          RegExp regex = new RegExp(r'^.{6,}$');
-          if (value.isEmpty) {
-            return ("Password is required for login");
-          }
-          if (!regex.hasMatch(value)) {
-            return ("Enter Valid Password(Min. 6 Character)");
-          }
-        },
-        onSaved: (value) {
-          firstNameEditingController.text = value;
-        },
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.vpn_key),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Password",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
+    // final passwordField = TextFormField(
+    //     autofocus: false,
+    //     controller: passwordEditingController,
+    //     obscureText: true,
+    //     validator: (value) {
+    //       RegExp regex = new RegExp(r'^.{6,}$');
+    //       if (value.isEmpty) {
+    //         return ("Password is required for login");
+    //       }
+    //       if (!regex.hasMatch(value)) {
+    //         return ("Enter Valid Password(Min. 6 Character)");
+    //       }
+    //     },
+    //     onSaved: (value) {
+    //       firstNameEditingController.text = value;
+    //     },
+    //     textInputAction: TextInputAction.next,
+    //     decoration: InputDecoration(
+    //       prefixIcon: Icon(Icons.vpn_key),
+    //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+    //       hintText: "Password",
+    //       border: OutlineInputBorder(
+    //         borderRadius: BorderRadius.circular(10),
+    //       ),
+    //     ));
 
     //confirm password field
-    final confirmPasswordField = TextFormField(
-        autofocus: false,
-        controller: confirmPasswordEditingController,
-        obscureText: true,
-        validator: (value) {
-          if (confirmPasswordEditingController.text !=
-              passwordEditingController.text) {
-            return "Password don't match";
-          }
-          return null;
-        },
-        onSaved: (value) {
-          confirmPasswordEditingController.text = value;
-        },
-        textInputAction: TextInputAction.done,
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.vpn_key),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Confirm Password",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
+    // final confirmPasswordField = TextFormField(
+    //     autofocus: false,
+    //     controller: confirmPasswordEditingController,
+    //     obscureText: true,
+    //     validator: (value) {
+    //       if (confirmPasswordEditingController.text !=
+    //           passwordEditingController.text) {
+    //         return "Password don't match";
+    //       }
+    //       return null;
+    //     },
+    //     onSaved: (value) {
+    //       confirmPasswordEditingController.text = value;
+    //     },
+    //     textInputAction: TextInputAction.done,
+    //     decoration: InputDecoration(
+    //       prefixIcon: Icon(Icons.vpn_key),
+    //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+    //       hintText: "Confirm Password",
+    //       border: OutlineInputBorder(
+    //         borderRadius: BorderRadius.circular(10),
+    //       ),
+    //     ));
 
     //signup button
     final signUpButton = Material(
@@ -173,7 +172,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
-            signUp(emailEditingController.text, passwordEditingController.text);
+            postDetailsToFirestore();
+            //  signUp(emailEditingController.text, passwordEditingController.text);
           },
           child: Text(
             "SignUp",
@@ -221,10 +221,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(height: 20),
                     emailField,
                     SizedBox(height: 20),
-                    passwordField,
-                    SizedBox(height: 20),
-                    confirmPasswordField,
-                    SizedBox(height: 20),
+                    // passwordField,
+                    // SizedBox(height: 20),
+                    // confirmPasswordField,
+                    // SizedBox(height: 20),
                     signUpButton,
                     SizedBox(height: 15),
                   ],
@@ -236,6 +236,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
+
   void signUp(String email, String password) async {
     if (_formKey.currentState.validate()) {
       try {
@@ -273,6 +274,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       }
     }
   }
+
   postDetailsToFirestore() async {
     // calling our firestore
     // calling our user model
@@ -284,24 +286,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     UserModel userModel = UserModel();
 
     // writing all the values
-    userModel.email = user.email;
+    userModel.email = emailEditingController.text;
     userModel.uid = user.uid;
     userModel.firstName = firstNameEditingController.text;
     userModel.secondName = secondNameEditingController.text;
 
+    // await firebaseFirestore
+    //     .collection("users")
+    //     .doc(user.uid).collection("details")
+    //     .doc(userModel.toString()).set(userModel.toMap());
+
     await firebaseFirestore
         .collection("users")
-        .doc(user.uid).collection("details")
-        .doc(userModel.toString()).set(userModel.toMap());
-    
-    
-    
-    
+        .doc(user.uid)
+        .set(userModel.toMap());
+
     Fluttertoast.showToast(msg: "Account created successfully :) ");
 
-    Navigator.pushAndRemoveUntil(
-        (context),
-        MaterialPageRoute(builder: (context) => RootApp()),
-        (route) => false);
+    Navigator.pushAndRemoveUntil((context),
+        MaterialPageRoute(builder: (context) => RootApp()), (route) => false);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ipr/pages/registration_screen.dart';
 import 'package:ipr/pages/root_app.dart';
+import 'package:ipr/services/firebase_services.dart';
 
 import 'package:pinput/pinput.dart';
 
@@ -16,11 +18,13 @@ class _OTPScreenState extends State<OTPScreen> {
   String _verificationCode;
   final TextEditingController _pinPutController = TextEditingController();
 
-
   final defaultPinTheme = PinTheme(
     width: 56,
     height: 56,
-    textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.w600),
+    textStyle: TextStyle(
+        fontSize: 20,
+        color: Color.fromRGBO(30, 60, 87, 1),
+        fontWeight: FontWeight.w600),
     decoration: BoxDecoration(
       border: Border.all(color: Colors.blue),
       borderRadius: BorderRadius.circular(20),
@@ -49,26 +53,34 @@ class _OTPScreenState extends State<OTPScreen> {
             child: Pinput(
               length: 6,
               defaultPinTheme: defaultPinTheme,
-
               controller: _pinPutController,
-
               pinAnimationType: PinAnimationType.fade,
               onSubmitted: (pin) async {
                 try {
                   await FirebaseAuth.instance
                       .signInWithCredential(PhoneAuthProvider.credential(
-                      verificationId: _verificationCode, smsCode: pin))
+                          verificationId: _verificationCode, smsCode: pin))
                       .then((value) async {
                     if (value.user != null) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => RootApp()),
-                              (route) => false);
+                      bool isold = await checkuser(value.user.uid);
+                      if (isold) {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => RootApp()),
+                            (route) => false);
+                      } else {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    RegistrationScreen(widget.phone)),
+                            (route) => false);
+                      }
                     }
                   });
                 } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
-
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(e.toString())));
                 }
               },
             ),
@@ -89,7 +101,7 @@ class _OTPScreenState extends State<OTPScreen> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => RootApp()),
-                      (route) => false);
+                  (route) => false);
             }
           });
         },
