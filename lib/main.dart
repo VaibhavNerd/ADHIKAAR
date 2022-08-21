@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/activity_page.dart';
+import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:ipr/pages/home_page.dart';
@@ -18,7 +19,11 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+// <<<<<<< HEAD
     home: Home(),
+// =======
+//     home: AadharAuth(),
+// >>>>>>> master
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
@@ -31,6 +36,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+// <<<<<<< HEAD
   @override
   void initState() {
     //  FirebaseAuth.instance.signOut();
@@ -47,6 +53,8 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+// =======
+// >>>>>>> master
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
