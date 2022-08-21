@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/activity_page.dart';
+import 'package:ipr/pages/agent_register.dart';
 import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
 import 'package:splashscreen/splashscreen.dart';
