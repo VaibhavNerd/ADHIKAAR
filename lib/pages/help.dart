@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:ipr/chat_bot.dart';
 import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class _HelpPageState extends State<HelpPage> {
     'FAQs',
     'Email',
   ];
+  List page = [ChatScreen(), ChatScreen(), ChatScreen()];
   List<String> des = [
     'Starting a conversation right now !',
     'Find answers to your questions instantly',
@@ -141,42 +143,53 @@ class _HelpPageState extends State<HelpPage> {
                           ),
                           color: Colors.white,
                           elevation: 3,
-                          child: Stack(
-                            children: <Widget>[
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      ChatScreen(),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 20),
-                                  child: Image.asset(
-                                    _listItem[index],
-                                    height: 70,
-                                    width: 35,
-                                    fit: BoxFit.fill,
+                              );
+                            },
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 20),
+                                    child: Image.asset(
+                                      _listItem[index],
+                                      height: 70,
+                                      width: 35,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 7, horizontal: 70),
-                                child: Text(state[index],
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: 70),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 27),
-                                  child: Text(des[index],
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 7, horizontal: 70),
+                                  child: Text(state[index],
                                       style: TextStyle(
-                                        fontSize: 15,
-                                      )),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold)),
                                 ),
-                              ),
-                            ],
+                                Container(
+                                  margin: EdgeInsets.only(left: 70),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 27),
+                                    child: Text(des[index],
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        )),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
