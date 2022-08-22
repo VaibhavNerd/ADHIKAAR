@@ -36,7 +36,7 @@ class _HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColor.voilet,
+      backgroundColor: CustomColor.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -61,16 +61,6 @@ class _HelpPageState extends State<HelpPage> {
       ),
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                CustomColor.black,
-                CustomColor.voilet,
-              ],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            ),
-          ),
           padding: EdgeInsets.all(19.0),
           child: Column(
             children: <Widget>[
@@ -105,7 +95,7 @@ class _HelpPageState extends State<HelpPage> {
               Text(
                 "Tell  us  how  we  can  help",
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
@@ -116,7 +106,7 @@ class _HelpPageState extends State<HelpPage> {
                 child: Text(
                   "Our crew of superheros are standing by \n             for your support and service !",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 13,
                   ),
                 ),
