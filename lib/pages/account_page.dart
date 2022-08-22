@@ -3,6 +3,7 @@ import 'package:ipr/components/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:ipr/pages/help.dart';
+import 'package:ipr/pages/raise.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
@@ -320,21 +321,29 @@ class AccountPage extends StatelessWidget {
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            height: height * 0.05,
-                            width: 500,
-                            child: Text(
-                              'Settings',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                height: 1.85,
-                                fontSize: 20,
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => RaisePage()));
+                            },
+                            child: Container(
+                              height: height * 0.05,
+                              width: 500,
+                              child: Text(
+                                'Raise Objection',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  height: 1.85,
+                                  fontSize: 20,
+                                ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: CustomColor.grey,
-                              borderRadius: BorderRadius.circular(30),
+                              decoration: BoxDecoration(
+                                color: CustomColor.grey,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
                             ),
                           ),
                           SizedBox(

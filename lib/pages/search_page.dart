@@ -4,6 +4,8 @@ import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:ipr/pages/home_page.dart';
+import 'package:ipr/pages/root_app.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
@@ -65,7 +67,13 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+            splashRadius: 15,
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => RootApp()));
+            }),
         title: Center(
           child: Text(
             "Need Help ?",
