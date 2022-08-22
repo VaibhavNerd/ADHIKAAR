@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xFFBEFF0F9),
       appBar: getAppBar(),
       body: getBody(size),
+
     );
   }
 
