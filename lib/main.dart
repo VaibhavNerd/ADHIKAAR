@@ -8,8 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/activity_page.dart';
 import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
+
+import 'package:ipr/pages/patent_search.dart';
 import 'package:ipr/patent_forms/form1.dart';
 import 'package:ipr/patent_forms/form2.dart';
+import 'package:ipr/trademark/trademark_form1.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/root_app.dart';
@@ -22,7 +25,7 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 // <<<<<<< HEAD
-    home: Home(),
+    home: RootApp(),
 // =======
 //     home: AadharAuth(),
 // >>>>>>> master

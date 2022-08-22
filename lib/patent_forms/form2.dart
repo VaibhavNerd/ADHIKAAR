@@ -36,8 +36,14 @@ class _PatentForm2State extends State<PatentForm2> {
            SizedBox(
             height: 8,
           ),
-          TextField(
+          TextFormField(
             controller: title2,
+            validator: (value) {
+              if (value.isEmpty) {
+                return ("Feild can't be empty");
+              }
+              return null;
+            },
             decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
               border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                 Radius.circular(8.0),),),
@@ -52,8 +58,14 @@ class _PatentForm2State extends State<PatentForm2> {
            const SizedBox(
             height: 8,
           ),
-          TextField(
+          TextFormField(
             controller: name2,
+            validator: (value) {
+              if (value.isEmpty) {
+                return ("Feild can't be empty");
+              }
+              return null;
+            },
             decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
               border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                 Radius.circular(8.0),),),
@@ -63,8 +75,14 @@ class _PatentForm2State extends State<PatentForm2> {
               const SizedBox(
                 height: 8,
           ),
-              TextField(
+              TextFormField(
                 controller: name2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -108,8 +126,14 @@ class _PatentForm2State extends State<PatentForm2> {
               const SizedBox(
                 height: 8,
               ),
-              TextField(
+              TextFormField(
                 controller: name2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -119,8 +143,15 @@ class _PatentForm2State extends State<PatentForm2> {
 
               const SizedBox(
                 height: 8, ),
-              TextField(
+              TextFormField(
+
                 controller: name2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                     border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                       Radius.circular(8.0),),),

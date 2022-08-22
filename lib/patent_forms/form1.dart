@@ -9,6 +9,7 @@ class PatentForm1 extends StatefulWidget {
 }
 
 class _PatentForm1State extends State<PatentForm1> {
+  List<GlobalKey<FormState>> _formKeys = [GlobalKey<FormState>(), GlobalKey<FormState>(),GlobalKey<FormState>()];
   int _activeStepIndex = 0;
 
   //Patentform1_Page1_Varaibles
@@ -95,6 +96,8 @@ class _PatentForm1State extends State<PatentForm1> {
       content:Container( //color: Colors.red,
 
         child: SingleChildScrollView ( child:
+            Form( key: _formKeys[0],
+              child:
         Column ( children: [
 
 
@@ -163,8 +166,14 @@ class _PatentForm1State extends State<PatentForm1> {
             height: 8,
           ),
 
-          TextField(
+          TextFormField(
             controller: name1,
+            validator: (value) {
+              if (value.isEmpty) {
+                return ("Value can't be empty");
+              }
+              return null;
+            },
             decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
               border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                 Radius.circular(8.0),),),
@@ -175,8 +184,14 @@ class _PatentForm1State extends State<PatentForm1> {
             height: 8,
           ),
 
-          TextField(
+          TextFormField(
             controller: nationality1,
+            validator: (value) {
+              if (value.isEmpty) {
+                return ("Value is empty");
+              }
+              return null;
+            },
             decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
               border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                 Radius.circular(8.0),),),
@@ -188,8 +203,14 @@ class _PatentForm1State extends State<PatentForm1> {
           ),
 
 
-          TextField(
+          TextFormField(
             controller: residence1,
+            validator: (value) {
+              if (value.isEmpty) {
+                return ("Value is empty");
+              }
+              return null;
+            },
             decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
               border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                 Radius.circular(8.0),),),
@@ -200,8 +221,14 @@ class _PatentForm1State extends State<PatentForm1> {
             height: 8,
           ),
 
-          TextField(
+          TextFormField(
             controller: address1,
+            validator: (value) {
+              if (value.isEmpty) {
+                return ("Value is empty");
+              }
+              return null;
+            },
             decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
               border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                 Radius.circular(8.0),),),
@@ -312,6 +339,7 @@ class _PatentForm1State extends State<PatentForm1> {
 
         ]),
         ),
+        ),
       ),
     ),
 
@@ -325,13 +353,21 @@ class _PatentForm1State extends State<PatentForm1> {
       isActive: _activeStepIndex >= 1,
       title: const Text('2'),
       content: Container(
-        child: Column(
+        child:
+        Form( key: _formKeys[1],
+          child: Column(
             children: [
               const SizedBox(
                 height: 8,
               ),
-              TextField(
+              TextFormField(
                 controller: title_inv2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Value is empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -403,8 +439,14 @@ class _PatentForm1State extends State<PatentForm1> {
               const SizedBox(
                 height: 4,
               ),
-              TextField(
+              TextFormField(
                 controller: name2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -414,8 +456,14 @@ class _PatentForm1State extends State<PatentForm1> {
                 height: 8,
               ),
 
-              TextField(
+              TextFormField(
                 controller: mobile2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -424,8 +472,14 @@ class _PatentForm1State extends State<PatentForm1> {
               ), const SizedBox(
                 height: 8,
               ),
-              TextField(
+              TextFormField(
                 controller: email2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -434,8 +488,14 @@ class _PatentForm1State extends State<PatentForm1> {
               ), const SizedBox(
                 height: 8,
               ),
-              TextField(
+              TextFormField(
                 controller: address2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -510,8 +570,14 @@ class _PatentForm1State extends State<PatentForm1> {
               const SizedBox(
                 height: 4,
               ),
-              TextField(
+              TextFormField(
                 controller: country2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -521,8 +587,14 @@ class _PatentForm1State extends State<PatentForm1> {
                 height: 8,
               ),
 
-              TextField(
+              TextFormField(
                 controller: appl_no2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -531,8 +603,15 @@ class _PatentForm1State extends State<PatentForm1> {
               ), const SizedBox(
                 height: 8,
               ),
-              TextField(
+              TextFormField(
+
                 controller: appl_name2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -541,8 +620,14 @@ class _PatentForm1State extends State<PatentForm1> {
               ), const SizedBox(
                 height: 8,
               ),
-              TextField(
+              TextFormField(
                 controller: address2_2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -551,11 +636,14 @@ class _PatentForm1State extends State<PatentForm1> {
               ), const SizedBox(
                 height: 8,
               ),
-              TextField(
+              TextFormField(
                 controller: filing_date2_1,
-
-
-                    // InputDecoration
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
 
                 onTap: () async { DateTime pickeddate = await showDatePicker(
                     context: context,
@@ -580,8 +668,14 @@ class _PatentForm1State extends State<PatentForm1> {
                 height: 8,
               ),
 
-              TextField(
+              TextFormField(
                 controller: title_inv2_1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -591,8 +685,14 @@ class _PatentForm1State extends State<PatentForm1> {
                 height: 8,
               ),
 
-              TextField(
+              TextFormField(
                 controller: ipc2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -666,8 +766,14 @@ class _PatentForm1State extends State<PatentForm1> {
               const SizedBox(
                 height: 4,
               ),
-              TextField(
+              TextFormField(
                 controller: int_appl_no2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -677,8 +783,14 @@ class _PatentForm1State extends State<PatentForm1> {
                 height: 8,
               ),
 
-              TextField(
+              TextFormField(
                 controller: filing_date2_2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
 
                 onTap: () async { DateTime pickeddate = await showDatePicker(
                     context: context,
@@ -766,8 +878,14 @@ class _PatentForm1State extends State<PatentForm1> {
               const SizedBox(
                 height: 4,
               ),
-              TextField(
+              TextFormField(
                 controller: patent_no2,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                   border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                     Radius.circular(8.0),),),
@@ -777,8 +895,14 @@ class _PatentForm1State extends State<PatentForm1> {
                 height: 8,
               ),
 
-              TextField(
+              TextFormField(
                 controller: filing_date2_3,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return ("Feild can't be empty");
+                  }
+                  return null;
+                },
                 onTap: () async { DateTime pickeddate = await showDatePicker(
                     context: context,
                     initialDate: DateTime.now(),
@@ -801,6 +925,7 @@ class _PatentForm1State extends State<PatentForm1> {
                 height: 8,
               ),
             ]  ),
+        ),
       ),
     ),
 
@@ -810,7 +935,8 @@ class _PatentForm1State extends State<PatentForm1> {
         isActive: _activeStepIndex >= 2,
         title: const Text('3'),
         content: Container(
-            child:
+            child: Form( key: _formKeys[2],
+                child :
             Flexible( child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -856,8 +982,14 @@ class _PatentForm1State extends State<PatentForm1> {
                   ),
 
 
-                  TextField(
+                  TextFormField(
                     controller: date3_1,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return ("Feild can't be empty");
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                         Radius.circular(8.0),),),
@@ -878,8 +1010,14 @@ class _PatentForm1State extends State<PatentForm1> {
 
                       children: [
 
-                        TextField(
+                        TextFormField(
                           controller: names3_1,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return ("Feild can't be empty");
+                            }
+                            return null;
+                          },
                           decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                             border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                               Radius.circular(8.0),),),
@@ -955,8 +1093,14 @@ class _PatentForm1State extends State<PatentForm1> {
                   ),
 
 
-                  TextField(
+                  TextFormField(
                     controller: date3_2,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return ("Feild can't be empty");
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                         Radius.circular(8.0),),),
@@ -978,8 +1122,14 @@ class _PatentForm1State extends State<PatentForm1> {
 
                       children: [
 
-                        TextField(
+                        TextFormField(
                           controller: names3_2,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return ("Feild can't be empty");
+                            }
+                            return null;
+                          },
                           decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                             border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                               Radius.circular(8.0),),),
@@ -1047,8 +1197,14 @@ class _PatentForm1State extends State<PatentForm1> {
                   ),
 
 
-                  TextField(
+                  TextFormField(
                     controller: date3_3,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return ("Feild can't be empty");
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                         Radius.circular(8.0),),),
@@ -1069,8 +1225,14 @@ class _PatentForm1State extends State<PatentForm1> {
 
                       children: [
 
-                        TextField(
+                        TextFormField(
                           controller: names3_3,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return ("Feild can't be empty");
+                            }
+                            return null;
+                          },
                           decoration: const InputDecoration( contentPadding: EdgeInsets.all(10),
                             border: OutlineInputBorder( borderRadius: const BorderRadius.all(
                               Radius.circular(8.0),),),
@@ -1101,7 +1263,7 @@ class _PatentForm1State extends State<PatentForm1> {
                   ElevatedButton( onPressed: (){}, child: Text("Upload Documents",style: TextStyle(fontSize: 15),),
                     style: ElevatedButton.styleFrom(primary: Colors.blueAccent,minimumSize: Size(15, 40)),)
                 ]
-            )))),
+            )))),),
   ];
 
   @override
@@ -1111,7 +1273,8 @@ class _PatentForm1State extends State<PatentForm1> {
       appBar: AppBar(
         title: const Text('Flutter Stepper'),
       ),
-      body: Stepper(
+      body:
+        Stepper(
 
         controlsBuilder: (context, details) {
           return Row(
@@ -1133,7 +1296,7 @@ class _PatentForm1State extends State<PatentForm1> {
         steps: stepList(),
 
         onStepContinue: () {
-          if (_activeStepIndex < (stepList().length - 1)) {
+          if (_activeStepIndex < (stepList().length - 1) && _formKeys[_activeStepIndex].currentState?.validate()) {
             setState(() {
               _activeStepIndex += 1;
             });

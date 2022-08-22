@@ -33,6 +33,7 @@ dependencies:
   google_fonts:
   intl: ^0.17.0
   datetime_picker_formfield: ^2.0.1
+  webview_flutter: ^3.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
