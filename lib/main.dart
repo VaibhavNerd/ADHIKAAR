@@ -1,18 +1,25 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/activity_page.dart';
+import 'package:ipr/pages/agent_register.dart';
 import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
+//<<<<<<< vaibhav
 
-import 'package:ipr/pages/patent_search.dart';
-import 'package:ipr/patent_forms/form1.dart';
-import 'package:ipr/patent_forms/form2.dart';
-import 'package:ipr/trademark/trademark_form1.dart';
+//import 'package:ipr/pages/patent_search.dart';
+//import 'package:ipr/patent_forms/form1.dart';
+//import 'package:ipr/patent_forms/form2.dart';
+//import 'package:ipr/trademark/trademark_form1.dart';
+//=======
+import 'package:ipr/pages/patent.dart';
+import 'package:ipr/pages/raise.dart';
+import 'package:ipr/pages/search_district.dart';
+import 'package:ipr/pages/search_pin.dart';
+//>>>>>>> master
 import 'package:splashscreen/splashscreen.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/root_app.dart';
