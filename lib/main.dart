@@ -32,7 +32,7 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 // <<<<<<< HEAD
-    home: RootApp(),
+    home: RootApp  (),
 // =======
 //     home: AadharAuth(),
 // >>>>>>> master
