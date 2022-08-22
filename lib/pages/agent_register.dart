@@ -274,7 +274,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         Container(
                           child: TextFormField(
                             decoration: ThemeHelper().textInputDecoration(
-                                "PIN Number", "Enter PIN code"),
+                                "PIN Code", "Enter PIN code"),
                             keyboardType: TextInputType.phone,
                             validator: (val) {
                               if ((val.length != 6) ||
@@ -284,6 +284,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 //count1++;
                               }
                               count1++;
+
                               return null;
                             },
                           ),
