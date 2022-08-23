@@ -4,6 +4,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/chat_page.dart';
+import 'package:ipr/patent_forms/ongoing_form.dart';
 import 'dart:math' as math;
 import 'package:ipr/theme/colors.dart';
 
@@ -31,7 +32,6 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xFFBEFF0F9),
       appBar: getAppBar(),
       body: getBody(size),
-
     );
   }
 
@@ -298,82 +298,94 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Container(
-                        width: 150,
-                        height: 188,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                flex: 7,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/patent.png'),
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFEFF0F9),
-                                  ),
-                                )),
-                            Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: double.infinity,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Patent",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          Text(
-                                            "-Legal Right Of Owner",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 9,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color.fromRGBO(
-                                                    0, 0, 0, 45)),
-                                          ),
-                                        ],
-                                      )),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFF8F7FC),
-                                  ),
-                                )),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                              blurRadius: 5,
-                              offset: Offset(5, 5),
+                      InkWell(
+                        onTap: () {
+                          //TODO:call firebase to give id
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => OngoingForms(),
                             ),
-                            BoxShadow(
-                              //color: Color.fromRGBO(255, 255, 255, 1),
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              blurRadius: 10,
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          height: 188,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  flex: 7,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/patent.png'),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFEFF0F9),
+                                    ),
+                                  )),
+                              Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 4, 0, 0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Patent",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              "-Legal Right Of Owner",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 45)),
+                                            ),
+                                          ],
+                                        )),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFF8F7FC),
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 5,
+                                offset: Offset(5, 5),
+                              ),
+                              BoxShadow(
+                                //color: Color.fromRGBO(255, 255, 255, 1),
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                blurRadius: 10,
 
-                              offset: Offset(-5, -5),
-                            )
-                          ],
-                          // color: Colors.amberAccent,
+                                offset: Offset(-5, -5),
+                              )
+                            ],
+                            // color: Colors.amberAccent,
+                          ),
                         ),
                       ),
                       Container(
