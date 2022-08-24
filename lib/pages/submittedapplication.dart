@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ipr/patent_forms/ongoing_form.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -47,42 +48,84 @@ class _SubmittedApplicationState extends State<SubmittedApplication> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                       padding: const EdgeInsets.all(8),
-                      child: Card(
-                          child: SizedBox(
-                              width: double.infinity,
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                              " Id:\n ${applications[index]["id"]}"),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            " Status:\n ${applications[index]["status"]}",
-                                            overflow: TextOverflow.clip,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  OngoingForms(applications[index]["id"]),
+                            ),
+                          );
+                        },
+                        child: Card(
+                            child: SizedBox(
+                                width: double.infinity,
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
                                         children: [
-                                          Text(
-                                              " Started:\n ${timeago.format(DateTime.parse(applications[index]["timeapplied"]))}"),
-                                          Text(
-                                              " Updated:\n ${timeago.format(DateTime.parse(applications[index]["timewhenlastchanged"]))}"),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                                " Id:\n ${applications[index]["id"]}"),
+                                          ),
                                         ],
                                       ),
-                                    )
-                                  ]))));
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              width: 150,
+                                              child: Text(
+                                                  " Started:\n ${timeago.format(DateTime.parse(applications[index]["timeapplied"]))}"),
+                                            ),
+                                            SizedBox(
+                                              width: 150,
+                                              child: Text(
+                                                  " Updated:\n ${timeago.format(DateTime.parse(applications[index]["timewhenlastchanged"]))}"),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SizedBox(
+                                                width: 150,
+                                                child: Text(
+                                                  " Update:\n ${applications[index]["update"]}",
+                                                  overflow: TextOverflow.clip,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SizedBox(
+                                                width: 150,
+                                                child: Text(
+                                                  " Status:\n ${applications[index]["status"]}",
+                                                  overflow: TextOverflow.clip,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ]))),
+                      ));
                 }),
           ],
         ),
