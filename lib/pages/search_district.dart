@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:country_state_city_pro/country_state_city_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ipr/chat_bot.dart';
 import 'package:ipr/components/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:ipr/pages/agentlist.dart';
 import 'package:ipr/pages/search_district.dart';
 import 'package:ipr/pages/search_geo.dart';
 import 'package:ipr/pages/search_pin.dart';
@@ -17,11 +20,39 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SearchDistrictPage extends StatefulWidget {
+  SearchDistrictPage(this.val);
+  String val;
   @override
   _SearchDistrictPageState createState() => _SearchDistrictPageState();
 }
 
 class _SearchDistrictPageState extends State<SearchDistrictPage> {
+  List agent = [];
+  Future<void> checkbypincode(String country, String state, String city) async {
+    agent = [];
+    String field = widget.val == "Patent"
+        ? "patent"
+        : widget.val == "Trademark"
+            ? "trademark"
+            : widget.val == "Copyright"
+                ? "copyright"
+                : "industrydesign";
+    QuerySnapshot qsnap = await FirebaseFirestore.instance
+        .collection("agents")
+        .where('country', isEqualTo: country)
+        .where('state', isEqualTo: state)
+        .where('city', isEqualTo: city)
+        .where(field, isEqualTo: true)
+        .get();
+
+    for (var element in qsnap.docs) {
+      agent.add(element.data());
+    }
+  }
+
+  TextEditingController country = TextEditingController();
+  TextEditingController state = TextEditingController();
+  TextEditingController city = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   int count = 0;
   int count1 = 0;
@@ -161,70 +192,12 @@ class _SearchDistrictPageState extends State<SearchDistrictPage> {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  //margin: EdgeInsets.fromLTRB(0, 0, 190, 0),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          //margin: EdgeInsets.fromLTRB(10, 0, 40, 0),
-                          child: DropdownButton(
-                            items: _states
-                                .map((value) => DropdownMenuItem(
-                                      child: Text(
-                                        value,
-                                        style: TextStyle(),
-                                      ),
-                                      value: value,
-                                    ))
-                                .toList(),
-                            onChanged: (selectedAccountType) {
-                              //count1++;
-                              statesel = 1;
-                              print('$selectedAccountType');
-                              setState(() {
-                                selectedstate = selectedAccountType;
-                              });
-                            },
-                            value: selectedstate,
-                            isExpanded: false,
-                            hint: Text(
-                              'Select State',
-                              style: TextStyle(),
-                            ),
-                          ),
-                        ),
-                        DropdownButton(
-                          items: _states
-                              .map((value) => DropdownMenuItem(
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(),
-                                    ),
-                                    value: value,
-                                  ))
-                              .toList(),
-                          onChanged: (selectedAccountType) {
-                            print('$selectedAccountType');
-                            setState(() {
-                              dissel = 1;
-                              //count1++;
-                              selectedType2 = selectedAccountType;
-                            });
-                          },
-                          value: selectedType2,
-                          isExpanded: false,
-                          hint: Text(
-                            'Select district',
-                            //style: TextStyle(color: Color(0xff11b719)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                CountryStateCityPicker(
+                  country: country,
+                  state: state,
+                  city: city,
+                  textFieldInputBorder: UnderlineInputBorder(),
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
@@ -248,25 +221,18 @@ class _SearchDistrictPageState extends State<SearchDistrictPage> {
                     onPressed: () {
                       //count1++;
                       if (_formKey.currentState.validate()) {
-                        showDialog<String>(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            title: const Text('Agent Details'),
-                            content: const Text(
-                                'Name : Sankalp Srivastava \nMobile no.: 6387248986\nAddress:1054 , Pinewood Enclave Wave City , Ghaziabad -201015'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, 'Cancel'),
-                                child: const Text('Cancel'),
+                        if (_formKey.currentState.validate()) {
+                          checkbypincode(country.text, state.text, city.text)
+                              .then((value) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    AgentList(agent),
                               ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, 'OK'),
-                                child: const Text('OK'),
-                              ),
-                            ],
-                          ),
-                        );
+                            );
+                          });
+                        }
                       }
                     },
                   ),

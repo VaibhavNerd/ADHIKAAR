@@ -100,7 +100,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   void initState() {
     var first = widget.address;
     address.text =
-        ' ${first.locality}, ${first.adminArea},${first.subLocality}, ${first.subAdminArea},${first.addressLine}, ${first.featureName},${first.thoroughfare}, ${first.subThoroughfare}';
+        ' ${first.locality ?? ""} ${first.adminArea ?? ""} ${first.subLocality ?? ""} ${first.subAdminArea ?? ""} ${first.addressLine ?? ""}  ${first.featureName ?? ""} ${first.thoroughfare ?? ""} ${first.subThoroughfare ?? ""}';
     // TODO: implement initState
     super.initState();
   }
@@ -655,6 +655,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               //   ));
                               // }
                               //count1++;
+                              print(country.text);
                               print(checkbox1Value);
                               print(checkbox2Value);
                               print(checkbox3Value);
@@ -664,9 +665,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   content: Text(
                                       "You need to select atleast one service "),
                                 ));
-                              } else if (city.text != "" &&
-                                  state.text != "" &&
-                                  country.text != "") {
+                              } else if (city.text == "" &&
+                                  state.text == "" &&
+                                  country.text == "") {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text(
@@ -689,7 +690,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   'state': state.text,
                                   'city': city.text,
                                   'latitude': widget.latitude,
-                                  'longitude': widget.longitude
+                                  'longitude': widget.longitude,
+                                  'patent': checkbox1Value,
+                                  'trademark': checkbox2Value,
+                                  'copyright': checkbox3Value,
+                                  'industrydesign': checkbox4Value
                                 }).then((value) {
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(

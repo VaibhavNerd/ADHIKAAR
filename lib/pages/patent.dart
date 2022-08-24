@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ipr/pages/submittedapplication.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
+import '../patent_forms/ongoing_form.dart';
+import '../services/firebase_services.dart';
 import 'chat_page.dart';
 
 class Patent extends StatefulWidget {
@@ -123,154 +126,178 @@ class _PatentState extends State<Patent> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      width: 0.45 * size.width,
-                      height: 200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              flex: 7,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/newapp.png'),
-                                    fit: BoxFit.contain,
+                    InkWell(
+                      onTap: () async {
+                        String applicationid = await createnewformforuser();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  OngoingForms(applicationid),
+                            ));
+                      },
+                      child: Container(
+                        width: 0.45 * size.width,
+                        height: 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                flex: 7,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/newapp.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                    ),
+                                    color: Color(0xFFEFF0F9),
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
-                                  color: Color(0xFFEFF0F9),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                width: double.infinity,
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 15, 0, 0),
-                                          child: Center(
-                                            child: Text(
-                                              "New Application no.",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600),
+                                )),
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 15, 0, 0),
+                                            child: Center(
+                                              child: Text(
+                                                "New Application no.",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    )),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
+                                        ],
+                                      )),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                    color: Color(0xFFF8F7FC),
                                   ),
-                                  color: Color(0xFFF8F7FC),
-                                ),
-                              )),
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.25),
-                            blurRadius: 5,
-                            offset: Offset(5, 5),
-                          ),
-                          BoxShadow(
-                            //color: Color.fromRGBO(255, 255, 255, 1),
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            blurRadius: 10,
+                                )),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(0, 0, 0, 0.25),
+                              blurRadius: 5,
+                              offset: Offset(5, 5),
+                            ),
+                            BoxShadow(
+                              //color: Color.fromRGBO(255, 255, 255, 1),
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                              blurRadius: 10,
 
-                            offset: Offset(-5, -5),
-                          )
-                        ],
-                        // color: Colors.amberAccent,
+                              offset: Offset(-5, -5),
+                            )
+                          ],
+                          // color: Colors.amberAccent,
+                        ),
                       ),
                     ),
-                    Container(
-                      width: 0.45 * size.width,
-                      height: 200,
-                      child: Column(
-                        children: [
-                          Expanded(
-                              flex: 7,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/subapp.png'),
-                                    fit: BoxFit.contain,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                                SubmittedApplication(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 0.45 * size.width,
+                        height: 200,
+                        child: Column(
+                          children: [
+                            Expanded(
+                                flex: 7,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/subapp.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                    ),
+                                    color: Color(0xFFEFF0F9),
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
-                                  color: Color(0xFFEFF0F9),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                width: double.infinity,
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 15, 0, 0),
-                                          child: Center(
-                                            child: Text(
-                                              "Submitted Application",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600),
+                                )),
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 15, 0, 0),
+                                            child: Center(
+                                              child: Text(
+                                                "Submitted Application",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    )),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
+                                        ],
+                                      )),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                    color: Color(0xFFF8F7FC),
                                   ),
-                                  color: Color(0xFFF8F7FC),
-                                ),
-                              ))
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.25),
-                            blurRadius: 5,
-                            offset: Offset(5, 5),
-                          ),
-                          BoxShadow(
-                            //color: Color.fromRGBO(255, 255, 255, 1),
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            blurRadius: 10,
+                                ))
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(0, 0, 0, 0.25),
+                              blurRadius: 5,
+                              offset: Offset(5, 5),
+                            ),
+                            BoxShadow(
+                              //color: Color.fromRGBO(255, 255, 255, 1),
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                              blurRadius: 10,
 
-                            offset: Offset(-5, -5),
-                          )
-                        ],
-                        //    color: Colors.amberAccent,
+                              offset: Offset(-5, -5),
+                            )
+                          ],
+                          //    color: Colors.amberAccent,
+                        ),
                       ),
                     )
                   ],

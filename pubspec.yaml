@@ -51,12 +51,16 @@ dependencies:
   timeago: ^3.3.0
   simple_gradient_text: ^1.2.3
   carousel_slider: ^4.1.1
+
+  youtube_player_flutter: ^8.1.0
+
   file_picker: ^5.0.1
   firebase_storage: ^10.3.6
   country_state_city_picker: ^1.2.8
   country_state_city_pro: ^0.0.3
   geocoder: ^0.2.1
   syncfusion_flutter_pdfviewer: ^20.2.45-beta
+
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +98,12 @@ flutter:
     - assets/images/subapp.png
     - assets/images/guide.png
     - assets/images/faqq.png
+    - assets/images/geopic1.jpg
+    - assets/images/copypic1.jpg
+    - assets/images/tradepic1.jpg
+    - assets/images/industrypic1.jpg
+    
+    
 
 
 

@@ -18,6 +18,13 @@ class RootApp extends StatefulWidget {
 
 class _RootAppState extends State<RootApp> {
   int indexPage = 0;
+  List pages = [
+    HomePage(),
+    SearchPage(),
+    NewPostPage(),
+    AgentSearchPage(),
+    AccountPage(),
+  ];
   Widget getAppBar() {
     return PreferredSize(
       preferredSize: Size.fromHeight(55),
@@ -46,7 +53,7 @@ class _RootAppState extends State<RootApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEFF0F9),
-      body: getBody(),
+      body: pages[indexPage],
       bottomNavigationBar: getBottomNavigationBar(),
     );
   }
