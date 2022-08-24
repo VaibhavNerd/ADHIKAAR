@@ -12,14 +12,14 @@ import 'package:ipr/strings/patent_form2.dart';
 import '../services/firebase_services.dart';
 import 'ongoing_form.dart';
 
-class PatentForm2 extends StatefulWidget {
-  PatentForm2(this.applicationid);
+class PatentForm18 extends StatefulWidget {
+  PatentForm18(this.applicationid);
   String applicationid;
   @override
-  State<PatentForm2> createState() => _PatentForm2State();
+  State<PatentForm18> createState() => _PatentForm18State();
 }
 
-class _PatentForm2State extends State<PatentForm2> {
+class _PatentForm18State extends State<PatentForm18> {
   int _activeStepIndex = 0;
   List applicant = [];
   TextEditingController title2 = TextEditingController();
@@ -34,7 +34,7 @@ class _PatentForm2State extends State<PatentForm2> {
   Map<String, dynamic> data1 = {};
   getipr() async {
     data1 = (await getformdatafromid(widget.applicationid));
-    data = data1['form2'] ?? {};
+    data = data1['form18'] ?? {};
     setState(() {
       data;
       data1;
@@ -530,17 +530,17 @@ class _PatentForm2State extends State<PatentForm2> {
                         String uid = FirebaseAuth.instance.currentUser.uid;
                         FirebaseFirestore.instance
                             .doc("users/$uid/forms/${widget.applicationid}")
-                            .set({"form2": data}, SetOptions(merge: true)).then(
-                                (value) {
+                            .set({"form18": data},
+                                SetOptions(merge: true)).then((value) {
                           List formdone = ((data1["formsdone"] ?? []));
-                          formdone.add(2);
+                          formdone.add(18);
                           print((data1["formsdone"] ?? []));
                           FirebaseFirestore.instance
                               .doc("users/$uid/forms/${widget.applicationid}")
                               .set({
                             "formsdone": formdone,
                             'timewhenlastchanged': DateTime.now().toString(),
-                            'update': "Form 2 Completed"
+                            'update': "Form 18 Completed"
                           }, SetOptions(merge: true)).then((value) {
                             Fluttertoast.showToast(
                                 msg:

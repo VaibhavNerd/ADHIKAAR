@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ipr/chat_bot.dart';
 import 'package:ipr/components/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:ipr/pages/agentlist.dart';
 import 'package:ipr/pages/search_district.dart';
 import 'package:ipr/pages/search_geo.dart';
 import 'package:ipr/pages/search_pin.dart';
@@ -16,12 +18,36 @@ import 'package:ipr/pages/themeHelper.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SearchPinPage extends StatefulWidget {
+class SearchPin extends StatefulWidget {
+  SearchPin(this.val);
+  String val;
   @override
-  _SearchPinPageState createState() => _SearchPinPageState();
+  State<SearchPin> createState() => _SearchPinState();
 }
 
-class _SearchPinPageState extends State<SearchPinPage> {
+class _SearchPinState extends State<SearchPin> {
+  TextEditingController pincode = TextEditingController();
+  List agent = [];
+  Future<void> checkbypincode(String pincode) async {
+    agent = [];
+    String field = widget.val == "Patent"
+        ? "patent"
+        : widget.val == "Trademark"
+            ? "trademark"
+            : widget.val == "Copyright"
+                ? "copyright"
+                : "industrydesign";
+    QuerySnapshot qsnap = await FirebaseFirestore.instance
+        .collection("agents")
+        .where('pincode', isEqualTo: pincode)
+        .where(field, isEqualTo: true)
+        .get();
+
+    for (var element in qsnap.docs) {
+      agent.add(element.data());
+    }
+  }
+
   final _formKey = GlobalKey<FormState>();
   List<String> _states = <String>[
     "Patent",
@@ -139,6 +165,7 @@ class _SearchPinPageState extends State<SearchPinPage> {
                 Container(
                   margin: EdgeInsets.fromLTRB(50, 0, 50, 0),
                   child: TextFormField(
+                    controller: pincode,
                     decoration: ThemeHelper()
                         .textInputDecoration("PIN code", "Enter PIN code"),
                     keyboardType: TextInputType.phone,
@@ -160,43 +187,53 @@ class _SearchPinPageState extends State<SearchPinPage> {
                   width: 130,
                   decoration: ThemeHelper().buttonBoxDecoration(context),
                   child: ElevatedButton(
-                    style: ThemeHelper().buttonStyle(),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 7, 10, 10),
-                      child: Text(
-                        "Search".toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      style: ThemeHelper().buttonStyle(),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 7, 10, 10),
+                        child: Text(
+                          "Search".toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    onPressed: () {
-                      //count1++;
-                      if (_formKey.currentState.validate()) {
-                        showDialog<String>(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            title: const Text('Agent Details'),
-                            content: const Text(
-                                'Name : Sankalp Srivastava \nMobile no.: 6387248986\nAddress:1054 , Pinewood Enclave Wave City , Ghaziabad -201015'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, 'Cancel'),
-                                child: const Text('Cancel'),
+                      onPressed: () {
+                        //count1++;
+                        if (_formKey.currentState.validate()) {
+                          checkbypincode(pincode.text).then((value) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    AgentList(agent),
                               ),
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, 'OK'),
-                                child: const Text('OK'),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                    },
-                  ),
+                            );
+                          });
+                          //     showDialog<String>(
+                          //       context: context,
+                          //       builder: (BuildContext context) => AlertDialog(
+                          //         title: const Text('Agent Details'),
+                          //         content: const Text(
+                          //             'Name : Sankalp Srivastava \nMobile no.: 6387248986\nAddress:1054 , Pinewood Enclave Wave City , Ghaziabad -201015'),
+                          //         actions: <Widget>[
+                          //           TextButton(
+                          //             onPressed: () =>
+                          //                 Navigator.pop(context, 'Cancel'),
+                          //             child: const Text('Cancel'),
+                          //           ),
+                          //           TextButton(
+                          //             onPressed: () => Navigator.pop(context, 'OK'),
+                          //             child: const Text('OK'),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     );
+                          //   }
+                          // },
+                        }
+                      }),
                 ),
                 // Expanded(
                 //   child: GridView.builder(

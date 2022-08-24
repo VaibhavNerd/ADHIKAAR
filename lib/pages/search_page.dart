@@ -135,7 +135,7 @@ class _SearchPageState extends State<SearchPage> {
               ),
               Expanded(
                 child: Scrollbar(
-                  isAlwaysShown: true,
+                  thumbVisibility: true,
                   interactive: true,
                   showTrackOnHover: true,
                   hoverThickness: 10,

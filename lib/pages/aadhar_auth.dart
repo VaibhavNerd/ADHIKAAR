@@ -95,7 +95,7 @@ class _AadharAuthState extends State<AadharAuth> {
                               RegistrationPage(Address(), 0, 0)),
                     );
                   },
-                  child: Text("Login as Agent")),
+                  child: Text("Register as Agent")),
             ],
           )
         ],

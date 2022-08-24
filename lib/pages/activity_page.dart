@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:ipr/chat_bot.dart';
 import 'package:ipr/components/colors.dart';
 
@@ -48,6 +49,42 @@ class _AgentSearchPageState extends State<AgentSearchPage> {
     'Agent details in your district will be shown ',
     'Agent nearest to your current location will be searched ',
   ];
+  Position position;
+  void giveposition() async {
+    position = await _determinePosition();
+  }
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    return await Geolocator.getCurrentPosition();
+  }
+
+  @override
+  void initState() {
+    giveposition();
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,29 +203,35 @@ class _AgentSearchPageState extends State<AgentSearchPage> {
                                     context,
                                     MaterialPageRoute<void>(
                                       builder: (BuildContext context) =>
-                                          SearchPinPage(),
+                                          SearchPin(selectedValue),
                                     ),
                                   );
-                                } 
-                                else if (statesel == 1 && x == "Search by district") {
+                                } else if (statesel == 1 &&
+                                    x == "Search by district") {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute<void>(
                                       builder: (BuildContext context) =>
-                                          SearchDistrictPage(),
+                                          SearchDistrictPage(selectedValue),
                                     ),
                                   );
-                                }
-                                else if (statesel == 1 && x == "Search by geolocation") {
+                                } else if (statesel == 1 &&
+                                    x == "Search by geolocation") {
+                                  print(
+                                    position.latitude,
+                                  );
+                                  print(position.longitude);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute<void>(
                                       builder: (BuildContext context) =>
-                                          SearchGeoPage(),
+                                          SearchGeoPage(
+                                              selectedValue,
+                                              position.latitude,
+                                              position.longitude),
                                     ),
                                   );
-                                }
-                                else {
+                                } else {
                                   showDialog<String>(
                                     context: context,
                                     builder: (BuildContext context) =>

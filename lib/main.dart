@@ -27,12 +27,7 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-// <<<<<<< HEAD
-    home:Home(),
-// =======
-//>>>>>>> master
-//     home: AadharAuth(),
-// >>>>>>> master
+    home: Home(),
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
