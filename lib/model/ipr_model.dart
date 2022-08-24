@@ -6,6 +6,7 @@ class IPRModel {
   String timewhenlastchanged;
   String update;
   int formno;
+  List formsdone;
   Map<String, dynamic> form1;
   Map<String, dynamic> form2;
 
@@ -16,7 +17,8 @@ class IPRModel {
       this.timeapplied,
       this.timewhenlastchanged,
       this.update,
-      this.formno});
+      this.formno,
+      this.formsdone});
 
   // receiving data from server
   factory IPRModel.fromMap(map) {
@@ -27,7 +29,8 @@ class IPRModel {
         timeapplied: map['timeapplied'],
         timewhenlastchanged: map['timewhenlastchanged'],
         update: map['update'],
-        formno: map['formno']);
+        formno: map['formno'] ?? 1,
+        formsdone: map['formdone'] ?? []);
   }
 
   // sending data to our server
@@ -39,7 +42,8 @@ class IPRModel {
       'timeapplied': timeapplied,
       'timewhenlastchanged': timewhenlastchanged,
       'update': update,
-      'formno': formno
+      'formno': formno,
+      'formdone': formsdone
     };
   }
 }

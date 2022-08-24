@@ -12,6 +12,8 @@ import 'package:ipr/util/new_feed_json.dart';
 import 'package:ipr/util/story_json.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
+import '../services/firebase_services.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -299,12 +301,13 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       InkWell(
-                        onTap: () {
-                          //TODO:call firebase to give id
+                        onTap: () async {
+                          String applicationid = await createnewformforuser();
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => OngoingForms(),
+                              builder: (BuildContext context) =>
+                                  OngoingForms(applicationid),
                             ),
                           );
                         },

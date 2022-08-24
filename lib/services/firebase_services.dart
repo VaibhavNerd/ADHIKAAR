@@ -14,6 +14,13 @@ Future<bool> checkuser(String uid) async {
   }
 }
 
+Future<Map<String, dynamic>> getformdatafromid(String id) async {
+  String uid = FirebaseAuth.instance.currentUser.uid;
+  DocumentSnapshot docsnap =
+      await FirebaseFirestore.instance.doc("users/$uid/forms/$id").get();
+  return docsnap.data();
+}
+
 Future<String> createnewformforuser() async {
   String uid = FirebaseAuth.instance.currentUser.uid;
   DocumentSnapshot userdata =
@@ -29,12 +36,13 @@ Future<String> createnewformforuser() async {
       'timeapplied': DateTime.now().toString(),
       'timewhenlastchanged': DateTime.now().toString(),
       'update': "Form filling started",
-      'formno': 1
+      'formno': 1,
+      'formsdone': []
     });
 
     FirebaseFirestore.instance
         .doc("users/$uid")
-        .set({"current_application": docref.id});
+        .set({"current_application": docref.id}, SetOptions(merge: true));
     return docref.id;
   } else {
     return user["current_application"];
