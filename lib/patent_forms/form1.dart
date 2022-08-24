@@ -1185,11 +1185,10 @@ class _PatentForm1State extends State<PatentForm1> {
           content: Container(
               child: Form(
                   key: _formKeys[2],
-                  child: Flexible(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
                         Row(children: <Widget>[
                           Text(
                             'Declarations by the inventor(s)',
@@ -1647,7 +1646,7 @@ class _PatentForm1State extends State<PatentForm1> {
                                 );
                               }),
                         ]),
-                      ])))),
+                      ]))),
         ),
       ];
   Map<String, dynamic> data = {};

@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
 // <<<<<<< HEAD
   @override
   void initState() {
-    //  FirebaseAuth.instance.signOut();
+    // FirebaseAuth.instance.signOut();
     Timer(Duration(seconds: 2), () async {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.pushReplacement(
