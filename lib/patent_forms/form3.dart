@@ -12,14 +12,14 @@ import 'package:ipr/strings/patent_form2.dart';
 import '../services/firebase_services.dart';
 import 'ongoing_form.dart';
 
-class PatentForm2 extends StatefulWidget {
-  PatentForm2(this.applicationid);
+class PatentForm3 extends StatefulWidget {
+  PatentForm3(this.applicationid);
   String applicationid;
   @override
-  State<PatentForm2> createState() => _PatentForm2State();
+  State<PatentForm3> createState() => _PatentForm3State();
 }
 
-class _PatentForm2State extends State<PatentForm2> {
+class _PatentForm3State extends State<PatentForm3> {
   int _activeStepIndex = 0;
   List applicant = [];
   TextEditingController title2 = TextEditingController();
@@ -34,7 +34,7 @@ class _PatentForm2State extends State<PatentForm2> {
   Map<String, dynamic> data1 = {};
   getipr() async {
     data1 = (await getformdatafromid(widget.applicationid));
-    data = data1['form2'] ?? {};
+    data = data1['form3'] ?? {};
     setState(() {
       data;
       data1;
@@ -530,17 +530,17 @@ class _PatentForm2State extends State<PatentForm2> {
                         String uid = FirebaseAuth.instance.currentUser.uid;
                         FirebaseFirestore.instance
                             .doc("users/$uid/forms/${widget.applicationid}")
-                            .set({"form2": data}, SetOptions(merge: true)).then(
+                            .set({"form3": data}, SetOptions(merge: true)).then(
                                 (value) {
                           List formdone = ((data1["formsdone"] ?? []));
-                          formdone.add(2);
+                          formdone.add(3);
                           print((data1["formsdone"] ?? []));
                           FirebaseFirestore.instance
                               .doc("users/$uid/forms/${widget.applicationid}")
                               .set({
                             "formsdone": formdone,
                             'timewhenlastchanged': DateTime.now().toString(),
-                            'update': "Form 2 Completed"
+                            'update': "Form 3 Completed"
                           }, SetOptions(merge: true)).then((value) {
                             Fluttertoast.showToast(
                                 msg:

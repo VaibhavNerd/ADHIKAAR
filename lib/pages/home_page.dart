@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: CircleAvatar(child: Icon(Icons.question_answer)),
       backgroundColor: Color(0xFFBEFF0F9),
       appBar: getAppBar(),
       body: getBody(size),
@@ -306,19 +307,19 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       InkWell(
 //<<<<<<< HEAD
-                        onTap: () async {
-                          String applicationid = await createnewformforuser();
+                        // onTap: () async {
+                        //   String applicationid = await createnewformforuser();
+                        //   Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute<void>(
+                        //       builder: (BuildContext context) =>
+                        //           OngoingForms(applicationid),
+// =======
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  OngoingForms(applicationid),
-// =======
-//                         onTap: () {
-//                           Navigator.push(
-//                             context,
-//                             MaterialPageRoute<void>(
-//                               builder: (BuildContext context) => Patent(),
+                              builder: (BuildContext context) => Patent(),
 // >>>>>>> master
                             ),
                           );

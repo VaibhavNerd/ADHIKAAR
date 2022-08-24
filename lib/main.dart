@@ -31,16 +31,7 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-// <<<<<<< HEAD
-//<<<<<<< HEAD
     home: Home(),
-// =======854204
-//=======
-    //   home: RootApp  (),
-// =======
-//>>>>>>> master
-//     home: AadharAuth(),
-// >>>>>>> master
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
@@ -56,7 +47,7 @@ class _HomeState extends State<Home> {
 // <<<<<<< HEAD
   @override
   void initState() {
-    // FirebaseAuth.instance.signOut();
+    //FirebaseAuth.instance.signOut();
     Timer(Duration(seconds: 2), () async {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.pushReplacement(

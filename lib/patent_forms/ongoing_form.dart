@@ -32,6 +32,25 @@ class _OngoingFormsState extends State<OngoingForms> {
     super.initState();
   }
 
+  bool isSwitched = false;
+  var textValue = 'Switch is OFF';
+
+  void toggleSwitch(bool value) {
+    if (isSwitched == false) {
+      setState(() {
+        isSwitched = true;
+        textValue = 'Switch Button is ON';
+      });
+      print('Switch Button is ON');
+    } else {
+      setState(() {
+        isSwitched = false;
+        textValue = 'Switch Button is OFF';
+      });
+      print('Switch Button is OFF');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +66,27 @@ class _OngoingFormsState extends State<OngoingForms> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("Application Id:\n ${widget.applicationid}"),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              Text("Application Id:\n ${widget.applicationid}"),
+                        ),
+                        Column(
+                          children: [
+                            Text("${isSwitched ? "Complete" : "Provisional"}"),
+                            Switch(
+                              onChanged: toggleSwitch,
+                              value: isSwitched,
+                              activeColor: Colors.blue,
+                              activeTrackColor: Colors.blue,
+                              inactiveThumbColor: Colors.grey,
+                              inactiveTrackColor: Colors.grey,
+                            ),
+                          ],
+                        )
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -118,41 +155,43 @@ class _OngoingFormsState extends State<OngoingForms> {
           ((ipr["formsdone"] ?? []) as List).contains(1)
               ? Column(
                   children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                PatentForm2(widget.applicationid),
-                          ),
-                        );
-                      },
-                      child: Card(
-                        elevation: 8.0,
-                        margin: new EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 6.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(64, 75, 96, .9)),
-                          child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              title: Text(
-                                "Form 2",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+                    isSwitched
+                        ? InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      PatentForm2(widget.applicationid),
+                                ),
+                              );
+                            },
+                            child: Card(
+                              elevation: 8.0,
+                              margin: new EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 6.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(64, 75, 96, .9)),
+                                child: ListTile(
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 20.0, vertical: 10.0),
+                                    title: Text(
+                                      "Form 2",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
-                              // subtitle: Text(" Please fill this form to unlock others",
-                              //     style: TextStyle(color: Colors.white)),
-                              trailing: Icon(Icons.keyboard_arrow_right,
-                                  color: Colors.white, size: 30.0)),
-                        ),
-                      ),
-                    ),
+                                    // subtitle: Text(" Please fill this form to unlock others",
+                                    //     style: TextStyle(color: Colors.white)),
+                                    trailing: Icon(Icons.keyboard_arrow_right,
+                                        color: Colors.white, size: 30.0)),
+                              ),
+                            ),
+                          )
+                        : Container(),
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -223,76 +262,80 @@ class _OngoingFormsState extends State<OngoingForms> {
                         ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                PatentForm2(widget.applicationid),
-                          ),
-                        );
-                      },
-                      child: Card(
-                        elevation: 8.0,
-                        margin: new EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 6.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(64, 75, 96, .9)),
-                          child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              title: Text(
-                                "Form 18",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+                    isSwitched
+                        ? InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      PatentForm2(widget.applicationid),
+                                ),
+                              );
+                            },
+                            child: Card(
+                              elevation: 8.0,
+                              margin: new EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 6.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(64, 75, 96, .9)),
+                                child: ListTile(
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 20.0, vertical: 10.0),
+                                    title: Text(
+                                      "Form 18",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
-                              // subtitle: Text(" Please fill this form to unlock others",
-                              //     style: TextStyle(color: Colors.white)),
-                              trailing: Icon(Icons.keyboard_arrow_right,
-                                  color: Colors.white, size: 30.0)),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                PatentForm2(widget.applicationid),
-                          ),
-                        );
-                      },
-                      child: Card(
-                        elevation: 8.0,
-                        margin: new EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 6.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(64, 75, 96, .9)),
-                          child: ListTile(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              title: Text(
-                                "Form 25",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                                    // subtitle: Text(" Please fill this form to unlock others",
+                                    //     style: TextStyle(color: Colors.white)),
+                                    trailing: Icon(Icons.keyboard_arrow_right,
+                                        color: Colors.white, size: 30.0)),
                               ),
-                              // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+                            ),
+                          )
+                        : Container(),
+                    isSwitched
+                        ? InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      PatentForm2(widget.applicationid),
+                                ),
+                              );
+                            },
+                            child: Card(
+                              elevation: 8.0,
+                              margin: new EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 6.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(64, 75, 96, .9)),
+                                child: ListTile(
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 20.0, vertical: 10.0),
+                                    title: Text(
+                                      "Form 25",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
 
-                              // subtitle: Text(" Please fill this form to unlock others",
-                              //     style: TextStyle(color: Colors.white)),
-                              trailing: Icon(Icons.keyboard_arrow_right,
-                                  color: Colors.white, size: 30.0)),
-                        ),
-                      ),
-                    ),
+                                    // subtitle: Text(" Please fill this form to unlock others",
+                                    //     style: TextStyle(color: Colors.white)),
+                                    trailing: Icon(Icons.keyboard_arrow_right,
+                                        color: Colors.white, size: 30.0)),
+                              ),
+                            ),
+                          )
+                        : Container(),
                   ],
                 )
               : Container()
