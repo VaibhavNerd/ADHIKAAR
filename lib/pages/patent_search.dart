@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   WebViewController _controller;
   WebViewController _controller2;
 
-  List pages = ["https://google.com", "https://apple.com"];
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child:
                   Container(
                     width: 0.4*size.width,
-                    height: 20,
-                    color: Colors.red,
+                    height: 40,
+                    child: Text("KeyWord"),
+
+                    color: Colors.white12,
                   ),
                 ),
                 GestureDetector( onTap: (){ if (_controller != null) {
@@ -53,7 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     width: 0.4*size.width,
                     height: 20,
-                    color: Colors.blue,
+                    color: Colors.white12,
+                    child: Text("Attributes"),
                   ),
                 ),
               ]),
