@@ -32,8 +32,13 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 // <<<<<<< HEAD
+//<<<<<<< HEAD
     home: Home(),
 // =======854204
+//=======
+    //   home: RootApp  (),
+// =======
+//>>>>>>> master
 //     home: AadharAuth(),
 // >>>>>>> master
     theme: ThemeData(

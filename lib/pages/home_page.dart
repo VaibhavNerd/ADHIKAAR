@@ -4,7 +4,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/chat_page.dart';
+// <<<<<<< HEAD
 import 'package:ipr/patent_forms/ongoing_form.dart';
+
+import 'package:ipr/pages/patent.dart';
+
 import 'dart:math' as math;
 import 'package:ipr/theme/colors.dart';
 
@@ -301,6 +305,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       InkWell(
+//<<<<<<< HEAD
                         onTap: () async {
                           String applicationid = await createnewformforuser();
                           Navigator.push(
@@ -308,6 +313,13 @@ class _HomePageState extends State<HomePage> {
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
                                   OngoingForms(applicationid),
+// =======
+//                         onTap: () {
+//                           Navigator.push(
+//                             context,
+//                             MaterialPageRoute<void>(
+//                               builder: (BuildContext context) => Patent(),
+// >>>>>>> master
                             ),
                           );
                         },
