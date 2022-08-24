@@ -307,13 +307,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       InkWell(
 //<<<<<<< HEAD
-                        // onTap: () async {
-                        //   String applicationid = await createnewformforuser();
-                        //   Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute<void>(
-                        //       builder: (BuildContext context) =>
-                        //           OngoingForms(applicationid),
+
 // =======
                         onTap: () {
                           Navigator.push(
