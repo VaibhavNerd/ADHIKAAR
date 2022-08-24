@@ -290,7 +290,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user.uid;
     userModel.firstName = firstNameEditingController.text;
     userModel.secondName = secondNameEditingController.text;
-
+    userModel.timestamp = DateTime.now().toString();
     // await firebaseFirestore
     //     .collection("users")
     //     .doc(user.uid).collection("details")

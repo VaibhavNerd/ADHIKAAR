@@ -32,8 +32,13 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 // <<<<<<< HEAD
-    home: RootApp  (),
+//<<<<<<< HEAD
+    home: Home(),
+// =======854204
+//=======
+    //   home: RootApp  (),
 // =======
+//>>>>>>> master
 //     home: AadharAuth(),
 // >>>>>>> master
     theme: ThemeData(
@@ -51,8 +56,8 @@ class _HomeState extends State<Home> {
 // <<<<<<< HEAD
   @override
   void initState() {
-    //  FirebaseAuth.instance.signOut();
-    Timer(Duration(seconds: 3), () {
+    // FirebaseAuth.instance.signOut();
+    Timer(Duration(seconds: 2), () async {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => AadharAuth()));
@@ -69,12 +74,6 @@ class _HomeState extends State<Home> {
 // >>>>>>> master
   @override
   Widget build(BuildContext context) {
-    return SplashScreen(
-      seconds: 5,
-      backgroundColor: Colors.white,
-      image: Image.asset("assets/images/logo.png"),
-      loaderColor: Colors.white,
-      navigateAfterSeconds: LoginScreen(),
-    );
+    return Scaffold();
   }
 }
