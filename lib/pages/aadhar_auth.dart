@@ -1,8 +1,10 @@
 import 'package:checkdigit/checkdigit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:ipr/pages/account_page.dart';
 import 'package:ipr/pages/activity_page.dart';
+import 'package:ipr/pages/agent_register.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/new_post_page.dart';
 import 'package:ipr/pages/search_page.dart';
@@ -16,8 +18,6 @@ class AadharAuth extends StatefulWidget {
   _AadharAuthState createState() => _AadharAuthState();
 }
 
-
-
 class _AadharAuthState extends State<AadharAuth> {
   int indexPage = 0;
   bool isValid;
@@ -27,12 +27,11 @@ class _AadharAuthState extends State<AadharAuth> {
     return Scaffold(
       backgroundColor: Color(0xFFEFF0F9),
       body: getBody(),
-
     );
   }
 
   Widget getBody() {
-    isValid = verhoeff.validate("222936894577") ;
+    isValid = verhoeff.validate("222936894577");
     print(isValid);
     return Scaffold(
       appBar: AppBar(
@@ -67,29 +66,40 @@ class _AadharAuthState extends State<AadharAuth> {
               ),
             )
           ]),
-          Container(
-            margin: EdgeInsets.all(10),
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.all(10),
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            OTPScreen(phone_controller.text)));
+                  },
+                  child: Text(
+                    'Next',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               ),
-
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => OTPScreen(phone_controller.text)));
-              },
-              child: Text(
-                'Next',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+              InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute<void>(
+                          builder: (BuildContext context) =>
+                              RegistrationPage(Address(), 0, 0)),
+                    );
+                  },
+                  child: Text("Register as Agent")),
+            ],
           )
         ],
       ),
     );
   }
-
-
 }

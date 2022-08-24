@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ipr/pages/account_page.dart';
 import 'package:ipr/pages/activity_page.dart';
@@ -8,6 +9,8 @@ import 'package:ipr/pages/search_page.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/bottom_navigation_bar_json.dart';
 
+import 'chat_page.dart';
+
 class RootApp extends StatefulWidget {
   @override
   _RootAppState createState() => _RootAppState();
@@ -15,12 +18,42 @@ class RootApp extends StatefulWidget {
 
 class _RootAppState extends State<RootApp> {
   int indexPage = 0;
+  List pages = [
+    HomePage(),
+    SearchPage(),
+    NewPostPage(),
+    AgentSearchPage(),
+    AccountPage(),
+  ];
+  Widget getAppBar() {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(55),
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset("assets/images/logo.svg", width: 90),
+              IconButton(
+                  splashRadius: 15,
+                  icon: Icon(FontAwesome5Brands.facebook_messenger),
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => ChatPage()));
+                  })
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEFF0F9),
-      body: getBody(),
+      body: pages[indexPage],
       bottomNavigationBar: getBottomNavigationBar(),
     );
   }

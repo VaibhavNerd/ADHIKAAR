@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:country_state_city_picker/country_state_city_picker.dart';
+import 'package:country_state_city_pro/country_state_city_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:ipr/pages/choose_map.dart';
 import 'package:ipr/pages/help.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/lang.dart';
@@ -16,10 +21,12 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RegistrationPage extends StatefulWidget {
+  RegistrationPage(this.address, this.latitude, this.longitude);
+  Address address;
+  double latitude;
+  double longitude;
   @override
-  State<StatefulWidget> createState() {
-    return _RegistrationPageState();
-  }
+  State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
@@ -34,9 +41,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
   bool checkbox4Value = false;
   int count = 0;
   int count1 = 0;
-  int statesel = 0;
-  int dissel = 0;
-
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController mobile = TextEditingController();
+  TextEditingController agent_number = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController pincode = TextEditingController();
+  // int statesel = 0;
+  // int dissel = 0;
+  TextEditingController country = TextEditingController();
+  TextEditingController state = TextEditingController();
+  TextEditingController city = TextEditingController();
+  String countryValue;
+  String stateValue;
+  String cityValue;
   var selectedstate;
   var selectedType2;
   List<String> _states = <String>[
@@ -78,6 +96,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
     "Uttarakhand",
     "West Bengal"
   ];
+  @override
+  void initState() {
+    var first = widget.address;
+    address.text =
+        ' ${first.locality ?? ""} ${first.adminArea ?? ""} ${first.subLocality ?? ""} ${first.subAdminArea ?? ""} ${first.addressLine ?? ""}  ${first.featureName ?? ""} ${first.thoroughfare ?? ""} ${first.subThoroughfare ?? ""}';
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +202,38 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           height: 15,
                         ),
                         Container(
+                          decoration:
+                              ThemeHelper().buttonBoxDecoration(context),
+                          child: ElevatedButton(
+                            style: ThemeHelper().buttonStyle(),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                              child: Text(
+                                "Get Live Location".toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      MapPicker(),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
                           child: TextFormField(
+                            controller: name,
                             decoration: ThemeHelper()
                                 .textInputDecoration('Name', 'Enter your name'),
                             validator: (val) {
@@ -196,6 +253,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: email,
                             decoration: ThemeHelper().textInputDecoration(
                                 "E-mail address", "Enter your email"),
                             keyboardType: TextInputType.emailAddress,
@@ -216,6 +274,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 15.0),
                         Container(
                           child: TextFormField(
+                            controller: mobile,
                             decoration: ThemeHelper().textInputDecoration(
                                 "Mobile Number", "Enter your mobile number"),
                             keyboardType: TextInputType.phone,
@@ -235,6 +294,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 15.0),
                         Container(
                           child: TextFormField(
+                            controller: agent_number,
                             decoration: ThemeHelper().textInputDecoration(
                                 "Agent Number", "Enter your agent number"),
                             keyboardType: TextInputType.phone,
@@ -256,6 +316,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: address,
                             decoration: ThemeHelper().textInputDecoration(
                                 'Address', 'Enter your address'),
                             validator: (val) {
@@ -273,6 +334,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         SizedBox(height: 15.0),
                         Container(
                           child: TextFormField(
+                            controller: pincode,
                             decoration: ThemeHelper().textInputDecoration(
                                 "PIN Code", "Enter PIN code"),
                             keyboardType: TextInputType.phone,
@@ -291,69 +353,93 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
                         SizedBox(height: 15.0),
-                        Container(
-                          //margin: EdgeInsets.fromLTRB(0, 0, 190, 0),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  //margin: EdgeInsets.fromLTRB(10, 0, 40, 0),
-                                  child: DropdownButton(
-                                    items: _states
-                                        .map((value) => DropdownMenuItem(
-                                              child: Text(
-                                                value,
-                                                style: TextStyle(),
-                                              ),
-                                              value: value,
-                                            ))
-                                        .toList(),
-                                    onChanged: (selectedAccountType) {
-                                      //count1++;
-                                      statesel = 1;
-                                      print('$selectedAccountType');
-                                      setState(() {
-                                        selectedstate = selectedAccountType;
-                                      });
-                                    },
-                                    value: selectedstate,
-                                    isExpanded: false,
-                                    hint: Text(
-                                      'Select State',
-                                      style: TextStyle(),
-                                    ),
-                                  ),
-                                ),
-                                DropdownButton(
-                                  items: _states
-                                      .map((value) => DropdownMenuItem(
-                                            child: Text(
-                                              value,
-                                              style: TextStyle(),
-                                            ),
-                                            value: value,
-                                          ))
-                                      .toList(),
-                                  onChanged: (selectedAccountType) {
-                                    print('$selectedAccountType');
-                                    setState(() {
-                                      dissel = 1;
-                                      //count1++;
-                                      selectedType2 = selectedAccountType;
-                                    });
-                                  },
-                                  value: selectedType2,
-                                  isExpanded: false,
-                                  hint: Text(
-                                    'Select district',
-                                    //style: TextStyle(color: Color(0xff11b719)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+
+                        CountryStateCityPicker(
+                          country: country,
+                          state: state,
+                          city: city,
+                          textFieldInputBorder: UnderlineInputBorder(),
                         ),
+                        // SelectState(
+                        //   onCountryChanged: (value) {
+                        //     setState(() {
+                        //       countryValue = value;
+                        //     });
+                        //   },
+                        //   onStateChanged: (value) {
+                        //     setState(() {
+                        //       stateValue = value;
+                        //     });
+                        //   },
+                        //   onCityChanged: (value) {
+                        //     setState(() {
+                        //       cityValue = value;
+                        //     });
+                        //   },
+                        // ),
+                        // Container(
+                        //   //margin: EdgeInsets.fromLTRB(0, 0, 190, 0),
+                        //   child: Center(
+                        //     child: Column(
+                        //       mainAxisAlignment: MainAxisAlignment.center,
+                        //       children: [
+                        //         Container(
+                        //           //margin: EdgeInsets.fromLTRB(10, 0, 40, 0),
+                        //           child: DropdownButton(
+                        //             items: _states
+                        //                 .map((value) => DropdownMenuItem(
+                        //                       child: Text(
+                        //                         value,
+                        //                         style: TextStyle(),
+                        //                       ),
+                        //                       value: value,
+                        //                     ))
+                        //                 .toList(),
+                        //             onChanged: (selectedAccountType) {
+                        //               //count1++;
+                        //               statesel = 1;
+                        //               print('$selectedAccountType');
+                        //               setState(() {
+                        //                 selectedstate = selectedAccountType;
+                        //               });
+                        //             },
+                        //             value: selectedstate,
+                        //             isExpanded: false,
+                        //             hint: Text(
+                        //               'Select State',
+                        //               style: TextStyle(),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //         DropdownButton(
+                        //           items: _states
+                        //               .map((value) => DropdownMenuItem(
+                        //                     child: Text(
+                        //                       value,
+                        //                       style: TextStyle(),
+                        //                     ),
+                        //                     value: value,
+                        //                   ))
+                        //               .toList(),
+                        //           onChanged: (selectedAccountType) {
+                        //             print('$selectedAccountType');
+                        //             setState(() {
+                        //               dissel = 1;
+                        //               //count1++;
+                        //               selectedType2 = selectedAccountType;
+                        //             });
+                        //           },
+                        //           value: selectedType2,
+                        //           isExpanded: false,
+                        //           hint: Text(
+                        //             'Select district',
+                        //             //style: TextStyle(color: Color(0xff11b719)),
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(height: 15.0),
                         Text('select the services you will provide'),
                         SizedBox(height: 5.0),
@@ -555,32 +641,66 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                             ),
                             onPressed: () {
-                              if (statesel == 0) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text("Select your State first"),
-                                ));
-                              }
+                              // if (statesel == 0) {
+                              //   ScaffoldMessenger.of(context)
+                              //       .showSnackBar(SnackBar(
+                              //     content: Text("Select your State first"),
+                              //   ));
+                              // }
+                              // //count1++;
+                              // else if (dissel == 0) {
+                              //   ScaffoldMessenger.of(context)
+                              //       .showSnackBar(SnackBar(
+                              //     content: Text("Select your District"),
+                              //   ));
+                              // }
                               //count1++;
-                              else if (dissel == 0) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text("Select your District"),
-                                ));
-                              }
-                              //count1++;
-
-                              else if (count == 0) {
+                              print(country.text);
+                              print(checkbox1Value);
+                              print(checkbox2Value);
+                              print(checkbox3Value);
+                              if (count == 0) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text(
                                       "You need to select atleast one service "),
                                 ));
-                              } else if (_formKey.currentState.validate()) {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) => HelpPage()),
-                                    (Route<dynamic> route) => false);
+                              } else if (city.text == "" &&
+                                  state.text == "" &&
+                                  country.text == "") {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text(
+                                      "Please select country, state and city"),
+                                ));
+                              } else if (_formKey.currentState.validate() &&
+                                  city.text != "" &&
+                                  state.text != "" &&
+                                  country.text != "") {
+                                FirebaseFirestore.instance
+                                    .collection("agents")
+                                    .add({
+                                  'name': name.text,
+                                  'email': email.text,
+                                  'mobileno': mobile.text,
+                                  'agentno': agent_number.text,
+                                  'address': address.text,
+                                  'pincode': pincode.text,
+                                  'country': country.text,
+                                  'state': state.text,
+                                  'city': city.text,
+                                  'latitude': widget.latitude,
+                                  'longitude': widget.longitude,
+                                  'patent': checkbox1Value,
+                                  'trademark': checkbox2Value,
+                                  'copyright': checkbox3Value,
+                                  'industrydesign': checkbox4Value
+                                }).then((value) {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) => HelpPage()),
+                                      (Route<dynamic> route) => false);
+                                });
                               }
                             },
                           ),

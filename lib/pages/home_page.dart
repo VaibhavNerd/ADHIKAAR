@@ -4,13 +4,19 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/chat_page.dart';
+// <<<<<<< HEAD
+import 'package:ipr/patent_forms/ongoing_form.dart';
+
 import 'package:ipr/pages/patent.dart';
+
 import 'dart:math' as math;
 import 'package:ipr/theme/colors.dart';
 
 import 'package:ipr/util/new_feed_json.dart';
 import 'package:ipr/util/story_json.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+
+import '../services/firebase_services.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: CircleAvatar(child: Icon(Icons.question_answer)),
       backgroundColor: Color(0xFFBEFF0F9),
       appBar: getAppBar(),
       body: getBody(size),
@@ -269,11 +276,15 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       InkWell(
+//<<<<<<< HEAD
+
+// =======
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) => Patent(),
+// >>>>>>> master
                             ),
                           );
                         },
