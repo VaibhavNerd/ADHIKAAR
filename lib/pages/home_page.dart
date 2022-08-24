@@ -32,7 +32,6 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xFFBEFF0F9),
       appBar: getAppBar(),
       body: getBody(size),
-
     );
   }
 
@@ -46,13 +45,14 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SvgPicture.asset("assets/images/logo.svg", width: 90),
-              IconButton(
-                  splashRadius: 15,
-                  icon: Icon(FontAwesome5Brands.facebook_messenger),
-                  onPressed: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => ChatPage()));
-                  })
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                  size: 30,
+                ),
+              )
             ],
           ),
         ),
@@ -213,40 +213,6 @@ class _HomePageState extends State<HomePage> {
 
                                             ),
                                       ),
-                                      Container(
-                                        width: 100,
-                                        height: 30,
-                                        margin: const EdgeInsets.fromLTRB(
-                                            2, 8, 0, 0),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text("Enter",
-                                              style: GoogleFonts.poppins(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Colors.black54,
-                                              ),
-                                              textAlign: TextAlign.center),
-                                        ),
-                                        decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Color.fromRGBO(
-                                                    0, 0, 0, 0.4),
-                                                blurRadius: 1,
-                                                offset: Offset(2, 2),
-                                              ),
-                                              BoxShadow(
-                                                color: Color.fromRGBO(
-                                                    255, 255, 255, 0.3),
-                                                blurRadius: 5,
-                                                offset: Offset(-1.5, -1.5),
-                                              )
-                                            ],
-                                            color: Color(0xFFB375FC8),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(7))),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -278,12 +244,15 @@ class _HomePageState extends State<HomePage> {
             Container(
               margin: const EdgeInsets.fromLTRB(5, 0, 0, 5),
               height: 24,
-              child: Text(
-                "Our Services",
-                style: GoogleFonts.poppins(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black87),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "- Our Services -",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87),
+                ),
               ),
               decoration: BoxDecoration(),
             ),
@@ -321,7 +290,7 @@ class _HomePageState extends State<HomePage> {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/patent.png'),
+                                            'assets/images/patentpic1.jpg'),
                                         fit: BoxFit.fitHeight,
                                       ),
                                       borderRadius: BorderRadius.only(
@@ -337,24 +306,31 @@ class _HomePageState extends State<HomePage> {
                                     width: double.infinity,
                                     child: Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(10, 4, 0, 0),
+                                            EdgeInsets.fromLTRB(0, 3, 0, 0),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Patent",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.w600),
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Patent",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 22,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
-                                            Text(
-                                              "-Legal Right Of Owner",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 9,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color.fromRGBO(
-                                                      0, 0, 0, 45)),
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Legal Right Of Owner",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 9,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 45)),
+                                              ),
                                             ),
                                           ],
                                         )),
@@ -398,8 +374,8 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/images/cpyR8.png'),
+                                      image: AssetImage(
+                                          'assets/images/copypic1.jpg'),
                                       fit: BoxFit.fitHeight,
                                     ),
                                     borderRadius: BorderRadius.only(
@@ -414,24 +390,30 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   width: double.infinity,
                                   child: Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
+                                      padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "Copyright",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.w600),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Copyright",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
                                           ),
-                                          Text(
-                                            "-Prevent unathorized use",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 9,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color.fromRGBO(
-                                                    0, 0, 0, 45)),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Prevent unathorized use",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 9,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 45)),
+                                            ),
                                           ),
                                         ],
                                       )),
@@ -488,8 +470,8 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/images/trade.png'),
+                                      image: AssetImage(
+                                          'assets/images/tradepic1.jpg'),
                                       fit: BoxFit.fitHeight,
                                     ),
                                     borderRadius: BorderRadius.only(
@@ -504,16 +486,19 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   width: double.infinity,
                                   child: Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
+                                      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "Trademark",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Trademark",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
                                           ),
                                         ],
                                       )),
@@ -559,7 +544,7 @@ class _HomePageState extends State<HomePage> {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                          'assets/images/secret.png'),
+                                          'assets/images/industrypic1.jpg'),
                                       fit: BoxFit.fitHeight,
                                     ),
                                     borderRadius: BorderRadius.only(
@@ -574,16 +559,19 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   width: double.infinity,
                                   child: Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
+                                      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "Trademark",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Industrial Design",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
                                           ),
                                         ],
                                       )),
@@ -629,7 +617,7 @@ class _HomePageState extends State<HomePage> {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                          'assets/images/industrial.png'),
+                                          'assets/images/geopic1.jpg'),
                                       fit: BoxFit.fitHeight,
                                     ),
                                     borderRadius: BorderRadius.only(
@@ -650,7 +638,7 @@ class _HomePageState extends State<HomePage> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Trademark",
+                                            "Geographical identification",
                                             style: GoogleFonts.poppins(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w600),

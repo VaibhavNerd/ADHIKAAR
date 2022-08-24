@@ -6,6 +6,7 @@ import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/activity_page.dart';
 import 'package:ipr/pages/agent_register.dart';
+import 'package:ipr/pages/faq.dart';
 import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
 //<<<<<<< vaibhav
@@ -16,6 +17,7 @@ import 'package:ipr/pages/login_screen.dart';
 //import 'package:ipr/trademark/trademark_form1.dart';
 //=======
 import 'package:ipr/pages/patent.dart';
+import 'package:ipr/pages/patent_guidlines.dart';
 import 'package:ipr/pages/raise.dart';
 import 'package:ipr/pages/search_district.dart';
 import 'package:ipr/pages/search_pin.dart';
@@ -32,7 +34,7 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 // <<<<<<< HEAD
-    home: RootApp  (),
+    home: Home(),
 // =======
 //     home: AadharAuth(),
 // >>>>>>> master

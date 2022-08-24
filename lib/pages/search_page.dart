@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/root_app.dart';
+import 'package:ipr/pages/you_player.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
@@ -59,6 +60,21 @@ class _SearchPageState extends State<SearchPage> {
     '14 crore views\n2 years ago',
     '75 lakh views\n2 years ago',
   ];
+  List<String> links = [
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=bNtOvlT9ZCQ&list=RDbNtOvlT9ZCQ&start_radio=1',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+    'https://www.youtube.com/watch?v=VafTMsrnSTU',
+  ];
+  String linktosend = "";
 
   @override
   Widget build(BuildContext context) {
@@ -137,55 +153,66 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: _listItem.length,
                       itemBuilder: (BuildContext ctx, index) {
                         final item = _listItem[index];
-                        return Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            color: Colors.white,
-                            elevation: 3,
-                            child: Stack(
-                              children: <Widget>[
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 10),
-                                    child: Image.asset(
-                                      _listItem[index],
-                                      height: 78.75,
-                                      width: 140,
-                                      fit: BoxFit.fill,
+                        return InkWell(
+                          onTap: () {
+                            linktosend = links[index];
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => Yplayer(linktosend),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              color: Colors.white,
+                              elevation: 3,
+                              child: Stack(
+                                children: <Widget>[
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 10),
+                                      child: Image.asset(
+                                        _listItem[index],
+                                        height: 78.75,
+                                        width: 140,
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Flexible(
-                                  child: Container(
+                                  Flexible(
+                                    child: Container(
+                                      margin: EdgeInsets.only(left: 165),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 10),
+                                        child: Text(state[index],
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.bold)),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
                                     margin: EdgeInsets.only(left: 165),
                                     child: Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Text(state[index],
-                                          overflow: TextOverflow.ellipsis,
+                                      padding: const EdgeInsets.only(top: 37),
+                                      child: Text(des[index],
                                           style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold)),
+                                            fontSize: 13,
+                                          )),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 165),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 37),
-                                    child: Text(des[index],
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                        )),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         );

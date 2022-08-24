@@ -50,6 +50,8 @@ dependencies:
   timeago: ^3.3.0
   simple_gradient_text: ^1.2.3
   carousel_slider: ^4.1.1
+  youtube_player_flutter: ^8.1.0
+
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +89,12 @@ flutter:
     - assets/images/subapp.png
     - assets/images/guide.png
     - assets/images/faqq.png
+    - assets/images/geopic1.jpg
+    - assets/images/copypic1.jpg
+    - assets/images/tradepic1.jpg
+    - assets/images/industrypic1.jpg
+    
+    
 
 
 
