@@ -28,7 +28,7 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 // <<<<<<< HEAD
-    home: RootApp  (),
+    home:Home(),
 // =======
 //>>>>>>> master
 //     home: AadharAuth(),
