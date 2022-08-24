@@ -50,6 +50,10 @@ dependencies:
   timeago: ^3.3.0
   simple_gradient_text: ^1.2.3
   carousel_slider: ^4.1.1
+  url_launcher: ^6.1.5
+  syncfusion_flutter_pdfviewer: ^20.2.45-beta
+
+
 
 dev_dependencies:
   flutter_test:

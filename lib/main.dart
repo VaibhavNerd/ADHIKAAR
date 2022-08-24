@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/activity_page.dart';
@@ -19,6 +20,8 @@ import 'package:ipr/pages/patent.dart';
 import 'package:ipr/pages/raise.dart';
 import 'package:ipr/pages/search_district.dart';
 import 'package:ipr/pages/search_pin.dart';
+import 'package:ipr/patent_forms/form1.dart';
+import 'package:ipr/pdf/secondPage.dart';
 //>>>>>>> master
 import 'package:splashscreen/splashscreen.dart';
 import 'package:ipr/pages/home_page.dart';
@@ -32,7 +35,7 @@ Future<void> main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
 // <<<<<<< HEAD
-    home: RootApp  (),
+    home: Home(),
 // =======
 //     home: AadharAuth(),
 // >>>>>>> master

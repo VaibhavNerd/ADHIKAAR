@@ -934,10 +934,9 @@ class _PatentForm1State extends State<PatentForm1> {
         state: StepState.complete,
         isActive: _activeStepIndex >= 2,
         title: const Text('3'),
-        content: Container(
+        content: Container( color: Colors.red,
             child: Form( key: _formKeys[2],
-                child :
-            Flexible( child: Column(
+               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -1263,7 +1262,7 @@ class _PatentForm1State extends State<PatentForm1> {
                   ElevatedButton( onPressed: (){}, child: Text("Upload Documents",style: TextStyle(fontSize: 15),),
                     style: ElevatedButton.styleFrom(primary: Colors.blueAccent,minimumSize: Size(15, 40)),)
                 ]
-            )))),),
+            ))),),
   ];
 
   @override
