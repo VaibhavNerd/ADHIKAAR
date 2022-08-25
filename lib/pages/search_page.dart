@@ -188,8 +188,8 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                     ),
                                   ),
-                                  Flexible(
-                                    child: Container(
+
+                                    Container(
                                       margin: EdgeInsets.only(left: 165),
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 10),
@@ -200,7 +200,7 @@ class _SearchPageState extends State<SearchPage> {
                                                 fontWeight: FontWeight.bold)),
                                       ),
                                     ),
-                                  ),
+
                                   Container(
                                     margin: EdgeInsets.only(left: 165),
                                     child: Padding(

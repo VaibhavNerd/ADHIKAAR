@@ -9,12 +9,14 @@ import 'package:ipr/pages/agent_register.dart';
 import 'package:ipr/pages/faq.dart';
 import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
-import 'package:ipr/pages/otp.dart';
+import 'package:ipr/pages/new_post_page.dart';
+//<<<<<<< vaibhav
 
 import 'package:ipr/pages/patent.dart';
 import 'package:ipr/pages/patent_guidlines.dart';
 import 'package:ipr/pages/raise.dart';
 import 'package:ipr/pages/search_district.dart';
+import 'package:ipr/pages/search_page.dart';
 import 'package:ipr/pages/search_pin.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:ipr/pages/home_page.dart';
@@ -27,7 +29,7 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: HomePage(),
+    home: SearchPage(),
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
