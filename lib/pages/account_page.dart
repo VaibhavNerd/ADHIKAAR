@@ -429,8 +429,6 @@ class AccountPage extends StatelessWidget {
       ],
     );
   }
-  Widget accountBar(){
 
-
-  }
+  Widget accountBar() {}
 }

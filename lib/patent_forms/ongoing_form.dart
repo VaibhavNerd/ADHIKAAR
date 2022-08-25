@@ -10,7 +10,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ipr/model/ipr_model.dart';
 import 'package:ipr/pages/submittedapplication.dart';
 import 'package:ipr/patent_forms/form1.dart';
+import 'package:ipr/patent_forms/form18.dart';
 import 'package:ipr/patent_forms/form2.dart';
+import 'package:ipr/patent_forms/form26.dart';
+import 'package:ipr/patent_forms/form3.dart';
+import 'package:ipr/patent_forms/form5.dart';
 import 'package:ipr/services/firebase_services.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
@@ -313,7 +317,7 @@ class _OngoingFormsState extends State<OngoingForms> {
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
-                                  PatentForm2(widget.applicationid),
+                                  PatentForm3(widget.applicationid),
                             ),
                           );
                         },
@@ -348,7 +352,7 @@ class _OngoingFormsState extends State<OngoingForms> {
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
-                                  PatentForm2(widget.applicationid),
+                                  PatentForm5(widget.applicationid),
                             ),
                           );
                         },
@@ -384,7 +388,7 @@ class _OngoingFormsState extends State<OngoingForms> {
                                   context,
                                   MaterialPageRoute<void>(
                                     builder: (BuildContext context) =>
-                                        PatentForm2(widget.applicationid),
+                                        PatentForm18(widget.applicationid),
                                   ),
                                 );
                               },
@@ -421,7 +425,7 @@ class _OngoingFormsState extends State<OngoingForms> {
                                   context,
                                   MaterialPageRoute<void>(
                                     builder: (BuildContext context) =>
-                                        PatentForm2(widget.applicationid),
+                                        PatentForm26(widget.applicationid),
                                   ),
                                 );
                               },
@@ -436,7 +440,7 @@ class _OngoingFormsState extends State<OngoingForms> {
                                       contentPadding: EdgeInsets.symmetric(
                                           horizontal: 20.0, vertical: 10.0),
                                       title: Text(
-                                        "Form 25",
+                                        "Form 26",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
