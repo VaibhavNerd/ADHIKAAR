@@ -39,10 +39,10 @@ class _PatentForm1State extends State<PatentForm1> {
   String inventorSameValue = "";
   List applicant = [];
   List dropDownListData = [
-    {"title": "BCA", "value": "1"},
-    {"title": "MCA", "value": "2"},
-    {"title": "B.Tech", "value": "3"},
-    {"title": "M.Tech", "value": "4"},
+    {"title": "Ordinary", "value": "1"},
+    {"title": "Convention", "value": "2"},
+    {"title": "PCT", "value": "3"},
+
   ];
   List categoryOfApplicant = [
     {"title": "Natural Person", "value": "1"},

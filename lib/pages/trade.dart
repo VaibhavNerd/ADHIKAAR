@@ -7,6 +7,7 @@ import 'package:ipr/pages/faq.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/patent_guidlines.dart';
 import 'package:ipr/pages/submittedapplication.dart';
+import 'package:ipr/pages/trade_serach.dart';
 import 'package:ipr/pdf/secondPage.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -103,7 +104,16 @@ class _TradeState extends State<Trade> {
       ),
       Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Container(
+        child:GestureDetector( onTap: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+              builder: (BuildContext context) =>
+              Tm_Search(),
+          ),
+          );
+        },
+          child:  Container(
           height: 40,
           width: 50,
           child: Text(
@@ -119,6 +129,7 @@ class _TradeState extends State<Trade> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(30),
           ),
+        ),
         ),
       ),
       SizedBox(
