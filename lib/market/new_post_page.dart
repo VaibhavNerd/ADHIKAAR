@@ -9,7 +9,9 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:ipr/market/buyNational.dart';
 import 'package:ipr/pages/search_district.dart';
 import 'package:ipr/pages/search_geo.dart';
+import 'package:ipr/pages/search_international.dart';
 import 'package:ipr/pages/search_pin.dart';
+import 'package:ipr/pages/submittedapplication.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
@@ -118,137 +120,246 @@ class _IPRmarketState extends State<IPRmarket> {
         child: SafeArea(
           child: Container(
             padding: EdgeInsets.all(19.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  width: 300,
-                  height: 300,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/AgentSearchPic.png'),
-                          fit: BoxFit.cover)),
-                  child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    width: 300,
+                    height: 300,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 30,
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                DropdownButtonFormField(
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                  decoration:
-                      InputDecoration(contentPadding: EdgeInsets.all(10)),
-                  hint: Text(
-                    'Select IP type',
-                    style: TextStyle(),
-                  ),
-                  dropdownColor: Colors.white,
-                  value: selectedValue,
-                  onChanged: (String newValue) {
-                    setState(() {
-                      selectedValue = newValue;
-                      statesel = 1;
-                    });
-                  },
-                  items: _states
-                      .map((value) => DropdownMenuItem(
-                            child: Text(
-                              value,
-                              style: TextStyle(),
-                            ),
-                            value: value,
-                          ))
-                      .toList(),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                Expanded(
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        childAspectRatio: 4 / 1,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image:
+                                AssetImage('assets/images/AgentSearchPic.png'),
+                            fit: BoxFit.cover)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      itemCount: _listItem.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        final item = _listItem[index];
-                        return Container(
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            color: Color.fromRGBO(220, 220, 220, 1),
-                            elevation: 3,
-                            child: InkWell(
-                              onTap: () {
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 30,
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  DropdownButtonFormField(
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    decoration:
+                        InputDecoration(contentPadding: EdgeInsets.all(10)),
+                    hint: Text(
+                      'Select IP type',
+                      style: TextStyle(),
+                    ),
+                    dropdownColor: Colors.white,
+                    value: selectedValue,
+                    onChanged: (String newValue) {
+                      setState(() {
+                        selectedValue = newValue;
+                        statesel = 1;
+                      });
+                    },
+                    items: _states
+                        .map((value) => DropdownMenuItem(
+                              child: Text(
+                                value,
+                                style: TextStyle(),
+                              ),
+                              value: value,
+                            ))
+                        .toList(),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      color: Color.fromRGBO(220, 220, 220, 1),
+                      elevation: 3,
+                      child: InkWell(
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => BuyNational(),
-// >>>>>>> master
+                              builder: (BuildContext context) =>
+                                  BuyNational(selectedValue),
+                              // >>>>>>> master
                             ),
                           );
                         },
-                              child: Stack(
-                                children: <Widget>[
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 20),
-                                      child: Image.asset(
-                                        _listItem[index],
-                                        height: 70,
-                                        width: 35,
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 60),
-                                    child: Text(state[index],
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold)),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 70),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 31),
-                                      child: Text(des[index],
-                                          style: TextStyle(
-                                            fontSize: 11,
-                                          )),
-                                    ),
-                                  ),
-                                ],
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: Image.asset(
+                                  _listItem[0],
+                                  height: 70,
+                                  width: 35,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
-                )
-              ],
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 60),
+                              child: Text(state[0],
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 70),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 31),
+                                child: Text(des[0],
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      color: Color.fromRGBO(220, 220, 220, 1),
+                      elevation: 3,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  SearchInternationalIPR(selectedValue),
+                              // >>>>>>> master
+                            ),
+                          );
+                        },
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: Image.asset(
+                                  _listItem[1],
+                                  height: 70,
+                                  width: 35,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 60),
+                              child: Text(state[1],
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 70),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 31),
+                                child: Text(des[1],
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      color: Color.fromRGBO(220, 220, 220, 1),
+                      elevation: 3,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  SubmittedApplication(),
+                              // >>>>>>> master
+                            ),
+                          );
+                        },
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: Image.asset(
+                                  _listItem[2],
+                                  height: 70,
+                                  width: 35,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 60),
+                              child: Text(state[2],
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 70),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 31),
+                                child: Text(des[2],
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

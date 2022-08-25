@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ipr/components/colors.dart';
@@ -13,6 +14,8 @@ import 'package:ipr/util/vaibhav_details.dart';
 import 'dart:ui';
 
 class BuyNational extends StatefulWidget {
+  BuyNational(this.val);
+  String val;
   @override
   _BuyNationalState createState() => _BuyNationalState();
 }
@@ -75,6 +78,47 @@ class _BuyNationalState extends State<BuyNational> {
     'https://www.youtube.com/watch?v=VafTMsrnSTU',
   ];
   String linktosend = "";
+  List iprs = [];
+  Future<void> getdata() async {
+    print("I am here");
+    String field = widget.val == "Patent"
+        ? "patent"
+        : widget.val == "Trademark"
+            ? "trademark"
+            : widget.val == "Copyright"
+                ? "copyright"
+                : "industrydesign";
+    print(field);
+    // QuerySnapshot qsnap =
+    await FirebaseFirestore.instance
+        .collection("users")
+        .get()
+        .then((value) async {
+      for (var element in value.docs) {
+        print(element.id);
+        QuerySnapshot formssnap = await FirebaseFirestore.instance
+            .collection("/users/${element.id}/forms")
+            .where("sell", isEqualTo: 1)
+            .get();
+        for (var element in formssnap.docs) {
+          print(element.id);
+          Map<String, dynamic> data = {};
+          data = element.data();
+          data.addAll({"id": element.id});
+          setState(() {
+            iprs.add(data);
+          });
+        }
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    getdata();
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +154,7 @@ class _BuyNationalState extends State<BuyNational> {
       ),
       body: SafeArea(
         child: Container(
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -121,117 +166,105 @@ class _BuyNationalState extends State<BuyNational> {
             ),
           ),
           padding: EdgeInsets.all(11.0),
-          child: Column(
-            children: <Widget>[
-              Text(
-                "Choose IPRs from below to buy them",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Expanded(
-                child: Scrollbar(
-                  thumbVisibility: true,
-                  interactive: true,
-                  showTrackOnHover: true,
-                  hoverThickness: 10,
-                  thickness: 7,
-                  radius: Radius.circular(7),
-                  child: GridView.builder(
-                      physics: BouncingScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        childAspectRatio: 3.4 / 1,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 8,
-                      ),
-                      itemCount: _listItem.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        final item = _listItem[index];
-                        return InkWell(
-                          onTap: () {
-                            linktosend = links[index];
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                    Yplayer(linktosend),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(right: 10),
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              color: Colors.white,
-                              elevation: 3,
-                              child: Stack(
-                                children: <Widget>[
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 20),
-                                      child: Image.asset(
-                                        'assets/images/diploma.png',
-                                        height: 78.75,
-                                        width: 80,
-                                        fit: BoxFit.fill,
-                                      ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  "Choose IPRs from below to buy them",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: iprs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: EdgeInsets.only(right: 10),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            color: Colors.white,
+                            elevation: 3,
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 20),
+                                    child: Image.asset(
+                                      'assets/images/diploma.png',
+                                      height: 78.75,
+                                      width: 80,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 120),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Text(state[index],
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold)),
-                                    ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 120),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Text(
+                                        "Name: ${(iprs[index]["form1"] ?? {})["title_of_invention"] ?? ""}",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold)),
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 120),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 37),
-                                      child: Text(des[index],
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                          )),
-                                    ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 120),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 37),
+                                    child: Text("Id: ${iprs[index]["id"]}",
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                        )),
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.fromLTRB(120, 47, 0, 0),
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        "BUY",
-                                        style: TextStyle(fontSize: 12),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.lightBlue,
-                                          minimumSize: Size(15, 25)),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: 120),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 55),
+                                    child:
+                                        Text("Price: ${iprs[index]["price"]}",
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                            )),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(120, 70, 0, 0),
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "BUY",
+                                      style: TextStyle(fontSize: 12),
                                     ),
-                                  )
-                                ],
-                              ),
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.lightBlue,
+                                        minimumSize: Size(15, 25)),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        );
-                      }),
-                ),
-              )
-            ],
+                        ),
+                      );
+                    }),
+              ],
+            ),
           ),
         ),
       ),

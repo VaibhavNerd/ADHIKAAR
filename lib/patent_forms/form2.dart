@@ -32,21 +32,30 @@ class _PatentForm2State extends State<PatentForm2> {
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> data = {};
   Map<String, dynamic> data1 = {};
+  Map<String, dynamic> data2 = {};
   getipr() async {
     data1 = (await getformdatafromid(widget.applicationid));
     data = data1['form2'] ?? {};
+    data2 = data2['form1'] ?? {};
     setState(() {
       data;
       data1;
+      data2;
     });
     print(data);
     setState(() {
-      title2.text = data['title2'];
-      applicant = data['applicant'] ?? [];
-      povisional2.text = data['provisional2'];
-      complete2.text = data['complete2'];
-      url = data['url2'];
+      title2.text = data2['title_inv2_1'];
+      applicant = data2['applicant'] ?? [];
     });
+    if (data1['form2'] != null) {
+      setState(() {
+        title2.text = data['title2'];
+        applicant = data['applicant'] ?? [];
+        povisional2.text = data['provisional2'];
+        complete2.text = data['complete2'];
+        url = data['url2'];
+      });
+    }
   }
 
   @override

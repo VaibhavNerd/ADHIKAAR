@@ -383,6 +383,9 @@ class _PatentForm1State extends State<PatentForm1> {
                             'address': address1.text,
                             'category': categOfApplValue
                           });
+                          if (applicant.isNotEmpty) {
+                            appl_name2_1.text = applicant[0]['name'];
+                          }
                         });
 
                         // setState(() {
@@ -849,6 +852,8 @@ class _PatentForm1State extends State<PatentForm1> {
                               if (pickeddate != null) {
                                 setState(() {
                                   filing_date2_1.text = DateFormat('dd-MM-yyyy')
+                                      .format(pickeddate);
+                                  filing_date2_3.text = DateFormat('dd-MM-yyyy')
                                       .format(pickeddate);
                                 });
                               }

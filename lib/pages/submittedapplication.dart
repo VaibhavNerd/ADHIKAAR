@@ -123,13 +123,119 @@ class _SubmittedApplicationState extends State<SubmittedApplication> {
                                             ),
                                           ],
                                         ),
-                                      )
+                                      ),
+                                      applications[index]["status"] == "granted"
+                                          ? Align(
+                                              alignment: Alignment.topRight,
+                                              child: Container(
+                                                margin: EdgeInsets.all(5),
+                                                child: FlatButton(
+                                                  child: Text(
+                                                    ((applications[index]
+                                                                    ["sell"] ??
+                                                                0) ==
+                                                            0)
+                                                        ? 'Sell'
+                                                        : ((applications[index][
+                                                                        "sell"] ??
+                                                                    0) ==
+                                                                1)
+                                                            ? 'Selling'
+                                                            : 'Sold',
+                                                    style: TextStyle(
+                                                        fontSize: 20.0),
+                                                  ),
+                                                  color: ((applications[index]
+                                                                  ["sell"] ??
+                                                              0) ==
+                                                          0)
+                                                      ? Colors.red
+                                                      : ((applications[index][
+                                                                      "sell"] ??
+                                                                  0) ==
+                                                              1)
+                                                          ? Colors.yellow
+                                                          : Colors.green,
+                                                  textColor: Colors.white,
+                                                  onPressed: () {
+                                                    showAlertDialog(
+                                                        context, index);
+                                                  },
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
                                     ]))),
                       ));
                 }),
           ],
         ),
       ),
+    );
+  }
+
+  TextEditingController price = TextEditingController();
+
+  showAlertDialog(BuildContext context, int index) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Sell"),
+      onPressed: () {
+        FirebaseFirestore.instance
+            .doc(
+                "users/${applications[index]["uid"]}/forms/${applications[index]["id"]}")
+            .set({"sell": 1, "price": price.text},
+                SetOptions(merge: true)).then((value) {
+          Navigator.pop(context);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => SubmittedApplication(),
+            ),
+          );
+        });
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("What should be price of your patent?"),
+      content: TextFormField(
+        controller: price,
+        validator: (value) {
+          if (value.isEmpty) {
+            return ("Feild can't be empty");
+          }
+          return null;
+        },
+        decoration: const InputDecoration(
+          contentPadding: EdgeInsets.all(10),
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(8.0),
+            ),
+          ),
+          labelText: 'Price(In INR)',
+        ),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
