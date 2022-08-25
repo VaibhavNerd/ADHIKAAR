@@ -20,8 +20,9 @@ class AadharAuth extends StatefulWidget {
 
 class _AadharAuthState extends State<AadharAuth> {
   int indexPage = 0;
-  bool isValid;
+  bool isValid = true;
   TextEditingController phone_controller = TextEditingController();
+  TextEditingController aadhar = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,9 @@ class _AadharAuthState extends State<AadharAuth> {
   }
 
   Widget getBody() {
-    isValid = verhoeff.validate("222936894577");
+
+    //isValid = verhoeff.validate("222936894577");
+
     print(isValid);
     return Scaffold(
       appBar: AppBar(
@@ -45,11 +48,37 @@ class _AadharAuthState extends State<AadharAuth> {
               margin: EdgeInsets.only(top: 60),
               child: Center(
                 child: Text(
-                  isValid.toString(),
+                  "Aadhar_Auth",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
                 ),
               ),
             ),
+            SizedBox(height: 20,),
+
+            Container(
+              margin: EdgeInsets.only(top: 40, right: 10, left: 10),
+              child: TextField(
+    onChanged: (text){
+    setState((){   isValid = verhoeff.validate(text);
+
+    });
+    },
+
+
+                decoration: InputDecoration(
+                  suffixIcon: Icon(isValid ? Icons.check : Icons.cancel, color: isValid ? Colors.green : Colors.red),
+                  hintText: 'Aadhar Number',
+                  prefix: Padding(
+                    padding: EdgeInsets.all(4),
+
+                  ),
+                ),
+                maxLength: 12,
+
+                controller: aadhar,
+              ),
+            ),
+
             Container(
               margin: EdgeInsets.only(top: 40, right: 10, left: 10),
               child: TextField(
