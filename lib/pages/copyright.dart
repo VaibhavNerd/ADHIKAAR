@@ -14,14 +14,14 @@ import '../patent_forms/ongoing_form.dart';
 import '../services/firebase_services.dart';
 import 'chat_page.dart';
 
-class Patent extends StatefulWidget {
-  const Patent({Key key}) : super(key: key);
+class Copyright extends StatefulWidget {
+  const Copyright({Key key}) : super(key: key);
 
   @override
-  State<Patent> createState() => _PatentState();
+  State<Copyright> createState() => _CopyrightState();
 }
 
-class _PatentState extends State<Patent> {
+class _CopyrightState extends State<Copyright> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -44,7 +44,7 @@ class _PatentState extends State<Patent> {
         ),
         title: Center(
           child: Text(
-            "Patent",
+            "Copyright",
             style: TextStyle(
               color: Colors.black,
               fontSize: 25,
