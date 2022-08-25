@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
@@ -13,6 +17,8 @@ import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
 import 'dart:ui';
 
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+
 class BuyNational extends StatefulWidget {
   BuyNational(this.val);
   String val;
@@ -21,63 +27,88 @@ class BuyNational extends StatefulWidget {
 }
 
 class _BuyNationalState extends State<BuyNational> {
-  final List<String> _listItem = [
-    'assets/images/weekone.jpg',
-    'assets/images/weektwo.jpg',
-    'assets/images/drakeone.jpg',
-    'assets/images/draketwo.jpg',
-    'assets/images/weekone.jpg',
-    'assets/images/weektwo.jpg',
-    'assets/images/drakeone.jpg',
-    'assets/images/draketwo.jpg',
-    'assets/images/weekone.jpg',
-    'assets/images/weektwo.jpg',
-    'assets/images/drakeone.jpg',
-    'assets/images/draketwo.jpg',
-  ];
-  List<String> state = [
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-    'IPR name',
-  ];
-  List<String> des = [
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-    'price',
-  ];
-  List<String> links = [
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=bNtOvlT9ZCQ&list=RDbNtOvlT9ZCQ&start_radio=1',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-    'https://www.youtube.com/watch?v=VafTMsrnSTU',
-  ];
-  String linktosend = "";
+  Razorpay _razorpay;
+  @override
+  void dispose() {
+    super.dispose();
+    _razorpay.clear();
+  }
+
+  int selected = 0;
+  void openCheckout(String amount) async {
+    var options = {
+      'key': "rzp_test_o1QrJ7wZrJv947",
+      'amount': double.parse(amount) * 100,
+      'name': 'IPR License ',
+      'description': 'Purchase fee',
+      'retry': {'enabled': true, 'max_count': 1},
+      'send_sms_hash': true,
+      //  'prefill': {'contact': phone, 'email': email},
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint('Error: e');
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    log('Success Response: $response');
+    Fluttertoast.showToast(
+        msg: "SUCCESS: " + response.paymentId, toastLength: Toast.LENGTH_SHORT);
+    setState(() {
+      iprs[selected]["sell"] = 0;
+    });
+
+    Future.wait([
+      FirebaseFirestore.instance
+          .doc(("users/${iprs[selected]["uid"]}/forms/${iprs[selected]["id"]}"))
+          .set({
+        "sell": 2,
+      }, SetOptions(merge: true)),
+      FirebaseFirestore.instance
+          .doc(
+              ("users/${FirebaseAuth.instance.currentUser.uid}/forms/${iprs[selected]["id"]}"))
+          .set(iprs[selected], SetOptions(merge: true)),
+      FirebaseFirestore.instance.collection(("Payments/")).add({
+        "paymentId": response.paymentId,
+        "reason": "IPR Purchase",
+        "id": iprs[selected]["id"],
+        'uid': FirebaseAuth.instance.currentUser.uid,
+        "time": DateTime.now().toString()
+      })
+    ]).then((value) async {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => BuyNational(widget.val),
+        ),
+      );
+    });
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    log('Error Response: $response');
+    /* Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+        toastLength: Toast.LENGTH_SHORT); */
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    log('External SDK Response: $response');
+    /* Fluttertoast.showToast(
+        msg: "EXTERNAL_WALLET: " + response.walletName!,
+        toastLength: Toast.LENGTH_SHORT); */
+  }
+
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  var measure;
   List iprs = [];
   Future<void> getdata() async {
     print("I am here");
@@ -116,6 +147,10 @@ class _BuyNationalState extends State<BuyNational> {
   @override
   void initState() {
     getdata();
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     // TODO: implement initState
     super.initState();
   }
@@ -247,7 +282,13 @@ class _BuyNationalState extends State<BuyNational> {
                                 Container(
                                   margin: EdgeInsets.fromLTRB(120, 70, 0, 0),
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        selected = index;
+                                      });
+                                      openCheckout(
+                                          iprs[index]["price"].toString());
+                                    },
                                     child: Text(
                                       "BUY",
                                       style: TextStyle(fontSize: 12),
@@ -269,5 +310,20 @@ class _BuyNationalState extends State<BuyNational> {
         ),
       ),
     );
+  }
+}
+
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
+  }
+}
+
+extension StringExtension on String {
+  // Method used for capitalizing the input from the form
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
   }
 }

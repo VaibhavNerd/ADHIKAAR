@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ipr/pages/all_payments.dart';
 import 'package:ipr/pages/faq.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/patent_guidlines.dart';
@@ -32,12 +33,9 @@ class _PatentState extends State<Patent> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: InkWell(
-          
-            onTap:
-            () {
-              Navigator.pop(context);
-            },
-         
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -104,33 +102,32 @@ class _PatentState extends State<Patent> {
       ),
       Padding(
         padding: const EdgeInsets.all(20.0),
-        child:GestureDetector(
-          onTap: (){
+        child: GestureDetector(
+          onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                builder: (BuildContext context) =>
-                MyHomePage(),
-            ),
+              context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) => MyHomePage(),
+              ),
             );
           },
           child: Container(
-          height: 40,
-          width: 50,
-          child: Text(
-            'Search',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              height: 1.85,
-              fontSize: 20,
+            height: 40,
+            width: 50,
+            child: Text(
+              'Search',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                height: 1.85,
+                fontSize: 20,
+              ),
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(30),
             ),
           ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
         ),
       ),
       SizedBox(
@@ -512,99 +509,26 @@ class _PatentState extends State<Patent> {
             SizedBox(
               height: 10,
             ),
-            Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      width: 0.45 * size.width,
-                      height: 200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              flex: 7,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/images/form.png'),
-                                    fit: BoxFit.contain,
-                                  ),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
-                                  color: Color(0xFFEFF0F9),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                width: double.infinity,
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(0, 15, 0, 0),
-                                          child: Center(
-                                            child: Text(
-                                              "Forms and fees",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  color: Color(0xFFF8F7FC),
-                                ),
-                              )),
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.25),
-                            blurRadius: 5,
-                            offset: Offset(5, 5),
-                          ),
-                          BoxShadow(
-                            //color: Color.fromRGBO(255, 255, 255, 1),
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            blurRadius: 10,
-
-                            offset: Offset(-5, -5),
-                          )
-                        ],
-                        // color: Colors.amberAccent,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => faqPage(),
-                          ),
-                        );
-                      },
-                      child: Container(
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => AllPayment(),
+                  ),
+                );
+              },
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
                         width: 0.45 * size.width,
                         height: 200,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
                                 flex: 7,
@@ -612,7 +536,7 @@ class _PatentState extends State<Patent> {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image:
-                                          AssetImage('assets/images/faqq.png'),
+                                          AssetImage('assets/images/form.png'),
                                       fit: BoxFit.contain,
                                     ),
                                     borderRadius: BorderRadius.only(
@@ -627,17 +551,22 @@ class _PatentState extends State<Patent> {
                                 child: Container(
                                   width: double.infinity,
                                   child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Center(
-                                            child: Text(
-                                              "FAQ",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 15, 0, 0),
+                                            child: Center(
+                                              child: Text(
+                                                "Forms and fees",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -649,7 +578,7 @@ class _PatentState extends State<Patent> {
                                     ),
                                     color: Color(0xFFF8F7FC),
                                   ),
-                                ))
+                                )),
                           ],
                         ),
                         decoration: BoxDecoration(
@@ -668,12 +597,94 @@ class _PatentState extends State<Patent> {
                               offset: Offset(-5, -5),
                             )
                           ],
-                          //    color: Colors.amberAccent,
+                          // color: Colors.amberAccent,
                         ),
                       ),
-                    )
-                  ],
-                )),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => faqPage(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 0.45 * size.width,
+                          height: 200,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  flex: 7,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/faqq.png'),
+                                        fit: BoxFit.contain,
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFEFF0F9),
+                                    ),
+                                  )),
+                              Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Center(
+                                              child: Text(
+                                                "FAQ",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFF8F7FC),
+                                    ),
+                                  ))
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 5,
+                                offset: Offset(5, 5),
+                              ),
+                              BoxShadow(
+                                //color: Color.fromRGBO(255, 255, 255, 1),
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                blurRadius: 10,
+
+                                offset: Offset(-5, -5),
+                              )
+                            ],
+                            //    color: Colors.amberAccent,
+                          ),
+                        ),
+                      )
+                    ],
+                  )),
+            ),
           ],
         ),
       ),

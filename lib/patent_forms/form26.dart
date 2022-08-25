@@ -540,7 +540,7 @@ class _PatentForm26State extends State<PatentForm26> {
                               .set({
                             "formsdone": formdone,
                             'timewhenlastchanged': DateTime.now().toString(),
-                            'update': "Form 26 Completed"
+                            'update': "Form 26 Completed",
                           }, SetOptions(merge: true)).then((value) {
                             Fluttertoast.showToast(
                                 msg:

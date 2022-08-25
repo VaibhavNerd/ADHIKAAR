@@ -18,7 +18,25 @@ Future<Map<String, dynamic>> getformdatafromid(String id) async {
   String uid = FirebaseAuth.instance.currentUser.uid;
   DocumentSnapshot docsnap =
       await FirebaseFirestore.instance.doc("users/$uid/forms/$id").get();
-  return docsnap.data();
+  Map<String, dynamic> data = docsnap.data();
+  data.addAll({"id": docsnap.id});
+  return data;
+}
+
+Future<List> getpaymentdatafromid() async {
+  List payments = [];
+  String uid = FirebaseAuth.instance.currentUser.uid;
+  await FirebaseFirestore.instance
+      .collection("Payments")
+      .where('uid', isEqualTo: FirebaseAuth.instance.currentUser.uid)
+      .get()
+      .then((value) {
+    for (var element in value.docs) {
+      payments.add(element.data());
+    }
+  });
+
+  return payments;
 }
 
 Future<String> createnewformforuser() async {
