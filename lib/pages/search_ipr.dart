@@ -148,12 +148,10 @@ class _SearchIPRState extends State<SearchIPR> {
                   child: TextFormField(
                     controller: pincode,
                     decoration: ThemeHelper()
-                        .textInputDecoration("PIN code", "Enter PIN code"),
-                    keyboardType: TextInputType.phone,
+                        .textInputDecoration("IPR Id", "Enter IPR Id"),
                     validator: (val) {
-                      if ((val.length != 6) ||
-                          !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                        return "Enter a valid PIN code";
+                      if ((val.length < 6)) {
+                        return "Enter a valid Id";
                       } else {}
                       return null;
                     },
@@ -183,15 +181,8 @@ class _SearchIPRState extends State<SearchIPR> {
                       onPressed: () {
                         //count1++;
                         if (_formKey.currentState.validate()) {
-                          checkbypincode(pincode.text).then((value) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                    AgentList(agent),
-                              ),
-                            );
-                          });
+                          checkbypincode(pincode.text);
+
                           //     showDialog<String>(
                           //       context: context,
                           //       builder: (BuildContext context) => AlertDialog(
