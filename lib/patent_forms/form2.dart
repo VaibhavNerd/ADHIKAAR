@@ -36,16 +36,20 @@ class _PatentForm2State extends State<PatentForm2> {
   getipr() async {
     data1 = (await getformdatafromid(widget.applicationid));
     data = data1['form2'] ?? {};
-    data2 = data2['form1'] ?? {};
+    data2 = data1['form1'] ?? {};
     setState(() {
       data;
       data1;
       data2;
     });
-    print(data);
+    print(data2['applicant']);
     setState(() {
       title2.text = data2['title_inv2_1'];
       applicant = data2['applicant'] ?? [];
+      print(applicant);
+    });
+    setState(() {
+      applicant;
     });
     if (data1['form2'] != null) {
       setState(() {
