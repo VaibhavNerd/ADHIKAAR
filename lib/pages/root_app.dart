@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ipr/pages/account_page.dart';
 import 'package:ipr/pages/activity_page.dart';
 import 'package:ipr/pages/home_page.dart';
-import 'package:ipr/pages/new_post_page.dart';
+import '../../market/new_post_page.dart';
 import 'package:ipr/pages/search_page.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/bottom_navigation_bar_json.dart';
@@ -21,7 +21,7 @@ class _RootAppState extends State<RootApp> {
   List pages = [
     HomePage(),
     SearchPage(),
-    NewPostPage(),
+    IPRmarket(),
     AgentSearchPage(),
     AccountPage(),
   ];
@@ -64,7 +64,7 @@ class _RootAppState extends State<RootApp> {
       children: [
         HomePage(),
         SearchPage(),
-        NewPostPage(),
+        IPRmarket(),
         AgentSearchPage(),
         AccountPage(),
       ],

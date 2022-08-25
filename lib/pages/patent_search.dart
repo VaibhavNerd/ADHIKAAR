@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     width: 0.4*size.width,
                     height: 20,
-                    color: Colors.white12,
+                    color: Colors.white,
                     child: Text("Attributes"),
                   ),
                 ),

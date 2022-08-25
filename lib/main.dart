@@ -9,23 +9,21 @@ import 'package:ipr/pages/agent_register.dart';
 import 'package:ipr/pages/faq.dart';
 import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
+import 'package:ipr/market/buyNational.dart';
 //<<<<<<< vaibhav
 
-//import 'package:ipr/pages/patent_search.dart';
-//import 'package:ipr/patent_forms/form1.dart';
-//import 'package:ipr/patent_forms/form2.dart';
-//import 'package:ipr/trademark/trademark_form1.dart';
-//=======
 import 'package:ipr/pages/patent.dart';
 import 'package:ipr/pages/patent_guidlines.dart';
 import 'package:ipr/pages/raise.dart';
 import 'package:ipr/pages/search_district.dart';
+import 'package:ipr/pages/search_page.dart';
 import 'package:ipr/pages/search_pin.dart';
-//>>>>>>> master
 import 'package:splashscreen/splashscreen.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/root_app.dart';
 import 'package:ipr/pages/sign_in_page.dart';
+
+import 'market/new_post_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,8 +61,6 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-// =======
-// >>>>>>> master
   @override
   Widget build(BuildContext context) {
     return Scaffold();

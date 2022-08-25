@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/faq.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/patent_guidlines.dart';
-import 'package:ipr/pages/patent_search.dart';
 import 'package:ipr/pages/submittedapplication.dart';
 import 'package:ipr/pdf/secondPage.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -15,14 +14,14 @@ import '../patent_forms/ongoing_form.dart';
 import '../services/firebase_services.dart';
 import 'chat_page.dart';
 
-class Patent extends StatefulWidget {
-  const Patent({Key key}) : super(key: key);
+class Copyright extends StatefulWidget {
+  const Copyright({Key key}) : super(key: key);
 
   @override
-  State<Patent> createState() => _PatentState();
+  State<Copyright> createState() => _CopyrightState();
 }
 
-class _PatentState extends State<Patent> {
+class _CopyrightState extends State<Copyright> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -45,7 +44,7 @@ class _PatentState extends State<Patent> {
         ),
         title: Center(
           child: Text(
-            "Patent",
+            "Copyright",
             style: TextStyle(
               color: Colors.black,
               fontSize: 25,
@@ -104,17 +103,7 @@ class _PatentState extends State<Patent> {
       ),
       Padding(
         padding: const EdgeInsets.all(20.0),
-        child:GestureDetector(
-          onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                builder: (BuildContext context) =>
-                MyHomePage(),
-            ),
-            );
-          },
-          child: Container(
+        child: Container(
           height: 40,
           width: 50,
           child: Text(
@@ -130,7 +119,6 @@ class _PatentState extends State<Patent> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(30),
           ),
-        ),
         ),
       ),
       SizedBox(
