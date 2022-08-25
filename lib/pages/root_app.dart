@@ -21,7 +21,7 @@ class _RootAppState extends State<RootApp> {
   List pages = [
     HomePage(),
     SearchPage(),
-    NewPostPage(),
+    IPRmarket(),
     AgentSearchPage(),
     AccountPage(),
   ];
@@ -64,7 +64,7 @@ class _RootAppState extends State<RootApp> {
       children: [
         HomePage(),
         SearchPage(),
-        NewPostPage(),
+        IPRmarket(),
         AgentSearchPage(),
         AccountPage(),
       ],

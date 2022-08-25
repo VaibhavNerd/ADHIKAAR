@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget getAppBar() {
     return PreferredSize(
-      preferredSize: Size.fromHeight(55),
+      preferredSize: Size.fromHeight(40),
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(8),
