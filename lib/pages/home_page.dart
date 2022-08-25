@@ -4,6 +4,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/chat_page.dart';
+import 'package:ipr/pages/copyright.dart';
+import 'package:ipr/pages/trade.dart';
 // <<<<<<< HEAD
 import 'package:ipr/patent_forms/ongoing_form.dart';
 
@@ -51,12 +53,11 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset("assets/images/logo.svg", width: 90),
+              SvgPicture.asset("assets/images/idealLogoNew.svg", width: 90),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: Icon(
                   Icons.notifications,
-                  color: Colors.black,
                   size: 30,
                 ),
               )
@@ -375,318 +376,340 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: 150,
-                        height: 188,
-                        child: Column(
-                          children: [
-                            Expanded(
-                                flex: 7,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/copypic1.jpg'),
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFEFF0F9),
-                                  ),
-                                )),
-                            Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: double.infinity,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "Copyright",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "Prevent unathorized use",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 9,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color.fromRGBO(
-                                                      0, 0, 0, 45)),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFF8F7FC),
-                                  ),
-                                ))
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                              blurRadius: 5,
-                              offset: Offset(5, 5),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => Copyright(),
+// >>>>>>> master
                             ),
-                            BoxShadow(
-                              //color: Color.fromRGBO(255, 255, 255, 1),
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              blurRadius: 10,
-
-                              offset: Offset(-5, -5),
-                            )
-                          ],
-                          //    color: Colors.amberAccent,
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          height: 188,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  flex: 7,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/copypic1.jpg'),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFEFF0F9),
+                                    ),
+                                  )),
+                              Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Copyright",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Prevent unathorized use",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 9,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 45)),
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFF8F7FC),
+                                    ),
+                                  ))
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 5,
+                                offset: Offset(5, 5),
+                              ),
+                              BoxShadow(
+                                //color: Color.fromRGBO(255, 255, 255, 1),
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                blurRadius: 10,
+                      
+                                offset: Offset(-5, -5),
+                              )
+                            ],
+                            //    color: Colors.amberAccent,
+                          ),
                         ),
                       )
                     ],
                   )),
             ),
-            Container(
-              width: size.width,
-              margin: EdgeInsets.only(top: 10),
-              //color: Colors.green,
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        width: 96,
-                        height: 122,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                flex: 7,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/tradepic1.jpg'),
-                                      fit: BoxFit.fitHeight,
+            InkWell(
+              onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => Trade(),
+// >>>>>>> master
+                            ),
+                          );
+                        },
+              child: Container(
+                width: size.width,
+                margin: EdgeInsets.only(top: 10),
+                //color: Colors.green,
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: 96,
+                          height: 122,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  flex: 7,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/tradepic1.jpg'),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFEFF0F9),
                                     ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
+                                  )),
+                              Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Trademark",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFF8F7FC),
                                     ),
-                                    color: Color(0xFFEFF0F9),
-                                  ),
-                                )),
-                            Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: double.infinity,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "Trademark",
+                                  )),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 3,
+                                offset: Offset(3, 3),
+                              ),
+                              BoxShadow(
+                                //color: Color.fromRGBO(255, 255, 255, 1),
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                blurRadius: 3,
+            
+                                offset: Offset(-3, -3),
+                              )
+                            ],
+                            // color: Colors.amberAccent,
+                          ),
+                        ),
+                        Container(
+                          width: 96,
+                          height: 122,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  flex: 7,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/industrypic1.jpg'),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFEFF0F9),
+                                    ),
+                                  )),
+                              Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Industrial Design",
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFF8F7FC),
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 3,
+                                offset: Offset(3, 3),
+                              ),
+                              BoxShadow(
+                                //color: Color.fromRGBO(255, 255, 255, 1),
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                blurRadius: 3,
+            
+                                offset: Offset(-3, -3),
+                              )
+                            ],
+                            // color: Colors.amberAccent,
+                          ),
+                        ),
+                        Container(
+                          width: 96,
+                          height: 122,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  flex: 7,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/geopic1.jpg'),
+                                        fit: BoxFit.fitHeight,
+                                      ),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFEFF0F9),
+                                    ),
+                                  )),
+                              Expanded(
+                                  flex: 3,
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Geographical identification",
                                               style: GoogleFonts.poppins(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600),
                                             ),
-                                          ),
-                                        ],
-                                      )),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
+                                          ],
+                                        )),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      color: Color(0xFFF8F7FC),
                                     ),
-                                    color: Color(0xFFF8F7FC),
-                                  ),
-                                )),
-                          ],
+                                  )),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 3,
+                                offset: Offset(3, 3),
+                              ),
+                              BoxShadow(
+                                //color: Color.fromRGBO(255, 255, 255, 1),
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                blurRadius: 3,
+            
+                                offset: Offset(-3, -3),
+                              )
+                            ],
+                            // color: Colors.amberAccent,
+                          ),
                         ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                              blurRadius: 3,
-                              offset: Offset(3, 3),
-                            ),
-                            BoxShadow(
-                              //color: Color.fromRGBO(255, 255, 255, 1),
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              blurRadius: 3,
-
-                              offset: Offset(-3, -3),
-                            )
-                          ],
-                          // color: Colors.amberAccent,
-                        ),
-                      ),
-                      Container(
-                        width: 96,
-                        height: 122,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                flex: 7,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/industrypic1.jpg'),
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFEFF0F9),
-                                  ),
-                                )),
-                            Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: double.infinity,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "Industrial Design",
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFF8F7FC),
-                                  ),
-                                )),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                              blurRadius: 3,
-                              offset: Offset(3, 3),
-                            ),
-                            BoxShadow(
-                              //color: Color.fromRGBO(255, 255, 255, 1),
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              blurRadius: 3,
-
-                              offset: Offset(-3, -3),
-                            )
-                          ],
-                          // color: Colors.amberAccent,
-                        ),
-                      ),
-                      Container(
-                        width: 96,
-                        height: 122,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                flex: 7,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/geopic1.jpg'),
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFEFF0F9),
-                                  ),
-                                )),
-                            Expanded(
-                                flex: 3,
-                                child: Container(
-                                  width: double.infinity,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Geographical identification",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
-                                      )),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                    color: Color(0xFFF8F7FC),
-                                  ),
-                                )),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                              blurRadius: 3,
-                              offset: Offset(3, 3),
-                            ),
-                            BoxShadow(
-                              //color: Color.fromRGBO(255, 255, 255, 1),
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              blurRadius: 3,
-
-                              offset: Offset(-3, -3),
-                            )
-                          ],
-                          // color: Colors.amberAccent,
-                        ),
-                      ),
-                    ],
-                  )),
+                      ],
+                    )),
+              ),
             ),
             Container(
               width: size.width,

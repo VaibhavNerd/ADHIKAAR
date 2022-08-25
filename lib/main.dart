@@ -27,7 +27,7 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Home(),
+    home: HomePage(),
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
