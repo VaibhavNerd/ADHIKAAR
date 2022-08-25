@@ -205,7 +205,7 @@ class AccountPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Container(
                     height: height * 0.44,
@@ -404,7 +404,23 @@ class AccountPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: height * 0.04,
+                    width: 120,
+                    margin: EdgeInsets.fromLTRB(10, 0, 200, 0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 217, 51, 39), // background
+                        onPrimary: Colors.white, // foreground
+                      ),
+                      onPressed: () {},
+                      child: Text('Sign Out'),
+                    ),
+                  ),
                 ],
               ),
             ),

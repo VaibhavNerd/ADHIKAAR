@@ -51,7 +51,8 @@ class _AgentSearchPageState extends State<AgentSearchPage> {
   ];
   Position position;
   void giveposition() async {
-    position = await _determinePosition();
+    position = 
+    await _determinePosition();
   }
 
   Future<Position> _determinePosition() async {
