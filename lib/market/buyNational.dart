@@ -12,12 +12,12 @@ import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
 import 'dart:ui';
 
-class SearchPage extends StatefulWidget {
+class BuyNational extends StatefulWidget {
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _BuyNationalState createState() => _BuyNationalState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _BuyNationalState extends State<BuyNational> {
   final List<String> _listItem = [
     'assets/images/weekone.jpg',
     'assets/images/weektwo.jpg',
@@ -33,32 +33,32 @@ class _SearchPageState extends State<SearchPage> {
     'assets/images/draketwo.jpg',
   ];
   List<String> state = [
-    'The Weeknd - Sacrifice (Official Music Video)',
-    'The Weeknd - Heartless (Official Video)',
-    'Drake - Sticky (Official Music Video)',
-    'The Weeknd - Sacrifice (Official Music Video)',
-    'The Weeknd - Heartless (Official Video)',
-    'Drake - Sticky (Official Music Video)',
-    'The Weeknd - Sacrifice (Official Music Video)',
-    'The Weeknd - Heartless (Official Video)',
-    'Drake - Sticky (Official Music Video)',
-    'The Weeknd - Sacrifice (Official Music Video)',
-    'The Weeknd - Heartless (Official Video)',
-    'Drake - Sticky (Official Music Video)',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
+    'IPR name',
   ];
   List<String> des = [
-    '14 lakh views\n2 years ago',
-    '1 crore views\n6 years ago',
-    '67 lakh views\n2 months ago',
-    '2 crore views\n2 years ago',
-    '35 lakh views\n2 years ago',
-    '62 lakh views\n2 years ago',
-    '9 crore views\n2 years ago',
-    '25 lakh views\n2 years ago',
-    '65 lakh views\n2 years ago',
-    '15 lakh views\n2 years ago',
-    '14 crore views\n2 years ago',
-    '75 lakh views\n2 years ago',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
+    'price',
   ];
   List<String> links = [
     'https://www.youtube.com/watch?v=VafTMsrnSTU',
@@ -92,7 +92,7 @@ class _SearchPageState extends State<SearchPage> {
             }),
         title: Center(
           child: Text(
-            "Need Help ?",
+            "Buy IPRs",
           ),
         ),
         actions: <Widget>[
@@ -124,10 +124,10 @@ class _SearchPageState extends State<SearchPage> {
           child: Column(
             children: <Widget>[
               Text(
-                "Refer  videos  below  for assistance ",
+                "Choose IPRs from below to buy them",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 23,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -180,17 +180,17 @@ class _SearchPageState extends State<SearchPage> {
                                     ),
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 10),
+                                          vertical: 10, horizontal: 20),
                                       child: Image.asset(
-                                        _listItem[index],
+                                        'assets/images/diploma.png',
                                         height: 78.75,
-                                        width: 140,
+                                        width: 80,
                                         fit: BoxFit.fill,
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 165),
+                                    margin: EdgeInsets.only(left: 120),
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 10),
                                       child: Text(state[index],
@@ -201,7 +201,7 @@ class _SearchPageState extends State<SearchPage> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 165),
+                                    margin: EdgeInsets.only(left: 120),
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 37),
                                       child: Text(des[index],
@@ -210,6 +210,19 @@ class _SearchPageState extends State<SearchPage> {
                                           )),
                                     ),
                                   ),
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(120, 47, 0, 0),
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        "BUY",
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.lightBlue,
+                                          minimumSize: Size(15, 25)),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),

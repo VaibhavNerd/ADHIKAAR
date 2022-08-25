@@ -6,6 +6,7 @@ import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:ipr/market/buyNational.dart';
 import 'package:ipr/pages/search_district.dart';
 import 'package:ipr/pages/search_geo.dart';
 import 'package:ipr/pages/search_pin.dart';
@@ -36,18 +37,18 @@ class _IPRmarketState extends State<IPRmarket> {
   final List<String> _listItem = [
     'assets/images/pin.png',
     'assets/images/city.png',
-
+    'assets/images/city.png',
   ];
   List<String> state = [
-    'BUY',
+    'BUY NATIONAL',
+    'BUY INTERNATIONAL',
     'SELL',
-
   ];
 
   List<String> des = [
-    'IPRs',
+    ' ',
+    ' ',
     'your IPRs',
-
   ];
   Position position;
   void giveposition() async {
@@ -107,7 +108,7 @@ class _IPRmarketState extends State<IPRmarket> {
               width: 36,
               height: 30,
               decoration:
-              BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
               child: Center(child: Icon(Icons.menu)),
             ),
           )
@@ -150,7 +151,7 @@ class _IPRmarketState extends State<IPRmarket> {
                 DropdownButtonFormField(
                   style: TextStyle(color: Colors.black, fontSize: 20),
                   decoration:
-                  InputDecoration(contentPadding: EdgeInsets.all(10)),
+                      InputDecoration(contentPadding: EdgeInsets.all(10)),
                   hint: Text(
                     'Select IP type',
                     style: TextStyle(),
@@ -165,12 +166,12 @@ class _IPRmarketState extends State<IPRmarket> {
                   },
                   items: _states
                       .map((value) => DropdownMenuItem(
-                    child: Text(
-                      value,
-                      style: TextStyle(),
-                    ),
-                    value: value,
-                  ))
+                            child: Text(
+                              value,
+                              style: TextStyle(),
+                            ),
+                            value: value,
+                          ))
                       .toList(),
                 ),
                 SizedBox(
@@ -179,7 +180,7 @@ class _IPRmarketState extends State<IPRmarket> {
                 Expanded(
                   child: GridView.builder(
                       gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
                         childAspectRatio: 4 / 1,
                         crossAxisSpacing: 10,
@@ -197,9 +198,14 @@ class _IPRmarketState extends State<IPRmarket> {
                             elevation: 3,
                             child: InkWell(
                               onTap: () {
-
-
-                              },
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => BuyNational(),
+// >>>>>>> master
+                            ),
+                          );
+                        },
                               child: Stack(
                                 children: <Widget>[
                                   Container(
