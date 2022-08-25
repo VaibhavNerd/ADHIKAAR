@@ -17,16 +17,7 @@ class AccountPage extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                CustomColor.black,
-                CustomColor.voilet,
-              ],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            ),
-          ),
+          decoration: BoxDecoration(),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -38,25 +29,16 @@ class AccountPage extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(
-                        AntDesign.arrowleft,
-                        color: Colors.white,
-                      ),
-                      Icon(
-                        AntDesign.logout,
-                        color: Colors.white,
-                      ),
-                    ],
+                    children: [],
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
-                    'My\nProfile',
+                    'Your\nProfile',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromRGBO(39, 105, 171, 1),
                       fontSize: 34,
                     ),
                   ),
@@ -64,7 +46,7 @@ class AccountPage extends StatelessWidget {
                     height: 22,
                   ),
                   Container(
-                    height: height * 0.23,
+                    height: height * 0.16,
                     //   color: Colors.red,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
@@ -90,10 +72,10 @@ class AccountPage extends StatelessWidget {
                                       height: 10,
                                     ),
                                     Text(
-                                      'Sankalp Srivastava',
+                                      '',
                                       style: TextStyle(
                                         color: Color.fromRGBO(39, 105, 171, 1),
-                                        fontSize: 37,
+                                        fontSize: 25,
                                       ),
                                     ),
                                     SizedBox(
@@ -203,29 +185,20 @@ class AccountPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            // Positioned(
-                            //   top: 110,
-                            //   right: 20,
-                            //   child: Icon(
-                            //     AntDesign.setting,
-                            //     color: Colors.grey[700],
-                            //     size: 30,
-                            //   ),
-                            // ),
-                            // Positioned(
-                            //   top: 0,
-                            //   left: 0,
-                            //   right: 0,
-                            //   child: Center(
-                            //     child: Container(
-                            //       child: CircleAvatar(
-                            //         radius: 85,
-                            //         backgroundImage: AssetImage(
-                            //             'assets/images/profileme.jpeg'),
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
+                            Positioned(
+                              top: 5,
+                              left: 0,
+                              right: 300,
+                              child: Center(
+                                child: Container(
+                                  child: CircleAvatar(
+                                    radius: 22,
+                                    backgroundImage: AssetImage(
+                                        'assets/images/profileme.jpeg'),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         );
                       },
@@ -235,10 +208,10 @@ class AccountPage extends StatelessWidget {
                     height: 30,
                   ),
                   Container(
-                    height: height * 0.48,
+                    height: height * 0.44,
                     width: width,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(0),
                       color: Colors.white,
                     ),
                     child: Padding(
@@ -252,7 +225,7 @@ class AccountPage extends StatelessWidget {
                             'Options',
                             style: TextStyle(
                               color: Color.fromRGBO(39, 105, 171, 1),
-                              fontSize: 27,
+                              fontSize: 23,
                             ),
                           ),
                           Divider(
@@ -264,62 +237,94 @@ class AccountPage extends StatelessWidget {
                           Container(
                             height: height * 0.05,
                             width: 500,
-                            child: Text(
-                              'Verify phone number ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                height: 1.85,
-                                fontSize: 20,
-                              ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  child: Image.asset('assets/images/phone.jpg'),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Verify phone number ',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    height: 1.85,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                             decoration: BoxDecoration(
-                              color: CustomColor.grey,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
+                          Divider(
+                            thickness: 0.8,
                           ),
                           Container(
                             height: height * 0.05,
                             width: 500,
-                            child: Text(
-                              'Track IPR status',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                height: 1.85,
-                                fontSize: 20,
-                              ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  child: Image.asset(
+                                      'assets/images/placeholder.png'),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Track IPR status',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    height: 1.85,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                             decoration: BoxDecoration(
-                              color: CustomColor.grey,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
+                          Divider(
+                            thickness: 0.8,
                           ),
                           Container(
                             height: height * 0.05,
                             width: 500,
-                            child: Text(
-                              'Edit profile',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                height: 1.85,
-                                fontSize: 20,
-                              ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  child:
+                                      Image.asset('assets/images/propic.png'),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Edit profile',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    height: 1.85,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                             decoration: BoxDecoration(
-                              color: CustomColor.grey,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
+                          Divider(
+                            thickness: 0.8,
                           ),
                           InkWell(
                             onTap: () {
@@ -331,23 +336,34 @@ class AccountPage extends StatelessWidget {
                             child: Container(
                               height: height * 0.05,
                               width: 500,
-                              child: Text(
-                                'Raise Objection',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  height: 1.85,
-                                  fontSize: 20,
-                                ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    child: Image.asset(
+                                        'assets/images/objections.png'),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    'Raise Objection',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      height: 1.85,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
                               ),
                               decoration: BoxDecoration(
-                                color: CustomColor.grey,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: 10,
+                          Divider(
+                            thickness: 0.8,
                           ),
                           InkWell(
                             onTap: () {
@@ -359,39 +375,30 @@ class AccountPage extends StatelessWidget {
                             child: Container(
                               height: height * 0.05,
                               width: 500,
-                              child: Text(
-                                'Help and Support',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  height: 1.85,
-                                  fontSize: 20,
-                                ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    child:
+                                        Image.asset('assets/images/help.png'),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    'Help and Support',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      height: 1.85,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
                               ),
                               decoration: BoxDecoration(
-                                color: CustomColor.grey,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(30),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: height * 0.05,
-                            width: 500,
-                            child: Text(
-                              'Sign Out',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                height: 1.85,
-                                fontSize: 20,
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: CustomColor.pink,
-                              borderRadius: BorderRadius.circular(30),
                             ),
                           ),
                         ],
