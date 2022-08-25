@@ -22,13 +22,16 @@ class _YplayerState extends State<Yplayer> {
     YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.link),
     );
+    
     super.initState();
+    
   }
 
   @override
   Widget build(BuildContext context) {
     return YoutubePlayerBuilder(
       player: YoutubePlayer(
+        
         controller: youtubePlayerController,
       ),
       builder: (context, player) {
@@ -36,26 +39,7 @@ class _YplayerState extends State<Yplayer> {
           body: Column(
             children: [
               player,
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: TextField(
-                  controller: _textEditingController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    hintText: widget.link,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  youtubePlayerController.load(
-                    YoutubePlayer.convertUrlToId(_textEditingController.text),
-                  );
-                },
-                child: Text("Play Video"),
-              ),
+              
             ],
           ),
         );

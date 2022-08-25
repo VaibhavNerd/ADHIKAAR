@@ -412,7 +412,8 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     width: double.infinity,
                                     child: Padding(
-                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 3, 0, 0),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -423,7 +424,8 @@ class _HomePageState extends State<HomePage> {
                                                 "Copyright",
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 22,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                             Align(
@@ -461,7 +463,7 @@ class _HomePageState extends State<HomePage> {
                                 //color: Color.fromRGBO(255, 255, 255, 1),
                                 color: Color.fromRGBO(255, 255, 255, 1),
                                 blurRadius: 10,
-                      
+
                                 offset: Offset(-5, -5),
                               )
                             ],
@@ -474,14 +476,14 @@ class _HomePageState extends State<HomePage> {
             ),
             InkWell(
               onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) => Trade(),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => Trade(),
 // >>>>>>> master
-                            ),
-                          );
-                        },
+                  ),
+                );
+              },
               child: Container(
                 width: size.width,
                 margin: EdgeInsets.only(top: 10),
@@ -519,7 +521,8 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     width: double.infinity,
                                     child: Padding(
-                                        padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 8, 0, 0),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -530,7 +533,8 @@ class _HomePageState extends State<HomePage> {
                                                 "Trademark",
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 12,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ],
@@ -557,7 +561,7 @@ class _HomePageState extends State<HomePage> {
                                 //color: Color.fromRGBO(255, 255, 255, 1),
                                 color: Color.fromRGBO(255, 255, 255, 1),
                                 blurRadius: 3,
-            
+
                                 offset: Offset(-3, -3),
                               )
                             ],
@@ -592,7 +596,8 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     width: double.infinity,
                                     child: Padding(
-                                        padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 8, 0, 0),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -603,7 +608,8 @@ class _HomePageState extends State<HomePage> {
                                                 "Industrial Design",
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 10,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ],
@@ -630,7 +636,7 @@ class _HomePageState extends State<HomePage> {
                                 //color: Color.fromRGBO(255, 255, 255, 1),
                                 color: Color.fromRGBO(255, 255, 255, 1),
                                 blurRadius: 3,
-            
+
                                 offset: Offset(-3, -3),
                               )
                             ],
@@ -665,7 +671,8 @@ class _HomePageState extends State<HomePage> {
                                   child: Container(
                                     width: double.infinity,
                                     child: Padding(
-                                        padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 4, 0, 0),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -700,7 +707,7 @@ class _HomePageState extends State<HomePage> {
                                 //color: Color.fromRGBO(255, 255, 255, 1),
                                 color: Color.fromRGBO(255, 255, 255, 1),
                                 blurRadius: 3,
-            
+
                                 offset: Offset(-3, -3),
                               )
                             ],
@@ -835,6 +842,269 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+            ),
+            Container(
+              width: size.width,
+              // color: Colors.cyanAccent,
+              margin: const EdgeInsets.only(top: 0),
+              height: 172,
+
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: size.width,
+                    height: 200,
+                    margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      boxShadow: [],
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          width: 400,
+                          margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                          decoration: BoxDecoration(
+                              // color: Colors.amberAccent,
+                              ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              SizedBox(
+                                width: double.infinity,
+                                height: 4,
+                              ),
+
+                              // Padding(padding:  ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                width: size.width,
+                                child: Text(
+                                  "10,50,641 ",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topRight,
+                                width: size.width,
+                                child: Text(
+                                  "10,50,641 ",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                width: size.width,
+                                child: Text(
+                                  "10,50,641 ",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.topRight,
+                                width: size.width,
+                                child: Text(
+                                  "10,50,641 ",
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(14, 4, 0, 5),
+              height: 24,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  "#FileYourIPR",
+                  style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87),
+                ),
+              ),
+              decoration: BoxDecoration(),
+            ),
+            SizedBox(
+              height: 0,
+            ),
+            CarouselSlider(
+              options: CarouselOptions(
+                  height: 160.0, autoPlay: true, viewportFraction: 1),
+              items: [1, 2, 3, 4, 5].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: size.width,
+                      //color: Colors.cyanAccent,
+                      margin: const EdgeInsets.only(top: 0),
+                      height: 172,
+
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            width: size.width,
+                            height: 150,
+                            margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.25),
+                                  blurRadius: 5,
+                                  offset: Offset(5, 5),
+                                ),
+                                BoxShadow(
+                                  //color: Color.fromRGBO(255, 255, 255, 1),
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  blurRadius: 10,
+
+                                  offset: Offset(-5, -5),
+                                )
+                              ],
+                              color: Color(0xFFB375FC8),
+                            ),
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  width: 200,
+                                  margin:
+                                      const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                                  decoration: BoxDecoration(
+                                      // color: Colors.amberAccent,
+                                      ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            //  color: Colors.greenAccent,
+                                            ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 15, 0, 0),
+                                          child: GradientText(
+                                            "Intellectual Property",
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                                fontSize: 18),
+                                            colors: [
+                                              Colors.orange,
+                                              Colors.white,
+                                              Colors.green,
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                          margin: EdgeInsets.only(right: 10),
+                                          decoration: BoxDecoration(
+                                              //  color: Colors.greenAccent,
+                                              ),
+                                          child: Row(children: <Widget>[
+                                            Expanded(
+                                                child: Divider(
+                                              thickness: 1.5,
+                                              color: Colors.white,
+                                            )),
+                                            SizedBox(
+                                              width: 12,
+                                            ),
+                                            Text(
+                                              "RIGHTS",
+                                              style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 10,
+                                                color: Color(0xFFBFFFFFF),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Expanded(
+                                                child: Divider(
+                                              thickness: 2,
+                                              color: Colors.white,
+                                            )),
+                                          ])),
+
+                                      SizedBox(
+                                        width: double.infinity,
+                                        height: 4,
+                                      ),
+
+                                      // Padding(padding:  ),
+                                      Container(
+                                        alignment: Alignment.topLeft,
+                                        width: 140,
+                                        child: Text(
+                                          "You are in safe hand",
+                                          style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                            color: Color(0xFFBFFFFFF),
+                                          ),
+                                        ),
+                                        decoration: BoxDecoration(
+                                            //  color: Colors.deepOrange
+
+                                            ),
+                                      ),
+                                      Container(
+                                        width: 140,
+                                        child: Text(
+                                          "LOREM IPSUM IS SIMPLY DUMMY TEXT AND TYPESETTING ",
+                                          style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 7,
+                                            color: Color(0xFFBFFFFFF),
+                                          ),
+                                        ),
+                                        decoration: BoxDecoration(
+                                            //    color: Colors.deepOrange
+
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
             ),
           ],
         ),
