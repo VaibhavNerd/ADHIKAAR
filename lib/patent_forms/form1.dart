@@ -1851,11 +1851,11 @@ class _PatentForm1State extends State<PatentForm1> {
             _activeStepIndex -= 1;
           });
         },
-        onStepTapped: (int index) {
-          setState(() {
-            _activeStepIndex = index;
-          });
-        },
+        // onStepTapped: (int index) {
+        //   setState(() {
+        //     _activeStepIndex = index;
+        //   });
+        // },
       ),
     );
   }
