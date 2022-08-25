@@ -230,7 +230,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-
   flutter_inappwebview:
     dependency: transitive
     description:
@@ -238,7 +237,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.4.3+7"
-
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -246,7 +244,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
-
   flutter_svg:
     dependency: "direct main"
     description:
