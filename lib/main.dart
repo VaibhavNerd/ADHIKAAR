@@ -9,7 +9,7 @@ import 'package:ipr/pages/agent_register.dart';
 import 'package:ipr/pages/faq.dart';
 import 'package:ipr/pages/lang.dart';
 import 'package:ipr/pages/login_screen.dart';
-import 'package:ipr/pages/new_post_page.dart';
+import 'package:ipr/market/buyNational.dart';
 //<<<<<<< vaibhav
 
 import 'package:ipr/pages/patent.dart';
@@ -23,13 +23,15 @@ import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/root_app.dart';
 import 'package:ipr/pages/sign_in_page.dart';
 
+import 'market/new_post_page.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: SearchPage(),
+    home: Home(),
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),

@@ -6,7 +6,7 @@ import 'package:ipr/pages/account_page.dart';
 import 'package:ipr/pages/activity_page.dart';
 import 'package:ipr/pages/agent_register.dart';
 import 'package:ipr/pages/home_page.dart';
-import 'package:ipr/pages/new_post_page.dart';
+import '../../market/new_post_page.dart';
 import 'package:ipr/pages/search_page.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/bottom_navigation_bar_json.dart';
