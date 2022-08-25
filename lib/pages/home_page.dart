@@ -602,7 +602,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Text(
                                                 "Industrial Design",
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 12,
+                                                    fontSize: 10,
                                                     fontWeight: FontWeight.w600),
                                               ),
                                             ),
@@ -673,7 +673,7 @@ class _HomePageState extends State<HomePage> {
                                             Text(
                                               "Geographical identification",
                                               style: GoogleFonts.poppins(
-                                                  fontSize: 12,
+                                                  fontSize: 10,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                           ],

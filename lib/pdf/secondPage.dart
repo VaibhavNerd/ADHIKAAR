@@ -169,7 +169,7 @@ class _PDFState extends State<PDF> {
                                         ),
                                       ),
                                     ),
-                                    Flexible(child: Container(
+                                     Container(
                                       margin: EdgeInsets.only(
                                           top: 11,left: 90,right: 10),
                                       child: Text(pdf_name[index],
@@ -178,7 +178,7 @@ class _PDFState extends State<PDF> {
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold)),
                                     ),
-                                    ),
+
 
                                   ],
                                 ),
@@ -265,7 +265,7 @@ class _PDFState extends State<PDF> {
                                         ),
                                       ),
                                     ),
-                                    Flexible(child: Container(
+                                     Container(
                                       margin: EdgeInsets.only(
                                           top: 11,left: 90,right: 10),
                                       child: Text(pdf_name2[index],
@@ -274,7 +274,7 @@ class _PDFState extends State<PDF> {
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold)),
                                     ),
-                                    ),
+
 
                                   ],
                                 ),
