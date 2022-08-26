@@ -283,7 +283,7 @@ class _BuyNationalState extends State<BuyNational> {
                                         )),
                                   ),
                                 ),
-                                iprs[index]["sell"] == 2
+                                iprs[index]["sell"] == 1
                                     ? Container(
                                         margin: EdgeInsets.only(left: 120),
                                         child: Padding(

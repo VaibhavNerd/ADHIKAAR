@@ -415,7 +415,7 @@ class _SubmittedApplicationState extends State<SubmittedApplication> {
 
               if (pickeddate != null) {
                 setState(() {
-                  filing_date2_2.text =
+                  filing_date2_1.text =
                       DateFormat('dd-MM-yyyy').format(pickeddate);
                 });
               }
@@ -427,7 +427,7 @@ class _SubmittedApplicationState extends State<SubmittedApplication> {
                   Radius.circular(8.0),
                 ),
               ),
-              labelText: 'International filing date (dd/mm/yyyy)',
+              labelText: 'Bidding date (dd/mm/yyyy)',
             ),
           ),
           SizedBox(
@@ -462,7 +462,7 @@ class _SubmittedApplicationState extends State<SubmittedApplication> {
                   Radius.circular(8.0),
                 ),
               ),
-              labelText: 'International filing date (dd/mm/yyyy)',
+              labelText: 'Selling Date date (dd/mm/yyyy)',
             ),
           ),
         ],
