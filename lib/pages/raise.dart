@@ -287,6 +287,7 @@ class _RaisePageState extends State<RaisePage> {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 30.0),
+
                         Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),
