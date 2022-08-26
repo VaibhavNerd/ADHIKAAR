@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/blogs/blogs.dart';
 import 'package:ipr/pages/blogs/uploadblog.dart';
 import 'package:ipr/pages/chat_page.dart';
+import 'package:http/http.dart' as http;
 import 'package:ipr/pages/copyright.dart';
 import 'package:ipr/pages/trade.dart';
 // <<<<<<< HEAD
@@ -28,8 +32,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List twitterdata = [];
+  Future<void> gettwitterdata() async {
+    var headers = {
+      'Authorization':
+          'Bearer AAAAAAAAAAAAAAAAAAAAAPVugQEAAAAAvt7lQhrNK9O3I6ev7Lb9Go4xcKw%3DGMZNootv7Ez3LWgsOtRjLp7jyV9RB889vpvAEhiJVUbpm0XvfI',
+      'Cookie': 'guest_id=v1%3A166142412878300296'
+    };
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://api.twitter.com/2/tweets/search/recent?query=patent india'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      twitterdata
+          .add(jsonDecode(await response.stream.bytesToString())["data"]);
+      setState(() {
+        twitterdata;
+      });
+      print(twitterdata);
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
   @override
   void initState() {
+    gettwitterdata();
     print(DateTime.now().toString());
     // TODO: implement initState
     super.initState();
@@ -48,7 +81,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget getAppBar() {
     return PreferredSize(
-      preferredSize: Size.fromHeight(40),
+      preferredSize: Size.fromHeight(55),
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(8),
@@ -56,12 +89,29 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SvgPicture.asset("assets/images/idealLogoNew.svg", width: 90),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: Icon(
-                  Icons.notifications,
-                  size: 30,
-                ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      print(context.locale.toString());
+                      context.locale.toString() == "hi_IN"
+                          ? context.setLocale(Locale('en', 'US'))
+                          : context.setLocale(Locale('hi', 'IN'));
+                    },
+                    child: CircleAvatar(
+                      radius: 30,
+                      child: Text(
+                          context.locale.toString() == "hi_IN" ? "ENG" : "HIN"),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    child: Icon(
+                      Icons.notifications,
+                      size: 30,
+                    ),
+                  ),
+                ],
               )
             ],
           ),
@@ -333,7 +383,7 @@ class _HomePageState extends State<HomePage> {
                                                     fontSize: 22,
                                                     fontWeight:
                                                         FontWeight.w600),
-                                              ),
+                                              ).tr(),
                                             ),
                                             Align(
                                               alignment: Alignment.center,
@@ -368,7 +418,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               BoxShadow(
                                 //color: Color.fromRGBO(255, 255, 255, 1),
-                                color: Color.fromRGBO(255, 255, 255, 1),
+                                color: Color.fromARGB(255, 246, 201, 201),
                                 blurRadius: 10,
 
                                 offset: Offset(-5, -5),
@@ -428,7 +478,7 @@ class _HomePageState extends State<HomePage> {
                                                     fontSize: 22,
                                                     fontWeight:
                                                         FontWeight.w600),
-                                              ),
+                                              ).tr(),
                                             ),
                                             Align(
                                               alignment: Alignment.center,
