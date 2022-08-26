@@ -493,7 +493,7 @@ class _HomePageState extends State<HomePage> {
                                                             FontWeight.w600,
                                                         color: Color.fromRGBO(
                                                             0, 0, 0, 45)),
-                                                  ),
+                                                  ).tr(),
                                                 ),
                                               ],
                                             )),
@@ -853,7 +853,7 @@ class _HomePageState extends State<HomePage> {
                                           fontSize: 12,
                                           color: Color(0xFFBFFFFFF),
                                         ),
-                                      ),
+                                      ).tr(),
                                       decoration: BoxDecoration(
                                           //  color: Colors.deepOrange
 
