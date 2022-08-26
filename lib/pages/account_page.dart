@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
@@ -9,6 +10,12 @@ import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
 
 class AccountPage extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<void> _signOut() async {
+    await _auth.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -194,7 +201,7 @@ class AccountPage extends StatelessWidget {
                                   child: CircleAvatar(
                                     radius: 22,
                                     backgroundImage: AssetImage(
-                                        'assets/images/profileme.jpeg'),
+                                        'assets/images/profilePicnew.jpg'),
                                   ),
                                 ),
                               ),
@@ -417,7 +424,9 @@ class AccountPage extends StatelessWidget {
                         primary: Color.fromARGB(255, 217, 51, 39), // background
                         onPrimary: Colors.white, // foreground
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _signOut();
+                      },
                       child: Text('Sign Out'),
                     ),
                   ),
@@ -429,8 +438,6 @@ class AccountPage extends StatelessWidget {
       ],
     );
   }
-  Widget accountBar(){
 
-
-  }
+  Widget accountBar() {}
 }

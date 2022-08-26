@@ -47,11 +47,6 @@ class _IPRmarketState extends State<IPRmarket> {
     'SELL',
   ];
 
-  List<String> des = [
-    ' ',
-    ' ',
-    'your IPRs',
-  ];
   Position position;
   void giveposition() async {
     position = await _determinePosition();
@@ -91,6 +86,8 @@ class _IPRmarketState extends State<IPRmarket> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -99,7 +96,7 @@ class _IPRmarketState extends State<IPRmarket> {
         leading: Icon(Icons.arrow_back, color: Colors.black),
         title: Center(
           child: Text(
-            "Searching an agent ?",
+            "Market Place",
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -130,7 +127,7 @@ class _IPRmarketState extends State<IPRmarket> {
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
                             image:
-                                AssetImage('assets/images/AgentSearchPic.png'),
+                                AssetImage('assets/images/marketPlace.png'),
                             fit: BoxFit.cover)),
                     child: Container(
                       decoration: BoxDecoration(
@@ -182,7 +179,7 @@ class _IPRmarketState extends State<IPRmarket> {
                     height: 40,
                   ),
                   Container(
-                    width: double.infinity,
+                    height: height * 0.06,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
@@ -225,23 +222,13 @@ class _IPRmarketState extends State<IPRmarket> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold)),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(left: 70),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 31),
-                                child: Text(des[0],
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                    )),
-                              ),
-                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
                   Container(
-                    width: double.infinity,
+                    width: width * 0.55,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
@@ -262,6 +249,7 @@ class _IPRmarketState extends State<IPRmarket> {
                         child: Stack(
                           children: <Widget>[
                             Container(
+                              height: height * 0.06,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -281,26 +269,20 @@ class _IPRmarketState extends State<IPRmarket> {
                                   vertical: 5, horizontal: 60),
                               child: Text(state[1],
                                   style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 70),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 31),
-                                child: Text(des[1],
-                                    style: TextStyle(
                                       fontSize: 11,
-                                    )),
-                              ),
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
-                    width: double.infinity,
+                    height: height * 0.06,
+                    width: width * 0.55,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
@@ -342,16 +324,6 @@ class _IPRmarketState extends State<IPRmarket> {
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold)),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 70),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 31),
-                                child: Text(des[2],
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                    )),
-                              ),
                             ),
                           ],
                         ),

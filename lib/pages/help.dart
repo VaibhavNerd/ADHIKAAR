@@ -5,6 +5,7 @@ import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:ipr/pages/faq.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
@@ -135,13 +136,26 @@ class _HelpPageState extends State<HelpPage> {
                           elevation: 3,
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) =>
-                                      ChatScreen(),
-                                ),
-                              );
+                              if (index == 0) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        ChatScreen(),
+                                  ),
+                                );
+                              }
+                              ;
+                               if (index == 1) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        faqPage(),
+                                  ),
+                                );
+                              }
+                              ;
                             },
                             child: Stack(
                               children: <Widget>[
