@@ -233,24 +233,27 @@ class _RaisePageState extends State<RaisePage> {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 30.0),
-                        Container(
-                          decoration:
-                              ThemeHelper().buttonBoxDecoration(context),
-                          child: ElevatedButton(
-                            style: ThemeHelper().buttonStyle(),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(40, 10, 40, 10),
-                              child: Text(
-                                "submit".toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                        InkWell(
+                          onTap: (){},
+                          child: Container(
+                            decoration:
+                                ThemeHelper().buttonBoxDecoration(context),
+                            child: ElevatedButton(
+                              style: ThemeHelper().buttonStyle(),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                child: Text(
+                                  "submit".toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
+                              onPressed: () {},
                             ),
-                            onPressed: () {},
                           ),
                         ),
                         SizedBox(height: 30.0),
