@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -43,14 +44,39 @@ Future<void> main() async {
   HttpOverrides.global = new MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await EasyLocalization.ensureInitialized();
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Home(),
-    theme: ThemeData(
-      textTheme: GoogleFonts.poppinsTextTheme(),
-    ),
-  ));
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en', 'US'), Locale('hi', 'IN')],
+        path:
+            'assets/translations', // <-- change the path of the translation files
+        fallbackLocale: Locale('en', 'US'),
+        child: MyApp()),
+  );
+  // runApp(MaterialApp(
+  //   debugShowCheckedModeBanner: false,
+  //   home: Home(),
+  //   theme: ThemeData(
+  //     textTheme: GoogleFonts.poppinsTextTheme(),
+  //   ),
+  // ));
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
+      ),
+    );
+  }
 }
 
 class Home extends StatefulWidget {

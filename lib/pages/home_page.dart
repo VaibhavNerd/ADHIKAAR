@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/blogs/blogs.dart';
 import 'package:ipr/pages/blogs/uploadblog.dart';
 import 'package:ipr/pages/chat_page.dart';
+import 'package:http/http.dart' as http;
 import 'package:ipr/pages/copyright.dart';
 import 'package:ipr/pages/trade.dart';
 // <<<<<<< HEAD
@@ -34,6 +38,47 @@ class _HomePageState extends State<HomePage> {
         'assets/images/tweet2.jpeg',
     'assets/images/tweet1.jpeg'
   ];
+  Widget getAppBar() {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(55),
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset("assets/images/idealLogoNew.svg", width: 90),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      print(context.locale.toString());
+                      context.locale.toString() == "hi_IN"
+                          ? context.setLocale(Locale('en', 'US'))
+                          : context.setLocale(Locale('hi', 'IN'));
+                    },
+                    child: CircleAvatar(
+                      radius: 30,
+                      child: Text(
+                          context.locale.toString() == "hi_IN" ? "ENG" : "HIN"),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    child: Icon(
+                      Icons.notifications,
+                      size: 30,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     print(DateTime.now().toString());
@@ -51,30 +96,6 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xFFBEFF0F9),
       appBar: getAppBar(),
       body: getBody(size),
-    );
-  }
-
-  Widget getAppBar() {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(40),
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SvgPicture.asset("assets/images/idealLogoNew.svg", width: 90),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: Icon(
-                  Icons.notifications,
-                  size: 30,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
     );
   }
 
@@ -346,7 +367,7 @@ class _HomePageState extends State<HomePage> {
                                                         fontSize: 22,
                                                         fontWeight:
                                                             FontWeight.w600),
-                                                  ),
+                                                  ).tr(),
                                                 ),
                                                 Align(
                                                   alignment: Alignment.center,

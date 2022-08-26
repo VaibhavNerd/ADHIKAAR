@@ -44,7 +44,8 @@ class _PatentForm2State extends State<PatentForm2> {
     });
     print(data2['applicant']);
     setState(() {
-      title2.text = data2['title_inv2_1'];
+      // print(data2['title_inv2_1']);
+      title2.text = data2['title_of_invention'];
       applicant = data2['applicant'] ?? [];
       print(applicant);
     });
@@ -53,7 +54,7 @@ class _PatentForm2State extends State<PatentForm2> {
     });
     if (data1['form2'] != null) {
       setState(() {
-        title2.text = data['title2'];
+        //  title2.text = data['title2'];
         applicant = data['applicant'] ?? [];
         povisional2.text = data['provisional2'];
         complete2.text = data['complete2'];
