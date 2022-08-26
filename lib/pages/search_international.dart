@@ -176,7 +176,7 @@ class _SearchInternationalIPRState extends State<SearchInternationalIPR> {
                     controller: name,
                     decoration:
                         ThemeHelper().textInputDecoration("Name", "Enter Name"),
-                    keyboardType: TextInputType.phone,
+
                     validator: (val) {
                       if (val.length < 3) {
                         return 'Enter atleast three letters';

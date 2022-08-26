@@ -272,7 +272,7 @@ class _CopyrightState extends State<Copyright> {
                                                 0, 15, 0, 0),
                                             child: Center(
                                               child: Text(
-                                                "Submitted Application",
+                                                "Sub. Application",
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 16,
                                                     fontWeight:

@@ -195,7 +195,7 @@ class _PatentState extends State<Patent> {
                                                 0, 15, 0, 0),
                                             child: Center(
                                               child: Text(
-                                                "New Application no.",
+                                                "New Application",
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 16,
                                                     fontWeight:
@@ -281,9 +281,9 @@ class _PatentState extends State<Patent> {
                                                 0, 15, 0, 0),
                                             child: Center(
                                               child: Text(
-                                                "Submitted Application",
+                                                "Sub. Application",
                                                 style: GoogleFonts.poppins(
-                                                    fontSize: 16,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w600),
                                               ),

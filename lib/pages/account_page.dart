@@ -3,6 +3,7 @@ import 'package:ipr/components/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:ipr/pages/help.dart';
 import 'package:ipr/pages/raise.dart';
 import 'package:ipr/theme/colors.dart';
@@ -425,7 +426,7 @@ class AccountPage extends StatelessWidget {
                         onPrimary: Colors.white, // foreground
                       ),
                       onPressed: () {
-                        _signOut();
+                        _signOut().then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => AadharAuth()),(route) => false));
                       },
                       child: Text('Sign Out'),
                     ),
