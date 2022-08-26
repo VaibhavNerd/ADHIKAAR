@@ -136,6 +136,7 @@ class _BuyNationalState extends State<BuyNational> {
           Map<String, dynamic> data = {};
           data = element.data();
           data.addAll({"id": element.id});
+          
           setState(() {
             iprs.add(data);
           });
@@ -163,12 +164,12 @@ class _BuyNationalState extends State<BuyNational> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-            splashRadius: 15,
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => RootApp()));
-            }),
+          splashRadius: 15,
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Center(
           child: Text(
             "Buy IPRs",

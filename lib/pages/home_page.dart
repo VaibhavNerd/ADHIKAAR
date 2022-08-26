@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ipr/chat_bot.dart';
 import 'package:ipr/pages/blogs/blogs.dart';
 import 'package:ipr/pages/blogs/uploadblog.dart';
 import 'package:ipr/pages/chat_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:ipr/pages/copyright.dart';
+import 'package:ipr/pages/notification.dart';
 import 'package:ipr/pages/trade.dart';
 // <<<<<<< HEAD
 import 'package:ipr/patent_forms/ongoing_form.dart';
@@ -65,9 +67,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                    child: Icon(
-                      Icons.notifications,
-                      size: 30,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (_) => Noti()));
+                      },
+                      child: Container(
+                        child: Icon(
+                          Icons.notifications,
+                          size: 30,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -96,7 +106,7 @@ class _HomePageState extends State<HomePage> {
         child: InkWell(
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Blogs()));
+                  context, MaterialPageRoute(builder: (_) => ChatScreen()));
             },
             child: Container(child: Icon(Icons.question_answer))),
       ),
@@ -948,7 +958,7 @@ class _HomePageState extends State<HomePage> {
                                                 Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
-                                                    "Patent",
+                                                    "66,440",
                                                     style: GoogleFonts.poppins(
                                                         fontSize: 22,
                                                         fontWeight:
@@ -958,7 +968,7 @@ class _HomePageState extends State<HomePage> {
                                                 Align(
                                                   alignment: Alignment.center,
                                                   child: Text(
-                                                    "Legal Right Of Owner",
+                                                    "The number of patent filings in india ",
                                                     style: GoogleFonts.poppins(
                                                         fontSize: 9,
                                                         fontWeight:
@@ -975,9 +985,10 @@ class _HomePageState extends State<HomePage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Align(
-                                                alignment: Alignment.center,
+                                                alignment:
+                                                    Alignment.centerRight,
                                                 child: Text(
-                                                  "Patent",
+                                                  "3.27 million",
                                                   style: GoogleFonts.poppins(
                                                       fontSize: 22,
                                                       fontWeight:
@@ -987,7 +998,7 @@ class _HomePageState extends State<HomePage> {
                                               Align(
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  "Legal Right Of Owner",
+                                                  "The number of patent applications worldwide",
                                                   style: GoogleFonts.poppins(
                                                       fontSize: 9,
                                                       fontWeight:
@@ -1004,60 +1015,13 @@ class _HomePageState extends State<HomePage> {
                                         width: size.width * 0.05,
                                       ),
                                       Column(
-                                        children: [
-                                          Container(
-                                            alignment: Alignment.topRight,
-                                            width: size.width * 0.4,
-                                            child: Text(
-                                              "10,50,641 ",
-                                              style: GoogleFonts.poppins(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 20,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Align(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  "Patent",
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 22,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                              ),
-                                              Align(
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  "Legal Right Of Owner",
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 9,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Color.fromRGBO(
-                                                          0, 0, 0, 45)),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                        children: [],
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 40,
-                                  ),
 
                                   Row(
-                                    children: [
-                                     
-                                     
-                                    ],
+                                    children: [],
                                   ),
                                 ],
                               ),

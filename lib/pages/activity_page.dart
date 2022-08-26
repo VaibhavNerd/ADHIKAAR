@@ -51,8 +51,7 @@ class _AgentSearchPageState extends State<AgentSearchPage> {
   ];
   Position position;
   void giveposition() async {
-    position = 
-    await _determinePosition();
+    position = await _determinePosition();
   }
 
   Future<Position> _determinePosition() async {
@@ -94,7 +93,13 @@ class _AgentSearchPageState extends State<AgentSearchPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Icon(Icons.arrow_back, color: Colors.black),
+        leading: InkWell(
+            onTap: () {},
+            child: Container(
+                child: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ))),
         title: Center(
           child: Text(
             "Searching an agent ?",
