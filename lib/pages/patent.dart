@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,21 +49,23 @@ class _PatentState extends State<Patent> {
               color: Colors.black,
               fontSize: 25,
             ),
-          ),
+          ).tr(),
         ),
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.all(10.0),
-            child: Container(
-              width: 36,
-              height: 30,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
-              child: Center(
-                  child: Icon(
-                Icons.menu,
-                color: Colors.black,
-              )),
+            child: InkWell(
+              onTap: () {
+                print(context.locale.toString());
+                context.locale.toString() == "hi_IN"
+                    ? context.setLocale(Locale('en', 'US'))
+                    : context.setLocale(Locale('hi', 'IN'));
+              },
+              child: CircleAvatar(
+                radius: 30,
+                child: Text(
+                    context.locale.toString() == "hi_IN" ? "ENG" : "HIN"),
+              ),
             ),
           )
         ],
@@ -122,7 +125,7 @@ class _PatentState extends State<Patent> {
                 height: 1.85,
                 fontSize: 20,
               ),
-            ),
+            ).tr(),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(30),
@@ -200,7 +203,7 @@ class _PatentState extends State<Patent> {
                                                     fontSize: 16,
                                                     fontWeight:
                                                         FontWeight.w600),
-                                              ),
+                                              ).tr(),
                                             ),
                                           ),
                                         ],
@@ -286,7 +289,7 @@ class _PatentState extends State<Patent> {
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w600),
-                                              ),
+                                              ).tr(),
                                             ),
                                           ),
                                         ],
@@ -378,12 +381,12 @@ class _PatentState extends State<Patent> {
                                                 0, 15, 0, 0),
                                             child: Center(
                                               child: Text(
-                                                "Guidlines",
+                                                "Guidelines",
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 16,
                                                     fontWeight:
                                                         FontWeight.w600),
-                                              ),
+                                              ).tr(),
                                             ),
                                           ),
                                         ],
@@ -468,7 +471,7 @@ class _PatentState extends State<Patent> {
                                                       fontSize: 16,
                                                       fontWeight:
                                                           FontWeight.w600),
-                                                ),
+                                                ).tr(),
                                               ),
                                             ),
                                           ],
@@ -561,12 +564,12 @@ class _PatentState extends State<Patent> {
                                                 0, 15, 0, 0),
                                             child: Center(
                                               child: Text(
-                                                "Forms and fees",
+                                                "Forms and Fees",
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 16,
                                                     fontWeight:
                                                         FontWeight.w600),
-                                              ),
+                                              ).tr(),
                                             ),
                                           ),
                                         ],
@@ -648,7 +651,7 @@ class _PatentState extends State<Patent> {
                                                     fontSize: 16,
                                                     fontWeight:
                                                         FontWeight.w600),
-                                              ),
+                                              ).tr(),
                                             ),
                                           ],
                                         )),
