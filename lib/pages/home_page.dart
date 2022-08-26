@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                                                   const EdgeInsets.fromLTRB(
                                                       0, 15, 0, 0),
                                               child: GradientText(
-                                                "Intellectual Property00",
+                                                "Intellectual Property",
                                                 textAlign: TextAlign.center,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: GoogleFonts.poppins(
@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                                                 fontSize: 13,
                                                 color: Color(0xFFBFFFFFF),
                                               ),
-                                            ),
+                                            ).tr(),
                                             decoration: BoxDecoration(
                                                 //  color: Colors.deepOrange
 
@@ -262,13 +262,13 @@ class _HomePageState extends State<HomePage> {
                                           Container(
                                             width: 140,
                                             child: Text(
-                                              "LOREM IPSUM IS SIMPLY DUMMY TEXT AND TYPESETTING ",
+                                              "Intellectual property, more than ever, is a line drawn around information",
                                               style: GoogleFonts.poppins(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 7,
                                                 color: Color(0xFFBFFFFFF),
                                               ),
-                                            ),
+                                            ).tr(),
                                             decoration: BoxDecoration(
                                                 //    color: Colors.deepOrange
 
@@ -308,12 +308,12 @@ class _HomePageState extends State<HomePage> {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "- Our Services -",
+                      "Our Services",
                       style: GoogleFonts.poppins(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Colors.black87),
-                    ),
+                    ).tr(),
                   ),
                   decoration: BoxDecoration(),
                 ),
@@ -396,7 +396,7 @@ class _HomePageState extends State<HomePage> {
                                                             FontWeight.w600,
                                                         color: Color.fromRGBO(
                                                             0, 0, 0, 45)),
-                                                  ),
+                                                  ).tr(),
                                                 ),
                                               ],
                                             )),
@@ -481,7 +481,7 @@ class _HomePageState extends State<HomePage> {
                                                         fontSize: 22,
                                                         fontWeight:
                                                             FontWeight.w600),
-                                                  ),
+                                                  ).tr(),
                                                 ),
                                                 Align(
                                                   alignment: Alignment.center,
@@ -591,7 +591,7 @@ class _HomePageState extends State<HomePage> {
                                                         fontSize: 12,
                                                         fontWeight:
                                                             FontWeight.w600),
-                                                  ),
+                                                  ).tr(),
                                                 ),
                                               ],
                                             )),
@@ -666,7 +666,7 @@ class _HomePageState extends State<HomePage> {
                                                         fontSize: 10,
                                                         fontWeight:
                                                             FontWeight.w600),
-                                                  ),
+                                                  ).tr(),
                                                 ),
                                               ],
                                             )),
@@ -739,7 +739,7 @@ class _HomePageState extends State<HomePage> {
                                                       fontSize: 10,
                                                       fontWeight:
                                                           FontWeight.w600),
-                                                ),
+                                                ).tr(),
                                               ],
                                             )),
                                         decoration: BoxDecoration(
@@ -847,10 +847,10 @@ class _HomePageState extends State<HomePage> {
                                       alignment: Alignment.topLeft,
                                       width: 180,
                                       child: Text(
-                                        "Intellectual Property Rights (IPRs) are legal rights that protect creations and/or inventions resulting from intellectual activity in the industrial,scientific, literary or artistic fields.",
+                                        "Blog Section",
                                         style: GoogleFonts.poppins(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 9,
+                                          fontSize: 12,
                                           color: Color(0xFFBFFFFFF),
                                         ),
                                       ),
@@ -873,7 +873,7 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 14,
                                               color: Colors.black54,
                                             ),
-                                            textAlign: TextAlign.center),
+                                            textAlign: TextAlign.center).tr(),
                                       ),
                                       decoration: BoxDecoration(
                                           boxShadow: [
@@ -1043,7 +1043,7 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Colors.black87),
-                    ),
+                    ).tr(),
                   ),
                   decoration: BoxDecoration(),
                 ),
