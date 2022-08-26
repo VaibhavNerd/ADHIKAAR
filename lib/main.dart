@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ipr/pages/aadhar_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ipr/pages/account_page.dart';
@@ -20,6 +21,7 @@ import 'package:ipr/pages/raise.dart';
 import 'package:ipr/pages/search_district.dart';
 import 'package:ipr/pages/search_page.dart';
 import 'package:ipr/pages/search_pin.dart';
+
 import 'package:ipr/pages/trade.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:ipr/pages/home_page.dart';
@@ -44,7 +46,7 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: RootApp(),
+    home: Home(),
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
@@ -61,7 +63,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     // FirebaseAuth.instance.signOut();
-    Timer(Duration(seconds: 2), () async {
+    Timer(Duration(seconds: 4), () async {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => AadharAuth()));
@@ -76,6 +78,36 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Container(
+        width: size.width,
+        height: size.height,
+        child: Column( crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 40),
+            Padding(padding: EdgeInsets.all(20),
+              child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset("assets/images/splashscreen/lion1.png",width: 44,height: 60, ),
+                  Image.asset("assets/images/splashscreen/dg.png" ,width: 80,height: 100),
+                ],
+              ),),
+            SizedBox(height: 30,),
+            Container( child: Image.asset("assets/images/splashscreen/rogo1.png",width: size.width-30,height: 250,),),
+        Container( child:Image.asset("assets/images/splashscreen/adhi.png",width: size.width-100,height: 200,),),
+    Container(child:Text("Imaginative Inadia\nInnovative India\nCreative India",
+            style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),),),
+
+
+          ],
+
+        ),
+      ),
+
+    );
   }
+
+
+
 }

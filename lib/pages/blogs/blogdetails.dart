@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ipr/theme/colors.dart';
 
 import '../../constant.dart';
 
@@ -116,7 +117,7 @@ class _BlogdetailsState extends State<Blogdetails> {
   Widget build(BuildContext context) {
     bool isweb = MediaQuery.of(context).size.width > 700;
     return Scaffold(
-      backgroundColor: bcolor,
+      backgroundColor: Color(0xBFFEAF0FF),
       body: isweb
           ? SingleChildScrollView(
               child: Column(
@@ -182,7 +183,7 @@ class _BlogdetailsState extends State<Blogdetails> {
       child: SingleChildScrollView(
           child: Text(
         blog["blog"],
-        style: TextStyle(color: whitecolor, fontSize: 15),
+        style: TextStyle(color: textBlack, fontSize: 15),
       )),
     );
   }
@@ -194,7 +195,7 @@ class _BlogdetailsState extends State<Blogdetails> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(widget.blog["topic"],
-              style: TextStyle(color: whitecolor, fontWeight: FontWeight.bold)),
+              style: TextStyle(color: textBlack, fontWeight: FontWeight.bold)),
           Row(
             children: [
               InkWell(

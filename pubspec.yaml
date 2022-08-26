@@ -64,6 +64,8 @@ dependencies:
 
 
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -83,6 +85,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/splashscreen/
     - assets/images/logo.svg
     - assets/images/man.svg
     - assets/images/weekone.jpg
