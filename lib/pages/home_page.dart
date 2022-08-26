@@ -47,7 +47,14 @@ class _HomePageState extends State<HomePage> {
     double height = MediaQuery.of(context).size.height;
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      floatingActionButton: CircleAvatar(child: Icon(Icons.question_answer)),
+      floatingActionButton: CircleAvatar(
+        child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Blogs()));
+            },
+            child: Container(child: Icon(Icons.question_answer))),
+      ),
       backgroundColor: Color(0xFFBEFF0F9),
       appBar: getAppBar(),
       body: getBody(size),
@@ -151,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                                                   const EdgeInsets.fromLTRB(
                                                       0, 15, 0, 0),
                                               child: GradientText(
-                                                "Intellectual Property",
+                                                "Intellectual Property00",
                                                 textAlign: TextAlign.center,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: GoogleFonts.poppins(
@@ -910,32 +917,114 @@ class _HomePageState extends State<HomePage> {
                                   // Padding(padding:  ),
                                   Row(
                                     children: [
-                                      Container(
-                                        alignment: Alignment.topLeft,
-                                        width: size.width * 0.4,
-                                        child: Text(
-                                          "10,50,641 ",
-                                          style: GoogleFonts.poppins(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 20,
-                                            color: Colors.black,
+                                      Column(
+                                        children: [
+                                          Container(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    "Patent",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 22,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    "Legal Right Of Owner",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 9,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 45)),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Patent",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 22,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Legal Right Of Owner",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 9,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Color.fromRGBO(
+                                                          0, 0, 0, 45)),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
                                       ),
                                       SizedBox(
                                         width: size.width * 0.05,
                                       ),
-                                      Container(
-                                        alignment: Alignment.topRight,
-                                        width: size.width * 0.4,
-                                        child: Text(
-                                          "10,50,641 ",
-                                          style: GoogleFonts.poppins(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 20,
-                                            color: Colors.black,
+                                      Column(
+                                        children: [
+                                          Container(
+                                            alignment: Alignment.topRight,
+                                            width: size.width * 0.4,
+                                            child: Text(
+                                              "10,50,641 ",
+                                              style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 20,
+                                                color: Colors.black,
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Patent",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 22,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Legal Right Of Owner",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 9,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Color.fromRGBO(
+                                                          0, 0, 0, 45)),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -945,33 +1034,8 @@ class _HomePageState extends State<HomePage> {
 
                                   Row(
                                     children: [
-                                      Container(
-                                        alignment: Alignment.topLeft,
-                                        width: size.width * 0.4,
-                                        child: Text(
-                                          "10,50,641 ",
-                                          style: GoogleFonts.poppins(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 20,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: size.width * 0.05,
-                                      ),
-                                      Container(
-                                        alignment: Alignment.topRight,
-                                        width: size.width * 0.4,
-                                        child: Text(
-                                          "10,50,641 ",
-                                          style: GoogleFonts.poppins(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 20,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
+                                     
+                                     
                                     ],
                                   ),
                                 ],
