@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ipr/pages/blogs/blogdetails.dart';
 import 'package:ipr/pages/blogs/uploadblog.dart';
+import 'package:ipr/theme/colors.dart';
 
 import '../../constant.dart';
 
@@ -159,7 +160,7 @@ class _BlogsState extends State<Blogs> {
   Widget build(BuildContext context) {
     bool isweb = MediaQuery.of(context).size.width > 700;
     return Scaffold(
-      backgroundColor: bcolor,
+      backgroundColor: Color(0xFFBEAF0FF),
       body: isloading
           ? Center(
               child: SizedBox(
@@ -481,6 +482,7 @@ class _BlogsState extends State<Blogs> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(
@@ -558,7 +560,7 @@ class _BlogsState extends State<Blogs> {
                   : ismyblog
                       ? "My Blogs"
                       : "Blogs",
-              style: TextStyle(color: whitecolor, fontWeight: FontWeight.bold)),
+              style: TextStyle(color: textBlack, fontWeight: FontWeight.bold)),
           Row(
             children: [
               InkWell(

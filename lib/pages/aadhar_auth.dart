@@ -20,7 +20,7 @@ class AadharAuth extends StatefulWidget {
 
 class _AadharAuthState extends State<AadharAuth> {
   int indexPage = 0;
-  bool isValid = true;
+  bool isValid = false;
   TextEditingController phone_controller = TextEditingController();
   TextEditingController aadhar = TextEditingController();
   @override
