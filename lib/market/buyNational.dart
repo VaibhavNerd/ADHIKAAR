@@ -62,6 +62,7 @@ class _BuyNationalState extends State<BuyNational> {
         msg: "SUCCESS: " + response.paymentId, toastLength: Toast.LENGTH_SHORT);
     setState(() {
       iprs[selected]["sell"] = 0;
+      iprs[selected]["issold"] = true;
     });
 
     Future.wait([
