@@ -46,7 +46,7 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Home(),
+    home: RootApp(),
     theme: ThemeData(
       textTheme: GoogleFonts.poppinsTextTheme(),
     ),
@@ -83,31 +83,51 @@ class _HomeState extends State<Home> {
       body: Container(
         width: size.width,
         height: size.height,
-        child: Column( crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 40),
-            Padding(padding: EdgeInsets.all(20),
-              child: Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset("assets/images/splashscreen/lion1.png",width: 44,height: 60, ),
-                  Image.asset("assets/images/splashscreen/dg.png" ,width: 80,height: 100),
+                  Image.asset(
+                    "assets/images/splashscreen/lion1.png",
+                    width: 44,
+                    height: 60,
+                  ),
+                  Image.asset("assets/images/splashscreen/dg.png",
+                      width: 80, height: 100),
                 ],
-              ),),
-            SizedBox(height: 30,),
-            Container( child: Image.asset("assets/images/splashscreen/rogo1.png",width: size.width-30,height: 250,),),
-        Container( child:Image.asset("assets/images/splashscreen/adhi.png",width: size.width-100,height: 200,),),
-    Container(child:Text("Imaginative Inadia\nInnovative India\nCreative India",
-            style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),),),
-
-
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              child: Image.asset(
+                "assets/images/splashscreen/rogo1.png",
+                width: size.width - 30,
+                height: 250,
+              ),
+            ),
+            Container(
+              child: Image.asset(
+                "assets/images/splashscreen/adhi.png",
+                width: size.width - 100,
+                height: 200,
+              ),
+            ),
+            Container(
+              child: Text(
+                "Imaginative Inadia\nInnovative India\nCreative India",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+              ),
+            ),
           ],
-
         ),
       ),
-
     );
   }
-
-
-
 }
