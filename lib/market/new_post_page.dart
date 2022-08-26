@@ -126,8 +126,7 @@ class _IPRmarketState extends State<IPRmarket> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
-                            image:
-                                AssetImage('assets/images/marketPlace.png'),
+                            image: AssetImage('assets/images/marketPlace.png'),
                             fit: BoxFit.cover)),
                     child: Container(
                       decoration: BoxDecoration(
@@ -266,7 +265,7 @@ class _IPRmarketState extends State<IPRmarket> {
                             ),
                             Container(
                               margin: EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 60),
+                                  vertical: 10, horizontal: 60),
                               child: Text(state[1],
                                   style: TextStyle(
                                       fontSize: 11,

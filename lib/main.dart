@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: RootApp(),
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
