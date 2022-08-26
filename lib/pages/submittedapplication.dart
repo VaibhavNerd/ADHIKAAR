@@ -179,7 +179,7 @@ class _SubmittedApplicationState extends State<SubmittedApplication> {
                                                                           [
                                                                           "sell"] ??
                                                                       0) ==
-                                                                  1)
+                                                                  3)
                                                               ? Colors.yellow
                                                               : Colors.green,
                                                       textColor: Colors.white,

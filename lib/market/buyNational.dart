@@ -63,6 +63,7 @@ class _BuyNationalState extends State<BuyNational> {
     setState(() {
       iprs[selected]["sell"] = 0;
       iprs[selected]["issold"] = true;
+      iprs[selected]["price"] = null;
     });
 
     Future.wait([
@@ -133,6 +134,19 @@ class _BuyNationalState extends State<BuyNational> {
             .where("sell", isEqualTo: 1)
             .get();
         for (var element in formssnap.docs) {
+          print(element.id);
+          Map<String, dynamic> data = {};
+          data = element.data();
+          data.addAll({"id": element.id});
+          setState(() {
+            iprs.add(data);
+          });
+        }
+        QuerySnapshot formssnap1 = await FirebaseFirestore.instance
+            .collection("/users/${element.id}/forms")
+            .where("sell", isEqualTo: 3)
+            .get();
+        for (var element in formssnap1.docs) {
           print(element.id);
           Map<String, dynamic> data = {};
           data = element.data();
@@ -269,36 +283,72 @@ class _BuyNationalState extends State<BuyNational> {
                                         )),
                                   ),
                                 ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 120),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 55),
-                                    child:
-                                        Text("Price: ${iprs[index]["price"]}",
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                            )),
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(120, 70, 0, 0),
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        selected = index;
-                                      });
-                                      openCheckout(
-                                          iprs[index]["price"].toString());
-                                    },
-                                    child: Text(
-                                      "BUY",
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.lightBlue,
-                                        minimumSize: Size(15, 25)),
-                                  ),
-                                )
+                                iprs[index]["sell"] == 2
+                                    ? Container(
+                                        margin: EdgeInsets.only(left: 120),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 55),
+                                          child: Text(
+                                              "Price: ${iprs[index]["price"]}",
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                              )),
+                                        ),
+                                      )
+                                    : Container(
+                                        margin: EdgeInsets.only(left: 120),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 55),
+                                          child: Text(
+                                              "Highest Bid: ${iprs[index]["highestbid"] ?? 0}",
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                              )),
+                                        ),
+                                      ),
+                                iprs[index]["sell"] == 1
+                                    ? Container(
+                                        margin:
+                                            EdgeInsets.fromLTRB(120, 70, 0, 0),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              selected = index;
+                                            });
+                                            openCheckout(iprs[index]["price"]
+                                                .toString());
+                                          },
+                                          child: Text(
+                                            "BUY",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.lightBlue,
+                                              minimumSize: Size(15, 25)),
+                                        ),
+                                      )
+                                    : Container(
+                                        margin:
+                                            EdgeInsets.fromLTRB(120, 70, 0, 0),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              selected = index;
+                                            });
+                                            showAlertDialog1(
+                                                context, iprs[index]);
+                                          },
+                                          child: Text(
+                                            "BID",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.lightBlue,
+                                              minimumSize: Size(15, 25)),
+                                        ),
+                                      )
                               ],
                             ),
                           ),
@@ -312,6 +362,74 @@ class _BuyNationalState extends State<BuyNational> {
       ),
     );
   }
+}
+
+TextEditingController price = TextEditingController();
+showAlertDialog1(BuildContext context, var ipr) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Cancel"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+  Widget continueButton = TextButton(
+    child: Text("Bid"),
+    onPressed: () {
+      if (double.parse(price.text) > (double.parse(ipr["highestbid"] ?? "0"))) {
+        FirebaseFirestore.instance
+            .doc("users/${ipr["uid"]}/forms/${ipr["id"]}")
+            .set({
+          "highestbid": price.text,
+          "highestbidder": FirebaseAuth.instance.currentUser.uid
+        }, SetOptions(merge: true)).then((value) {
+          Navigator.pop(context);
+        });
+      } else {
+        Fluttertoast.showToast(msg: "Enter Higher Bid!!!");
+      }
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("What price you want to bid for Patent?"),
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextFormField(
+          controller: price,
+          validator: (value) {
+            if (value.isEmpty) {
+              return ("Feild can't be empty");
+            }
+            return null;
+          },
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(10),
+            border: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(8.0),
+              ),
+            ),
+            labelText: 'Price(In INR)',
+          ),
+        ),
+      ],
+    ),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
 
 extension EmailValidator on String {
