@@ -1,3 +1,9 @@
+import 'dart:io';
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ipr/components/colors.dart';
@@ -7,6 +13,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:ipr/pages/help.dart';
 import 'package:ipr/pages/home_page.dart';
 import 'package:ipr/pages/lang.dart';
+import 'package:ipr/searchobjection.dart';
 import 'package:ipr/theme/colors.dart';
 import 'package:ipr/util/account_images_json.dart';
 import 'package:ipr/util/vaibhav_details.dart';
@@ -36,7 +43,9 @@ class _RaisePageState extends State<RaisePage> {
   int count1 = 0;
   int statesel = 0;
   int dissel = 0;
-
+  TextEditingController id = TextEditingController();
+  TextEditingController applicationname = TextEditingController();
+  TextEditingController objection = TextEditingController();
   var selectedstate;
   var selectedType2;
   List<String> _states = <String>[
@@ -45,6 +54,46 @@ class _RaisePageState extends State<RaisePage> {
     "Copyright",
     "Industrial Design",
   ];
+  String url = "";
+  Future<String> getAndUpload() async {
+    var rng = new Random();
+    String randomName = "";
+    for (var i = 0; i < 20; i++) {
+      print(rng.nextInt(100));
+      randomName += rng.nextInt(100).toString();
+    }
+    FilePickerResult result = await FilePicker.platform.pickFiles();
+    File file = await File(result.files.single.path);
+    String fileName = '${randomName}';
+    print(fileName);
+    print('${file.readAsBytesSync()}');
+    return await savePdf(file, fileName);
+  }
+
+  Future<String> savePdf(File asset, String name) async {
+    final storageRef = FirebaseStorage.instance.ref();
+
+// Create a reference to "mountains.jpg"
+    final mountainsRef = storageRef.child(name);
+    try {
+      String url = await mountainsRef.putFile(asset).then((p0) async {
+        print("I am Here");
+        String urlofassesment =
+            await mountainsRef.getDownloadURL().then((value) {
+          print(value);
+          return value;
+        });
+        return urlofassesment;
+      });
+      return url;
+    } on FirebaseException catch (e) {
+      print("exception found");
+      print(e);
+
+      // ...
+    }
+    //  return "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +229,7 @@ class _RaisePageState extends State<RaisePage> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: id,
                             decoration: ThemeHelper().textInputDecoration(
                                 'Application ID', 'Enter your Application ID'),
                             validator: (val) {
@@ -199,6 +249,7 @@ class _RaisePageState extends State<RaisePage> {
                         ),
                         Container(
                           child: TextFormField(
+                            controller: applicationname,
                             decoration: ThemeHelper().textInputDecoration(
                                 'Applicant Name', 'Enter Applicant Name'),
                             validator: (val) {
@@ -215,6 +266,7 @@ class _RaisePageState extends State<RaisePage> {
                         ),
                         SizedBox(height: 15.0),
                         TextField(
+                          controller: objection,
                           decoration: ThemeHelper().textInputDecoration(
                               'Objection', 'Enter your objection'),
                           keyboardType: TextInputType.multiline,
@@ -224,7 +276,9 @@ class _RaisePageState extends State<RaisePage> {
                         ),
                         SizedBox(height: 10.0),
                         Text(
-                          "Upload related documents * ",
+                          url == ""
+                              ? "Upload related documents * "
+                              : "Document Uploaded Successfully",
                           style: TextStyle(
                             color: Colors.red,
                             fontSize: 15,
@@ -233,6 +287,34 @@ class _RaisePageState extends State<RaisePage> {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 30.0),
+                        Container(
+                          decoration:
+                              ThemeHelper().buttonBoxDecoration(context),
+                          child: ElevatedButton(
+                            style: ThemeHelper().buttonStyle(),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                              child: Text(
+                                "Upload".toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              await getAndUpload().then((value) {
+                                setState(() {
+                                  url = value;
+                                });
+                              });
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
                         Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),
@@ -250,10 +332,34 @@ class _RaisePageState extends State<RaisePage> {
                                 ),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              FirebaseFirestore.instance
+                                  .collection("Objection")
+                                  .add({
+                                "type": selectedstate,
+                                "applicationid": id.text,
+                                "applicationname": applicationname.text,
+                                "objection": objection.text,
+                                "document": url
+                              }).then((value) {
+                                showAlertDialog(context, value.id);
+                              });
+                            },
                           ),
                         ),
                         SizedBox(height: 30.0),
+                        InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>
+                                      SearchObjection(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                                "Want to track your Objection? Click here")),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -271,6 +377,45 @@ class _RaisePageState extends State<RaisePage> {
           ],
         ),
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context, String objid) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {},
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Objection Ticket"),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+              "Objection Ticket generated Please save this for future reference"),
+          Text(objid)
+        ],
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
